@@ -1,16 +1,29 @@
 import { useState } from 'react'
 import './App.css'
 
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from "./routes.tsx"
+import './index.css'
+
 function App() {
-  const [count, setCount] = useState(0)
+  return ( 
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
+};
+
+
+
+/*function App() {
   const handlePrint = () => {
     window.print()
   }
   return (
     <>
       <main className="m-5 lg:max-w-xl lg: mx-auto">
-        {/*HEADER*/}
-        <div className="text-gray-600 text-5xl font-bold">
+        {/*HEADER}
+        <div className="text-red-600 text-5xl font-bold">
             <h2>HIMetal</h2>
           </div>
         <header className="flex flex-col items-center justify-center mb-5">
@@ -18,22 +31,22 @@ function App() {
 
           <div>
             <ul className="flex items-center justify-between flex-wrap">
-              <li><button onClick={handlePrint} className="btn btn-print p-3">Imprimirpenepenepene</button></li>
+              <li><button onClick={handlePrint} className="btn btn-print p-3">Imprimir</button></li>
               <li><button className="btn btn-download p-3">Descargar</button></li>
-              <li><button className="btn btn-send p-3">Enviar</button></li>                     {/* VER QEU CORNO ES BTN */}                     
+              <li><button className="btn btn-send p-3">Enviar</button></li>                     {/* VER QEU CORNO ES BTN }                     
             </ul>
           </div>
         </header>
-        {/*HEADER END*/}
+        {/*HEADER END}
 
-        {/*INFO PERSONAL*/}
+        {/*INFO PERSONAL}
         <section className="flex flex-col max-w-[50%] my-5">
           <h2>Client</h2>
           <input type="text" name="text" id="text" placeholder="Nombre" required></input>
         </section>
-        {/*INFO PERSONAL END*/}
+        {/*INFO PERSONAL END}
 
-        {/*FECHA*/}
+        {/*FECHA}
         <article>
           <ul>
             <li>Fecha:</li>
@@ -41,12 +54,12 @@ function App() {
             <li>algo</li>
           </ul>
         </article>
-        {/*FECHA END*/}
+        {/*FECHA END}
 
-        {/*TABLA*/}
-        {/*TABLA END*/}
+        {/*TABLA}
+        {/*TABLA END}
 
-        {/*FOOTER*/}
+        {/*FOOTER}
         <footer>
           <ul>
             <li>numero?</li>
@@ -57,10 +70,10 @@ function App() {
             <li>website?</li>
           </ul>
         </footer>
-        {/*FOOTER END*/}
+        {/*FOOTER END}
       </main>
     </>
   )
-}
+}*/
 
-export default App
+export default App;
