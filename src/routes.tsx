@@ -1,5 +1,6 @@
 import Home from "./pages/home"
 import Invoicer from "./pages/invoicer"
+import ListaArticulos from "./pages/articulos"
 import {
   Routes,
   Route,
@@ -10,6 +11,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/in" element={<Invoicer />} />
+      <Route path="/arts" element={<ListaArticulos />} />
     </Routes>
   )
 }

@@ -1,10 +1,13 @@
 import {useNavigate} from "react-router-dom"
 
+import {useArticulos} from '../hooks/useArticulos';
+
 const Invoicer = () => {
     const navigate = useNavigate();
     const handlePrint = () => {
     window.print()
     }
+
 
     return(
         <div>
@@ -15,12 +18,11 @@ const Invoicer = () => {
                 </div>
                 <header className="flex flex-col items-center justify-center mb-5">
                 
-
+                
                 <div>
-                    <ul className="flex items-center justify-between flex-wrap">
+                    <ul className="flex items-center justify-between flex-wrap font-bold">
                     <li><button onClick={handlePrint} className="btn btn-print p-3">Imprimir</button></li>
-                    <li><button className="btn btn-download p-3">Descargar</button></li>
-                    <li><button className="btn btn-send p-3">Enviar</button></li>                     {/* VER QEU CORNO ES BTN*/}                     
+                    <li><button onClick={() => navigate("/")}>volver al inicio</button></li>                     {/* VER QEU CORNO ES BTN*/}                     
                     </ul>
                 </div>
                 </header>
@@ -56,7 +58,6 @@ const Invoicer = () => {
                 </footer>
                 {/*FOOTER END*/}
             </main>
-            <button onClick={() => navigate("/")}>bbb</button>
         </div>
     );
 };
