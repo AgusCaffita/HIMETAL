@@ -3,7 +3,6 @@ import cors from "cors";
 import mysql from "mysql2";
 
 
-const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
