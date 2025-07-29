@@ -1,5 +1,28 @@
-import mysql from "mysql2";
+import {PrismaClient} from '@prisma/client'
+import express from 'express'
 
+const app = express()
+const prisma = new PrismaClient();
+
+app.use(express.json());
+
+app.post('/arts', async (req,res) => {
+  try{
+    const nuevo = await prisma.articulo.create({
+      data:{nombre:'pan' , precio:111},
+    })
+    res.json(nuevo)
+  }catch(error){
+    console.error('EEL ERROR ES:', error)
+    res.status(500).json({error})
+  }
+})
+
+app.listen(3001, () =>{
+  console.log('ESCUCHANDOOOOOOOOOOOOOOOOOO')
+})
+
+/*import mysql from "mysql2";
 /*export const db = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -13,7 +36,7 @@ db.connect((err) => {
     return;
   }
   console.log("Conectado a la base de datos");
-});*/async function agregarArticulo(nombre, precio){
+});async function agregarArticulo(nombre, precio){
   const conexion = await mysql.createConnection({
       host: "localhost",
       user: "root",
@@ -34,3 +57,4 @@ db.connect((err) => {
 }
 
 agregarArticulo('manzana', 100)
+*/

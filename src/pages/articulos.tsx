@@ -1,6 +1,19 @@
 import {useNavigate} from "react-router-dom"
 import {useEffect, useState} from 'react'
 
+export default function App(){
+    async function agregarArticulo(){
+        try{
+            const res = await fetch('http://localhost:5173/arts',{ method: 'POST'})
+            const data = await res.json();
+            alert('ART AGREGADO')
+        } catch (error){
+            alert('Error al agregar el art')
+        }
+    }
+
+    return(<div><button onClick={agregarArticulo}>AGREGAR ARTICULO ACA</button></div>)
+}
 
 interface Articulo {
   him_codigo: string;
@@ -23,12 +36,12 @@ interface Articulo {
 
 export default ListaArticulos;*/}
 
-export default function Articulos() {
+/*export default function Articulos() {
     const [articulos, setArticulos] = useState<Articulo[]>([]);
     const navigate = useNavigate();
+    const creari = crear;
 
-
-    useEffect(() => {
+   /* useEffect(() => {
         fetch('http://localhost:5173/articulos')
         .then(res => res.json())
         .then(data => setArticulos(data));
@@ -37,6 +50,7 @@ export default function Articulos() {
     return (
         <div>
             <button onClick={() => navigate("/")} className="hover:text-purple-300">volver al inicio</button>
+            <button onClick={() => creari} className="hover:text-purple-300">volver al inicio</button>
             <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">Lista de Artículos</h1>
             <table className="w-full border border-gray-300">
@@ -69,4 +83,4 @@ export default function Articulos() {
         </div>
     );
 }
-
+*/
