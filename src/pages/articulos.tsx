@@ -1,16 +1,15 @@
 import {useNavigate} from "react-router-dom"
-import { useEffect, useState } from 'react';
-
+import {useEffect, useState} from 'react'
 
 
 interface Articulo {
-  himCodigo: string;
-  cliCodigo: string;
+  him_codigo: string;
+  cli_codigo: string;
   nombre: string;
   cant_piezas: number;
   plano: string;
   precio: number;
-  cteGanancia: number;
+  cte_ganancia: number;
 }
 
 {/*export const ListaArticulos = () => {
@@ -30,7 +29,7 @@ export default function Articulos() {
 
 
     useEffect(() => {
-        fetch('http://localhost:3000/articulos')
+        fetch('http://localhost:5173/articulos')
         .then(res => res.json())
         .then(data => setArticulos(data));
     }, []);
@@ -54,14 +53,14 @@ export default function Articulos() {
                 </thead>
                 <tbody>
                 {articulos.map((articulo) => (
-                    <tr key={articulo.himCodigo}>
-                    <td className="p-2 border">{articulo.himCodigo}</td>
-                    <td className="p-2 border">{articulo.cliCodigo}</td>
+                    <tr key={articulo.him_codigo}>
+                    <td className="p-2 border">{articulo.him_codigo}</td>
+                    <td className="p-2 border">{articulo.cli_codigo}</td>
                     <td className="p-2 border">{articulo.nombre}</td>
                     <td className="p-2 border">{articulo.cant_piezas}</td>
                     <td className="p-2 border">{articulo.plano}</td>
                     <td className="p-2 border">${articulo.precio}</td>
-                    <td className="p-2 border">{articulo.cteGanancia}%</td>
+                    <td className="p-2 border">{articulo.cte_ganancia}%</td>
                     </tr>
                 ))}
                 </tbody>
