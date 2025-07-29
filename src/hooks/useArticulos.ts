@@ -18,7 +18,7 @@ export const useArticulos = () =>{
         const fetchArticulos = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('https:\\localhost:5173/arts');
+                const response = await fetch('https://localhost:5173/arts');
 
                 if(!response.ok){
                     throw new Error('error al obtener articulos');
