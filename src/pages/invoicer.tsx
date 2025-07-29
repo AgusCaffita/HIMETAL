@@ -1,6 +1,5 @@
 import {useNavigate} from "react-router-dom"
 
-import {useArticulos} from '../hooks/useArticulos';
 
 const Invoicer = () => {
     const navigate = useNavigate();
