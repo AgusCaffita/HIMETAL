@@ -150,14 +150,14 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
-exports.Prisma.ArticuloOrderByRelevanceFieldEnum = {
+exports.Prisma.articuloOrderByRelevanceFieldEnum = {
   him_codigo: 'him_codigo',
   cli_codigo: 'cli_codigo',
   nombre: 'nombre',
   plano: 'plano'
 };
 
-exports.Prisma.PiezaOrderByRelevanceFieldEnum = {
+exports.Prisma.piezaOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   plano_pleg_DWG: 'plano_pleg_DWG',
   plano_pleg_SOLID: 'plano_pleg_SOLID',
@@ -166,8 +166,8 @@ exports.Prisma.PiezaOrderByRelevanceFieldEnum = {
 
 
 exports.Prisma.ModelName = {
-  Articulo: 'Articulo',
-  Pieza: 'Pieza'
+  articulo: 'articulo',
+  pieza: 'pieza'
 };
 
 /**

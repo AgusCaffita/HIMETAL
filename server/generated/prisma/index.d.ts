@@ -14,15 +14,15 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model Articulo
+ * Model articulo
  * 
  */
-export type Articulo = $Result.DefaultSelection<Prisma.$ArticuloPayload>
+export type articulo = $Result.DefaultSelection<Prisma.$articuloPayload>
 /**
- * Model Pieza
+ * Model pieza
  * 
  */
-export type Pieza = $Result.DefaultSelection<Prisma.$PiezaPayload>
+export type pieza = $Result.DefaultSelection<Prisma.$piezaPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -150,24 +150,24 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.articulo`: Exposes CRUD operations for the **Articulo** model.
+   * `prisma.articulo`: Exposes CRUD operations for the **articulo** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Articulos
     * const articulos = await prisma.articulo.findMany()
     * ```
     */
-  get articulo(): Prisma.ArticuloDelegate<ExtArgs, ClientOptions>;
+  get articulo(): Prisma.articuloDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.pieza`: Exposes CRUD operations for the **Pieza** model.
+   * `prisma.pieza`: Exposes CRUD operations for the **pieza** model.
     * Example usage:
     * ```ts
     * // Fetch zero or more Piezas
     * const piezas = await prisma.pieza.findMany()
     * ```
     */
-  get pieza(): Prisma.PiezaDelegate<ExtArgs, ClientOptions>;
+  get pieza(): Prisma.piezaDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -608,8 +608,8 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    Articulo: 'Articulo',
-    Pieza: 'Pieza'
+    articulo: 'articulo',
+    pieza: 'pieza'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -632,134 +632,134 @@ export namespace Prisma {
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      Articulo: {
-        payload: Prisma.$ArticuloPayload<ExtArgs>
-        fields: Prisma.ArticuloFieldRefs
+      articulo: {
+        payload: Prisma.$articuloPayload<ExtArgs>
+        fields: Prisma.articuloFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ArticuloFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload> | null
+            args: Prisma.articuloFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ArticuloFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           findFirst: {
-            args: Prisma.ArticuloFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload> | null
+            args: Prisma.articuloFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ArticuloFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           findMany: {
-            args: Prisma.ArticuloFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>[]
+            args: Prisma.articuloFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>[]
           }
           create: {
-            args: Prisma.ArticuloCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           createMany: {
-            args: Prisma.ArticuloCreateManyArgs<ExtArgs>
+            args: Prisma.articuloCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.ArticuloDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           update: {
-            args: Prisma.ArticuloUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           deleteMany: {
-            args: Prisma.ArticuloDeleteManyArgs<ExtArgs>
+            args: Prisma.articuloDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ArticuloUpdateManyArgs<ExtArgs>
+            args: Prisma.articuloUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.ArticuloUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ArticuloPayload>
+            args: Prisma.articuloUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$articuloPayload>
           }
           aggregate: {
             args: Prisma.ArticuloAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregateArticulo>
           }
           groupBy: {
-            args: Prisma.ArticuloGroupByArgs<ExtArgs>
+            args: Prisma.articuloGroupByArgs<ExtArgs>
             result: $Utils.Optional<ArticuloGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ArticuloCountArgs<ExtArgs>
+            args: Prisma.articuloCountArgs<ExtArgs>
             result: $Utils.Optional<ArticuloCountAggregateOutputType> | number
           }
         }
       }
-      Pieza: {
-        payload: Prisma.$PiezaPayload<ExtArgs>
-        fields: Prisma.PiezaFieldRefs
+      pieza: {
+        payload: Prisma.$piezaPayload<ExtArgs>
+        fields: Prisma.piezaFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.PiezaFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload> | null
+            args: Prisma.piezaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.PiezaFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           findFirst: {
-            args: Prisma.PiezaFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload> | null
+            args: Prisma.piezaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.PiezaFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           findMany: {
-            args: Prisma.PiezaFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>[]
+            args: Prisma.piezaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>[]
           }
           create: {
-            args: Prisma.PiezaCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           createMany: {
-            args: Prisma.PiezaCreateManyArgs<ExtArgs>
+            args: Prisma.piezaCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.PiezaDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           update: {
-            args: Prisma.PiezaUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           deleteMany: {
-            args: Prisma.PiezaDeleteManyArgs<ExtArgs>
+            args: Prisma.piezaDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.PiezaUpdateManyArgs<ExtArgs>
+            args: Prisma.piezaUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.PiezaUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PiezaPayload>
+            args: Prisma.piezaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$piezaPayload>
           }
           aggregate: {
             args: Prisma.PiezaAggregateArgs<ExtArgs>
             result: $Utils.Optional<AggregatePieza>
           }
           groupBy: {
-            args: Prisma.PiezaGroupByArgs<ExtArgs>
+            args: Prisma.piezaGroupByArgs<ExtArgs>
             result: $Utils.Optional<PiezaGroupByOutputType>[]
           }
           count: {
-            args: Prisma.PiezaCountArgs<ExtArgs>
+            args: Prisma.piezaCountArgs<ExtArgs>
             result: $Utils.Optional<PiezaCountAggregateOutputType> | number
           }
         }
@@ -856,8 +856,8 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    articulo?: ArticuloOmit
-    pieza?: PiezaOmit
+    articulo?: articuloOmit
+    pieza?: piezaOmit
   }
 
   /* Types for Logging */
@@ -958,7 +958,7 @@ export namespace Prisma {
    */
 
   /**
-   * Model Articulo
+   * Model articulo
    */
 
   export type AggregateArticulo = {
@@ -1058,37 +1058,37 @@ export namespace Prisma {
 
   export type ArticuloAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Articulo to aggregate.
+     * Filter which articulo to aggregate.
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Articulos to fetch.
+     * Determine the order of articulos to fetch.
      */
-    orderBy?: ArticuloOrderByWithRelationInput | ArticuloOrderByWithRelationInput[]
+    orderBy?: articuloOrderByWithRelationInput | articuloOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ArticuloWhereUniqueInput
+    cursor?: articuloWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Articulos from the position of the cursor.
+     * Take `±n` articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Articulos.
+     * Skip the first `n` articulos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Articulos
+     * Count returned articulos
     **/
     _count?: true | ArticuloCountAggregateInputType
     /**
@@ -1128,11 +1128,11 @@ export namespace Prisma {
 
 
 
-  export type ArticuloGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ArticuloWhereInput
-    orderBy?: ArticuloOrderByWithAggregationInput | ArticuloOrderByWithAggregationInput[]
+  export type articuloGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: articuloWhereInput
+    orderBy?: articuloOrderByWithAggregationInput | articuloOrderByWithAggregationInput[]
     by: ArticuloScalarFieldEnum[] | ArticuloScalarFieldEnum
-    having?: ArticuloScalarWhereWithAggregatesInput
+    having?: articuloScalarWhereWithAggregatesInput
     take?: number
     skip?: number
     _count?: ArticuloCountAggregateInputType | true
@@ -1143,9 +1143,9 @@ export namespace Prisma {
   }
 
   export type ArticuloGroupByOutputType = {
-    him_codigo: string | null
+    him_codigo: string
     cli_codigo: string | null
-    nombre: string
+    nombre: string | null
     cant_piezas: number | null
     plano: string | null
     precio: number | null
@@ -1157,7 +1157,7 @@ export namespace Prisma {
     _max: ArticuloMaxAggregateOutputType | null
   }
 
-  type GetArticuloGroupByPayload<T extends ArticuloGroupByArgs> = Prisma.PrismaPromise<
+  type GetArticuloGroupByPayload<T extends articuloGroupByArgs> = Prisma.PrismaPromise<
     Array<
       PickEnumerable<ArticuloGroupByOutputType, T['by']> &
         {
@@ -1171,7 +1171,7 @@ export namespace Prisma {
     >
 
 
-  export type ArticuloSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type articuloSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     him_codigo?: boolean
     cli_codigo?: boolean
     nombre?: boolean
@@ -1183,7 +1183,7 @@ export namespace Prisma {
 
 
 
-  export type ArticuloSelectScalar = {
+  export type articuloSelectScalar = {
     him_codigo?: boolean
     cli_codigo?: boolean
     nombre?: boolean
@@ -1193,15 +1193,15 @@ export namespace Prisma {
     cte_ganancia?: boolean
   }
 
-  export type ArticuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"him_codigo" | "cli_codigo" | "nombre" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
+  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"him_codigo" | "cli_codigo" | "nombre" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
 
-  export type $ArticuloPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Articulo"
+  export type $articuloPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "articulo"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      him_codigo: string | null
+      him_codigo: string
       cli_codigo: string | null
-      nombre: string
+      nombre: string | null
       cant_piezas: number | null
       plano: string | null
       precio: number | null
@@ -1210,18 +1210,18 @@ export namespace Prisma {
     composites: {}
   }
 
-  type ArticuloGetPayload<S extends boolean | null | undefined | ArticuloDefaultArgs> = $Result.GetResult<Prisma.$ArticuloPayload, S>
+  type articuloGetPayload<S extends boolean | null | undefined | articuloDefaultArgs> = $Result.GetResult<Prisma.$articuloPayload, S>
 
-  type ArticuloCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ArticuloFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  type articuloCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<articuloFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: ArticuloCountAggregateInputType | true
     }
 
-  export interface ArticuloDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Articulo'], meta: { name: 'Articulo' } }
+  export interface articuloDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['articulo'], meta: { name: 'articulo' } }
     /**
      * Find zero or one Articulo that matches the filter.
-     * @param {ArticuloFindUniqueArgs} args - Arguments to find a Articulo
+     * @param {articuloFindUniqueArgs} args - Arguments to find a Articulo
      * @example
      * // Get one Articulo
      * const articulo = await prisma.articulo.findUnique({
@@ -1230,12 +1230,12 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends ArticuloFindUniqueArgs>(args: SelectSubset<T, ArticuloFindUniqueArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends articuloFindUniqueArgs>(args: SelectSubset<T, articuloFindUniqueArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Articulo that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ArticuloFindUniqueOrThrowArgs} args - Arguments to find a Articulo
+     * @param {articuloFindUniqueOrThrowArgs} args - Arguments to find a Articulo
      * @example
      * // Get one Articulo
      * const articulo = await prisma.articulo.findUniqueOrThrow({
@@ -1244,13 +1244,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ArticuloFindUniqueOrThrowArgs>(args: SelectSubset<T, ArticuloFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends articuloFindUniqueOrThrowArgs>(args: SelectSubset<T, articuloFindUniqueOrThrowArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Articulo that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloFindFirstArgs} args - Arguments to find a Articulo
+     * @param {articuloFindFirstArgs} args - Arguments to find a Articulo
      * @example
      * // Get one Articulo
      * const articulo = await prisma.articulo.findFirst({
@@ -1259,14 +1259,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends ArticuloFindFirstArgs>(args?: SelectSubset<T, ArticuloFindFirstArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends articuloFindFirstArgs>(args?: SelectSubset<T, articuloFindFirstArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Articulo that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloFindFirstOrThrowArgs} args - Arguments to find a Articulo
+     * @param {articuloFindFirstOrThrowArgs} args - Arguments to find a Articulo
      * @example
      * // Get one Articulo
      * const articulo = await prisma.articulo.findFirstOrThrow({
@@ -1275,13 +1275,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends ArticuloFindFirstOrThrowArgs>(args?: SelectSubset<T, ArticuloFindFirstOrThrowArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends articuloFindFirstOrThrowArgs>(args?: SelectSubset<T, articuloFindFirstOrThrowArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Articulos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {articuloFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Articulos
      * const articulos = await prisma.articulo.findMany()
@@ -1293,11 +1293,11 @@ export namespace Prisma {
      * const articuloWithHim_codigoOnly = await prisma.articulo.findMany({ select: { him_codigo: true } })
      * 
      */
-    findMany<T extends ArticuloFindManyArgs>(args?: SelectSubset<T, ArticuloFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends articuloFindManyArgs>(args?: SelectSubset<T, articuloFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Articulo.
-     * @param {ArticuloCreateArgs} args - Arguments to create a Articulo.
+     * @param {articuloCreateArgs} args - Arguments to create a Articulo.
      * @example
      * // Create one Articulo
      * const Articulo = await prisma.articulo.create({
@@ -1307,11 +1307,11 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends ArticuloCreateArgs>(args: SelectSubset<T, ArticuloCreateArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends articuloCreateArgs>(args: SelectSubset<T, articuloCreateArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Articulos.
-     * @param {ArticuloCreateManyArgs} args - Arguments to create many Articulos.
+     * @param {articuloCreateManyArgs} args - Arguments to create many Articulos.
      * @example
      * // Create many Articulos
      * const articulo = await prisma.articulo.createMany({
@@ -1321,11 +1321,11 @@ export namespace Prisma {
      * })
      *     
      */
-    createMany<T extends ArticuloCreateManyArgs>(args?: SelectSubset<T, ArticuloCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends articuloCreateManyArgs>(args?: SelectSubset<T, articuloCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Delete a Articulo.
-     * @param {ArticuloDeleteArgs} args - Arguments to delete one Articulo.
+     * @param {articuloDeleteArgs} args - Arguments to delete one Articulo.
      * @example
      * // Delete one Articulo
      * const Articulo = await prisma.articulo.delete({
@@ -1335,11 +1335,11 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends ArticuloDeleteArgs>(args: SelectSubset<T, ArticuloDeleteArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends articuloDeleteArgs>(args: SelectSubset<T, articuloDeleteArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Articulo.
-     * @param {ArticuloUpdateArgs} args - Arguments to update one Articulo.
+     * @param {articuloUpdateArgs} args - Arguments to update one Articulo.
      * @example
      * // Update one Articulo
      * const articulo = await prisma.articulo.update({
@@ -1352,11 +1352,11 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ArticuloUpdateArgs>(args: SelectSubset<T, ArticuloUpdateArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends articuloUpdateArgs>(args: SelectSubset<T, articuloUpdateArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Articulos.
-     * @param {ArticuloDeleteManyArgs} args - Arguments to filter Articulos to delete.
+     * @param {articuloDeleteManyArgs} args - Arguments to filter Articulos to delete.
      * @example
      * // Delete a few Articulos
      * const { count } = await prisma.articulo.deleteMany({
@@ -1366,13 +1366,13 @@ export namespace Prisma {
      * })
      * 
      */
-    deleteMany<T extends ArticuloDeleteManyArgs>(args?: SelectSubset<T, ArticuloDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends articuloDeleteManyArgs>(args?: SelectSubset<T, articuloDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Articulos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {articuloUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Articulos
      * const articulo = await prisma.articulo.updateMany({
@@ -1385,11 +1385,11 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ArticuloUpdateManyArgs>(args: SelectSubset<T, ArticuloUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends articuloUpdateManyArgs>(args: SelectSubset<T, articuloUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Articulo.
-     * @param {ArticuloUpsertArgs} args - Arguments to update or create a Articulo.
+     * @param {articuloUpsertArgs} args - Arguments to update or create a Articulo.
      * @example
      * // Update or create a Articulo
      * const articulo = await prisma.articulo.upsert({
@@ -1404,14 +1404,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends ArticuloUpsertArgs>(args: SelectSubset<T, ArticuloUpsertArgs<ExtArgs>>): Prisma__ArticuloClient<$Result.GetResult<Prisma.$ArticuloPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends articuloUpsertArgs>(args: SelectSubset<T, articuloUpsertArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Articulos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloCountArgs} args - Arguments to filter Articulos to count.
+     * @param {articuloCountArgs} args - Arguments to filter Articulos to count.
      * @example
      * // Count the number of Articulos
      * const count = await prisma.articulo.count({
@@ -1420,8 +1420,8 @@ export namespace Prisma {
      *   }
      * })
     **/
-    count<T extends ArticuloCountArgs>(
-      args?: Subset<T, ArticuloCountArgs>,
+    count<T extends articuloCountArgs>(
+      args?: Subset<T, articuloCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -1460,7 +1460,7 @@ export namespace Prisma {
      * Group by Articulo.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ArticuloGroupByArgs} args - Group by arguments.
+     * @param {articuloGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1475,14 +1475,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ArticuloGroupByArgs,
+      T extends articuloGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ArticuloGroupByArgs['orderBy'] }
-        : { orderBy?: ArticuloGroupByArgs['orderBy'] },
+        ? { orderBy: articuloGroupByArgs['orderBy'] }
+        : { orderBy?: articuloGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1531,20 +1531,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ArticuloGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetArticuloGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, articuloGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetArticuloGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Articulo model
+   * Fields of the articulo model
    */
-  readonly fields: ArticuloFieldRefs;
+  readonly fields: articuloFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Articulo.
+   * The delegate class that acts as a "Promise-like" for articulo.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ArticuloClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__articuloClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1572,339 +1572,339 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Articulo model
+   * Fields of the articulo model
    */
-  interface ArticuloFieldRefs {
-    readonly him_codigo: FieldRef<"Articulo", 'String'>
-    readonly cli_codigo: FieldRef<"Articulo", 'String'>
-    readonly nombre: FieldRef<"Articulo", 'String'>
-    readonly cant_piezas: FieldRef<"Articulo", 'Int'>
-    readonly plano: FieldRef<"Articulo", 'String'>
-    readonly precio: FieldRef<"Articulo", 'Int'>
-    readonly cte_ganancia: FieldRef<"Articulo", 'Int'>
+  interface articuloFieldRefs {
+    readonly him_codigo: FieldRef<"articulo", 'String'>
+    readonly cli_codigo: FieldRef<"articulo", 'String'>
+    readonly nombre: FieldRef<"articulo", 'String'>
+    readonly cant_piezas: FieldRef<"articulo", 'Int'>
+    readonly plano: FieldRef<"articulo", 'String'>
+    readonly precio: FieldRef<"articulo", 'Int'>
+    readonly cte_ganancia: FieldRef<"articulo", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * Articulo findUnique
+   * articulo findUnique
    */
-  export type ArticuloFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter, which Articulo to fetch.
+     * Filter, which articulo to fetch.
      */
-    where: ArticuloWhereUniqueInput
+    where: articuloWhereUniqueInput
   }
 
   /**
-   * Articulo findUniqueOrThrow
+   * articulo findUniqueOrThrow
    */
-  export type ArticuloFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter, which Articulo to fetch.
+     * Filter, which articulo to fetch.
      */
-    where: ArticuloWhereUniqueInput
+    where: articuloWhereUniqueInput
   }
 
   /**
-   * Articulo findFirst
+   * articulo findFirst
    */
-  export type ArticuloFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter, which Articulo to fetch.
+     * Filter, which articulo to fetch.
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Articulos to fetch.
+     * Determine the order of articulos to fetch.
      */
-    orderBy?: ArticuloOrderByWithRelationInput | ArticuloOrderByWithRelationInput[]
+    orderBy?: articuloOrderByWithRelationInput | articuloOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Articulos.
+     * Sets the position for searching for articulos.
      */
-    cursor?: ArticuloWhereUniqueInput
+    cursor?: articuloWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Articulos from the position of the cursor.
+     * Take `±n` articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Articulos.
+     * Skip the first `n` articulos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Articulos.
+     * Filter by unique combinations of articulos.
      */
     distinct?: ArticuloScalarFieldEnum | ArticuloScalarFieldEnum[]
   }
 
   /**
-   * Articulo findFirstOrThrow
+   * articulo findFirstOrThrow
    */
-  export type ArticuloFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter, which Articulo to fetch.
+     * Filter, which articulo to fetch.
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Articulos to fetch.
+     * Determine the order of articulos to fetch.
      */
-    orderBy?: ArticuloOrderByWithRelationInput | ArticuloOrderByWithRelationInput[]
+    orderBy?: articuloOrderByWithRelationInput | articuloOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Articulos.
+     * Sets the position for searching for articulos.
      */
-    cursor?: ArticuloWhereUniqueInput
+    cursor?: articuloWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Articulos from the position of the cursor.
+     * Take `±n` articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Articulos.
+     * Skip the first `n` articulos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Articulos.
+     * Filter by unique combinations of articulos.
      */
     distinct?: ArticuloScalarFieldEnum | ArticuloScalarFieldEnum[]
   }
 
   /**
-   * Articulo findMany
+   * articulo findMany
    */
-  export type ArticuloFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter, which Articulos to fetch.
+     * Filter, which articulos to fetch.
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Articulos to fetch.
+     * Determine the order of articulos to fetch.
      */
-    orderBy?: ArticuloOrderByWithRelationInput | ArticuloOrderByWithRelationInput[]
+    orderBy?: articuloOrderByWithRelationInput | articuloOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Articulos.
+     * Sets the position for listing articulos.
      */
-    cursor?: ArticuloWhereUniqueInput
+    cursor?: articuloWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Articulos from the position of the cursor.
+     * Take `±n` articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Articulos.
+     * Skip the first `n` articulos.
      */
     skip?: number
     distinct?: ArticuloScalarFieldEnum | ArticuloScalarFieldEnum[]
   }
 
   /**
-   * Articulo create
+   * articulo create
    */
-  export type ArticuloCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * The data needed to create a Articulo.
+     * The data needed to create a articulo.
      */
-    data: XOR<ArticuloCreateInput, ArticuloUncheckedCreateInput>
+    data: XOR<articuloCreateInput, articuloUncheckedCreateInput>
   }
 
   /**
-   * Articulo createMany
+   * articulo createMany
    */
-  export type ArticuloCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Articulos.
+     * The data used to create many articulos.
      */
-    data: ArticuloCreateManyInput | ArticuloCreateManyInput[]
+    data: articuloCreateManyInput | articuloCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Articulo update
+   * articulo update
    */
-  export type ArticuloUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * The data needed to update a Articulo.
+     * The data needed to update a articulo.
      */
-    data: XOR<ArticuloUpdateInput, ArticuloUncheckedUpdateInput>
+    data: XOR<articuloUpdateInput, articuloUncheckedUpdateInput>
     /**
-     * Choose, which Articulo to update.
+     * Choose, which articulo to update.
      */
-    where: ArticuloWhereUniqueInput
+    where: articuloWhereUniqueInput
   }
 
   /**
-   * Articulo updateMany
+   * articulo updateMany
    */
-  export type ArticuloUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Articulos.
+     * The data used to update articulos.
      */
-    data: XOR<ArticuloUpdateManyMutationInput, ArticuloUncheckedUpdateManyInput>
+    data: XOR<articuloUpdateManyMutationInput, articuloUncheckedUpdateManyInput>
     /**
-     * Filter which Articulos to update
+     * Filter which articulos to update
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
-     * Limit how many Articulos to update.
+     * Limit how many articulos to update.
      */
     limit?: number
   }
 
   /**
-   * Articulo upsert
+   * articulo upsert
    */
-  export type ArticuloUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * The filter to search for the Articulo to update in case it exists.
+     * The filter to search for the articulo to update in case it exists.
      */
-    where: ArticuloWhereUniqueInput
+    where: articuloWhereUniqueInput
     /**
-     * In case the Articulo found by the `where` argument doesn't exist, create a new Articulo with this data.
+     * In case the articulo found by the `where` argument doesn't exist, create a new articulo with this data.
      */
-    create: XOR<ArticuloCreateInput, ArticuloUncheckedCreateInput>
+    create: XOR<articuloCreateInput, articuloUncheckedCreateInput>
     /**
-     * In case the Articulo was found with the provided `where` argument, update it with this data.
+     * In case the articulo was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ArticuloUpdateInput, ArticuloUncheckedUpdateInput>
+    update: XOR<articuloUpdateInput, articuloUncheckedUpdateInput>
   }
 
   /**
-   * Articulo delete
+   * articulo delete
    */
-  export type ArticuloDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
     /**
-     * Filter which Articulo to delete.
+     * Filter which articulo to delete.
      */
-    where: ArticuloWhereUniqueInput
+    where: articuloWhereUniqueInput
   }
 
   /**
-   * Articulo deleteMany
+   * articulo deleteMany
    */
-  export type ArticuloDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Articulos to delete
+     * Filter which articulos to delete
      */
-    where?: ArticuloWhereInput
+    where?: articuloWhereInput
     /**
-     * Limit how many Articulos to delete.
+     * Limit how many articulos to delete.
      */
     limit?: number
   }
 
   /**
-   * Articulo without action
+   * articulo without action
    */
-  export type ArticuloDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articuloDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Articulo
+     * Select specific fields to fetch from the articulo
      */
-    select?: ArticuloSelect<ExtArgs> | null
+    select?: articuloSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Articulo
+     * Omit specific fields from the articulo
      */
-    omit?: ArticuloOmit<ExtArgs> | null
+    omit?: articuloOmit<ExtArgs> | null
   }
 
 
   /**
-   * Model Pieza
+   * Model pieza
    */
 
   export type AggregatePieza = {
@@ -2004,37 +2004,37 @@ export namespace Prisma {
 
   export type PiezaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Pieza to aggregate.
+     * Filter which pieza to aggregate.
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Piezas to fetch.
+     * Determine the order of piezas to fetch.
      */
-    orderBy?: PiezaOrderByWithRelationInput | PiezaOrderByWithRelationInput[]
+    orderBy?: piezaOrderByWithRelationInput | piezaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: PiezaWhereUniqueInput
+    cursor?: piezaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Piezas from the position of the cursor.
+     * Take `±n` piezas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Piezas.
+     * Skip the first `n` piezas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Piezas
+     * Count returned piezas
     **/
     _count?: true | PiezaCountAggregateInputType
     /**
@@ -2074,11 +2074,11 @@ export namespace Prisma {
 
 
 
-  export type PiezaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PiezaWhereInput
-    orderBy?: PiezaOrderByWithAggregationInput | PiezaOrderByWithAggregationInput[]
+  export type piezaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: piezaWhereInput
+    orderBy?: piezaOrderByWithAggregationInput | piezaOrderByWithAggregationInput[]
     by: PiezaScalarFieldEnum[] | PiezaScalarFieldEnum
-    having?: PiezaScalarWhereWithAggregatesInput
+    having?: piezaScalarWhereWithAggregatesInput
     take?: number
     skip?: number
     _count?: PiezaCountAggregateInputType | true
@@ -2103,7 +2103,7 @@ export namespace Prisma {
     _max: PiezaMaxAggregateOutputType | null
   }
 
-  type GetPiezaGroupByPayload<T extends PiezaGroupByArgs> = Prisma.PrismaPromise<
+  type GetPiezaGroupByPayload<T extends piezaGroupByArgs> = Prisma.PrismaPromise<
     Array<
       PickEnumerable<PiezaGroupByOutputType, T['by']> &
         {
@@ -2117,7 +2117,7 @@ export namespace Prisma {
     >
 
 
-  export type PiezaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type piezaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
@@ -2129,7 +2129,7 @@ export namespace Prisma {
 
 
 
-  export type PiezaSelectScalar = {
+  export type piezaSelectScalar = {
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
@@ -2139,10 +2139,10 @@ export namespace Prisma {
     cte_ganancia?: boolean
   }
 
-  export type PiezaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "precio_mat_prima" | "plano_pleg_DWG" | "plano_pleg_SOLID" | "plano_laser_DXF" | "cte_ganancia", ExtArgs["result"]["pieza"]>
+  export type piezaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "precio_mat_prima" | "plano_pleg_DWG" | "plano_pleg_SOLID" | "plano_laser_DXF" | "cte_ganancia", ExtArgs["result"]["pieza"]>
 
-  export type $PiezaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Pieza"
+  export type $piezaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pieza"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2156,18 +2156,18 @@ export namespace Prisma {
     composites: {}
   }
 
-  type PiezaGetPayload<S extends boolean | null | undefined | PiezaDefaultArgs> = $Result.GetResult<Prisma.$PiezaPayload, S>
+  type piezaGetPayload<S extends boolean | null | undefined | piezaDefaultArgs> = $Result.GetResult<Prisma.$piezaPayload, S>
 
-  type PiezaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PiezaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+  type piezaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<piezaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
       select?: PiezaCountAggregateInputType | true
     }
 
-  export interface PiezaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Pieza'], meta: { name: 'Pieza' } }
+  export interface piezaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pieza'], meta: { name: 'pieza' } }
     /**
      * Find zero or one Pieza that matches the filter.
-     * @param {PiezaFindUniqueArgs} args - Arguments to find a Pieza
+     * @param {piezaFindUniqueArgs} args - Arguments to find a Pieza
      * @example
      * // Get one Pieza
      * const pieza = await prisma.pieza.findUnique({
@@ -2176,12 +2176,12 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PiezaFindUniqueArgs>(args: SelectSubset<T, PiezaFindUniqueArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends piezaFindUniqueArgs>(args: SelectSubset<T, piezaFindUniqueArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find one Pieza that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {PiezaFindUniqueOrThrowArgs} args - Arguments to find a Pieza
+     * @param {piezaFindUniqueOrThrowArgs} args - Arguments to find a Pieza
      * @example
      * // Get one Pieza
      * const pieza = await prisma.pieza.findUniqueOrThrow({
@@ -2190,13 +2190,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PiezaFindUniqueOrThrowArgs>(args: SelectSubset<T, PiezaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends piezaFindUniqueOrThrowArgs>(args: SelectSubset<T, piezaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pieza that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaFindFirstArgs} args - Arguments to find a Pieza
+     * @param {piezaFindFirstArgs} args - Arguments to find a Pieza
      * @example
      * // Get one Pieza
      * const pieza = await prisma.pieza.findFirst({
@@ -2205,14 +2205,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PiezaFindFirstArgs>(args?: SelectSubset<T, PiezaFindFirstArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends piezaFindFirstArgs>(args?: SelectSubset<T, piezaFindFirstArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find the first Pieza that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaFindFirstOrThrowArgs} args - Arguments to find a Pieza
+     * @param {piezaFindFirstOrThrowArgs} args - Arguments to find a Pieza
      * @example
      * // Get one Pieza
      * const pieza = await prisma.pieza.findFirstOrThrow({
@@ -2221,13 +2221,13 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PiezaFindFirstOrThrowArgs>(args?: SelectSubset<T, PiezaFindFirstOrThrowArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends piezaFindFirstOrThrowArgs>(args?: SelectSubset<T, piezaFindFirstOrThrowArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Find zero or more Piezas that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {piezaFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Piezas
      * const piezas = await prisma.pieza.findMany()
@@ -2239,11 +2239,11 @@ export namespace Prisma {
      * const piezaWithIdOnly = await prisma.pieza.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends PiezaFindManyArgs>(args?: SelectSubset<T, PiezaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends piezaFindManyArgs>(args?: SelectSubset<T, piezaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
      * Create a Pieza.
-     * @param {PiezaCreateArgs} args - Arguments to create a Pieza.
+     * @param {piezaCreateArgs} args - Arguments to create a Pieza.
      * @example
      * // Create one Pieza
      * const Pieza = await prisma.pieza.create({
@@ -2253,11 +2253,11 @@ export namespace Prisma {
      * })
      * 
      */
-    create<T extends PiezaCreateArgs>(args: SelectSubset<T, PiezaCreateArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends piezaCreateArgs>(args: SelectSubset<T, piezaCreateArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Create many Piezas.
-     * @param {PiezaCreateManyArgs} args - Arguments to create many Piezas.
+     * @param {piezaCreateManyArgs} args - Arguments to create many Piezas.
      * @example
      * // Create many Piezas
      * const pieza = await prisma.pieza.createMany({
@@ -2267,11 +2267,11 @@ export namespace Prisma {
      * })
      *     
      */
-    createMany<T extends PiezaCreateManyArgs>(args?: SelectSubset<T, PiezaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends piezaCreateManyArgs>(args?: SelectSubset<T, piezaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Delete a Pieza.
-     * @param {PiezaDeleteArgs} args - Arguments to delete one Pieza.
+     * @param {piezaDeleteArgs} args - Arguments to delete one Pieza.
      * @example
      * // Delete one Pieza
      * const Pieza = await prisma.pieza.delete({
@@ -2281,11 +2281,11 @@ export namespace Prisma {
      * })
      * 
      */
-    delete<T extends PiezaDeleteArgs>(args: SelectSubset<T, PiezaDeleteArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends piezaDeleteArgs>(args: SelectSubset<T, piezaDeleteArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Update one Pieza.
-     * @param {PiezaUpdateArgs} args - Arguments to update one Pieza.
+     * @param {piezaUpdateArgs} args - Arguments to update one Pieza.
      * @example
      * // Update one Pieza
      * const pieza = await prisma.pieza.update({
@@ -2298,11 +2298,11 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends PiezaUpdateArgs>(args: SelectSubset<T, PiezaUpdateArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends piezaUpdateArgs>(args: SelectSubset<T, piezaUpdateArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
      * Delete zero or more Piezas.
-     * @param {PiezaDeleteManyArgs} args - Arguments to filter Piezas to delete.
+     * @param {piezaDeleteManyArgs} args - Arguments to filter Piezas to delete.
      * @example
      * // Delete a few Piezas
      * const { count } = await prisma.pieza.deleteMany({
@@ -2312,13 +2312,13 @@ export namespace Prisma {
      * })
      * 
      */
-    deleteMany<T extends PiezaDeleteManyArgs>(args?: SelectSubset<T, PiezaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends piezaDeleteManyArgs>(args?: SelectSubset<T, piezaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Piezas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {piezaUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
      * // Update many Piezas
      * const pieza = await prisma.pieza.updateMany({
@@ -2331,11 +2331,11 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends PiezaUpdateManyArgs>(args: SelectSubset<T, PiezaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends piezaUpdateManyArgs>(args: SelectSubset<T, piezaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create or update one Pieza.
-     * @param {PiezaUpsertArgs} args - Arguments to update or create a Pieza.
+     * @param {piezaUpsertArgs} args - Arguments to update or create a Pieza.
      * @example
      * // Update or create a Pieza
      * const pieza = await prisma.pieza.upsert({
@@ -2350,14 +2350,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PiezaUpsertArgs>(args: SelectSubset<T, PiezaUpsertArgs<ExtArgs>>): Prisma__PiezaClient<$Result.GetResult<Prisma.$PiezaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends piezaUpsertArgs>(args: SelectSubset<T, piezaUpsertArgs<ExtArgs>>): Prisma__piezaClient<$Result.GetResult<Prisma.$piezaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
      * Count the number of Piezas.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaCountArgs} args - Arguments to filter Piezas to count.
+     * @param {piezaCountArgs} args - Arguments to filter Piezas to count.
      * @example
      * // Count the number of Piezas
      * const count = await prisma.pieza.count({
@@ -2366,8 +2366,8 @@ export namespace Prisma {
      *   }
      * })
     **/
-    count<T extends PiezaCountArgs>(
-      args?: Subset<T, PiezaCountArgs>,
+    count<T extends piezaCountArgs>(
+      args?: Subset<T, piezaCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
@@ -2406,7 +2406,7 @@ export namespace Prisma {
      * Group by Pieza.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PiezaGroupByArgs} args - Group by arguments.
+     * @param {piezaGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2421,14 +2421,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends PiezaGroupByArgs,
+      T extends piezaGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PiezaGroupByArgs['orderBy'] }
-        : { orderBy?: PiezaGroupByArgs['orderBy'] },
+        ? { orderBy: piezaGroupByArgs['orderBy'] }
+        : { orderBy?: piezaGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2477,20 +2477,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, PiezaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPiezaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, piezaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPiezaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Pieza model
+   * Fields of the pieza model
    */
-  readonly fields: PiezaFieldRefs;
+  readonly fields: piezaFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Pieza.
+   * The delegate class that acts as a "Promise-like" for pieza.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PiezaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__piezaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2518,334 +2518,334 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Pieza model
+   * Fields of the pieza model
    */
-  interface PiezaFieldRefs {
-    readonly id: FieldRef<"Pieza", 'Int'>
-    readonly nombre: FieldRef<"Pieza", 'String'>
-    readonly precio_mat_prima: FieldRef<"Pieza", 'Int'>
-    readonly plano_pleg_DWG: FieldRef<"Pieza", 'String'>
-    readonly plano_pleg_SOLID: FieldRef<"Pieza", 'String'>
-    readonly plano_laser_DXF: FieldRef<"Pieza", 'String'>
-    readonly cte_ganancia: FieldRef<"Pieza", 'Int'>
+  interface piezaFieldRefs {
+    readonly id: FieldRef<"pieza", 'Int'>
+    readonly nombre: FieldRef<"pieza", 'String'>
+    readonly precio_mat_prima: FieldRef<"pieza", 'Int'>
+    readonly plano_pleg_DWG: FieldRef<"pieza", 'String'>
+    readonly plano_pleg_SOLID: FieldRef<"pieza", 'String'>
+    readonly plano_laser_DXF: FieldRef<"pieza", 'String'>
+    readonly cte_ganancia: FieldRef<"pieza", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * Pieza findUnique
+   * pieza findUnique
    */
-  export type PiezaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter, which Pieza to fetch.
+     * Filter, which pieza to fetch.
      */
-    where: PiezaWhereUniqueInput
+    where: piezaWhereUniqueInput
   }
 
   /**
-   * Pieza findUniqueOrThrow
+   * pieza findUniqueOrThrow
    */
-  export type PiezaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter, which Pieza to fetch.
+     * Filter, which pieza to fetch.
      */
-    where: PiezaWhereUniqueInput
+    where: piezaWhereUniqueInput
   }
 
   /**
-   * Pieza findFirst
+   * pieza findFirst
    */
-  export type PiezaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter, which Pieza to fetch.
+     * Filter, which pieza to fetch.
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Piezas to fetch.
+     * Determine the order of piezas to fetch.
      */
-    orderBy?: PiezaOrderByWithRelationInput | PiezaOrderByWithRelationInput[]
+    orderBy?: piezaOrderByWithRelationInput | piezaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Piezas.
+     * Sets the position for searching for piezas.
      */
-    cursor?: PiezaWhereUniqueInput
+    cursor?: piezaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Piezas from the position of the cursor.
+     * Take `±n` piezas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Piezas.
+     * Skip the first `n` piezas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Piezas.
+     * Filter by unique combinations of piezas.
      */
     distinct?: PiezaScalarFieldEnum | PiezaScalarFieldEnum[]
   }
 
   /**
-   * Pieza findFirstOrThrow
+   * pieza findFirstOrThrow
    */
-  export type PiezaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter, which Pieza to fetch.
+     * Filter, which pieza to fetch.
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Piezas to fetch.
+     * Determine the order of piezas to fetch.
      */
-    orderBy?: PiezaOrderByWithRelationInput | PiezaOrderByWithRelationInput[]
+    orderBy?: piezaOrderByWithRelationInput | piezaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Piezas.
+     * Sets the position for searching for piezas.
      */
-    cursor?: PiezaWhereUniqueInput
+    cursor?: piezaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Piezas from the position of the cursor.
+     * Take `±n` piezas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Piezas.
+     * Skip the first `n` piezas.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Piezas.
+     * Filter by unique combinations of piezas.
      */
     distinct?: PiezaScalarFieldEnum | PiezaScalarFieldEnum[]
   }
 
   /**
-   * Pieza findMany
+   * pieza findMany
    */
-  export type PiezaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter, which Piezas to fetch.
+     * Filter, which piezas to fetch.
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Piezas to fetch.
+     * Determine the order of piezas to fetch.
      */
-    orderBy?: PiezaOrderByWithRelationInput | PiezaOrderByWithRelationInput[]
+    orderBy?: piezaOrderByWithRelationInput | piezaOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Piezas.
+     * Sets the position for listing piezas.
      */
-    cursor?: PiezaWhereUniqueInput
+    cursor?: piezaWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Piezas from the position of the cursor.
+     * Take `±n` piezas from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Piezas.
+     * Skip the first `n` piezas.
      */
     skip?: number
     distinct?: PiezaScalarFieldEnum | PiezaScalarFieldEnum[]
   }
 
   /**
-   * Pieza create
+   * pieza create
    */
-  export type PiezaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * The data needed to create a Pieza.
+     * The data needed to create a pieza.
      */
-    data?: XOR<PiezaCreateInput, PiezaUncheckedCreateInput>
+    data?: XOR<piezaCreateInput, piezaUncheckedCreateInput>
   }
 
   /**
-   * Pieza createMany
+   * pieza createMany
    */
-  export type PiezaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Piezas.
+     * The data used to create many piezas.
      */
-    data: PiezaCreateManyInput | PiezaCreateManyInput[]
+    data: piezaCreateManyInput | piezaCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Pieza update
+   * pieza update
    */
-  export type PiezaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * The data needed to update a Pieza.
+     * The data needed to update a pieza.
      */
-    data: XOR<PiezaUpdateInput, PiezaUncheckedUpdateInput>
+    data: XOR<piezaUpdateInput, piezaUncheckedUpdateInput>
     /**
-     * Choose, which Pieza to update.
+     * Choose, which pieza to update.
      */
-    where: PiezaWhereUniqueInput
+    where: piezaWhereUniqueInput
   }
 
   /**
-   * Pieza updateMany
+   * pieza updateMany
    */
-  export type PiezaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Piezas.
+     * The data used to update piezas.
      */
-    data: XOR<PiezaUpdateManyMutationInput, PiezaUncheckedUpdateManyInput>
+    data: XOR<piezaUpdateManyMutationInput, piezaUncheckedUpdateManyInput>
     /**
-     * Filter which Piezas to update
+     * Filter which piezas to update
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
-     * Limit how many Piezas to update.
+     * Limit how many piezas to update.
      */
     limit?: number
   }
 
   /**
-   * Pieza upsert
+   * pieza upsert
    */
-  export type PiezaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * The filter to search for the Pieza to update in case it exists.
+     * The filter to search for the pieza to update in case it exists.
      */
-    where: PiezaWhereUniqueInput
+    where: piezaWhereUniqueInput
     /**
-     * In case the Pieza found by the `where` argument doesn't exist, create a new Pieza with this data.
+     * In case the pieza found by the `where` argument doesn't exist, create a new pieza with this data.
      */
-    create: XOR<PiezaCreateInput, PiezaUncheckedCreateInput>
+    create: XOR<piezaCreateInput, piezaUncheckedCreateInput>
     /**
-     * In case the Pieza was found with the provided `where` argument, update it with this data.
+     * In case the pieza was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PiezaUpdateInput, PiezaUncheckedUpdateInput>
+    update: XOR<piezaUpdateInput, piezaUncheckedUpdateInput>
   }
 
   /**
-   * Pieza delete
+   * pieza delete
    */
-  export type PiezaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
     /**
-     * Filter which Pieza to delete.
+     * Filter which pieza to delete.
      */
-    where: PiezaWhereUniqueInput
+    where: piezaWhereUniqueInput
   }
 
   /**
-   * Pieza deleteMany
+   * pieza deleteMany
    */
-  export type PiezaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Piezas to delete
+     * Filter which piezas to delete
      */
-    where?: PiezaWhereInput
+    where?: piezaWhereInput
     /**
-     * Limit how many Piezas to delete.
+     * Limit how many piezas to delete.
      */
     limit?: number
   }
 
   /**
-   * Pieza without action
+   * pieza without action
    */
-  export type PiezaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type piezaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pieza
+     * Select specific fields to fetch from the pieza
      */
-    select?: PiezaSelect<ExtArgs> | null
+    select?: piezaSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pieza
+     * Omit specific fields from the pieza
      */
-    omit?: PiezaOmit<ExtArgs> | null
+    omit?: piezaOmit<ExtArgs> | null
   }
 
 
@@ -2905,24 +2905,24 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-  export const ArticuloOrderByRelevanceFieldEnum: {
+  export const articuloOrderByRelevanceFieldEnum: {
     him_codigo: 'him_codigo',
     cli_codigo: 'cli_codigo',
     nombre: 'nombre',
     plano: 'plano'
   };
 
-  export type ArticuloOrderByRelevanceFieldEnum = (typeof ArticuloOrderByRelevanceFieldEnum)[keyof typeof ArticuloOrderByRelevanceFieldEnum]
+  export type articuloOrderByRelevanceFieldEnum = (typeof articuloOrderByRelevanceFieldEnum)[keyof typeof articuloOrderByRelevanceFieldEnum]
 
 
-  export const PiezaOrderByRelevanceFieldEnum: {
+  export const piezaOrderByRelevanceFieldEnum: {
     nombre: 'nombre',
     plano_pleg_DWG: 'plano_pleg_DWG',
     plano_pleg_SOLID: 'plano_pleg_SOLID',
     plano_laser_DXF: 'plano_laser_DXF'
   };
 
-  export type PiezaOrderByRelevanceFieldEnum = (typeof PiezaOrderByRelevanceFieldEnum)[keyof typeof PiezaOrderByRelevanceFieldEnum]
+  export type piezaOrderByRelevanceFieldEnum = (typeof piezaOrderByRelevanceFieldEnum)[keyof typeof piezaOrderByRelevanceFieldEnum]
 
 
   /**
@@ -2954,85 +2954,85 @@ export namespace Prisma {
    */
 
 
-  export type ArticuloWhereInput = {
-    AND?: ArticuloWhereInput | ArticuloWhereInput[]
-    OR?: ArticuloWhereInput[]
-    NOT?: ArticuloWhereInput | ArticuloWhereInput[]
-    him_codigo?: StringNullableFilter<"Articulo"> | string | null
-    cli_codigo?: StringNullableFilter<"Articulo"> | string | null
-    nombre?: StringFilter<"Articulo"> | string
-    cant_piezas?: IntNullableFilter<"Articulo"> | number | null
-    plano?: StringNullableFilter<"Articulo"> | string | null
-    precio?: IntNullableFilter<"Articulo"> | number | null
-    cte_ganancia?: IntNullableFilter<"Articulo"> | number | null
+  export type articuloWhereInput = {
+    AND?: articuloWhereInput | articuloWhereInput[]
+    OR?: articuloWhereInput[]
+    NOT?: articuloWhereInput | articuloWhereInput[]
+    him_codigo?: StringFilter<"articulo"> | string
+    cli_codigo?: StringNullableFilter<"articulo"> | string | null
+    nombre?: StringNullableFilter<"articulo"> | string | null
+    cant_piezas?: IntNullableFilter<"articulo"> | number | null
+    plano?: StringNullableFilter<"articulo"> | string | null
+    precio?: IntNullableFilter<"articulo"> | number | null
+    cte_ganancia?: IntNullableFilter<"articulo"> | number | null
   }
 
-  export type ArticuloOrderByWithRelationInput = {
-    him_codigo?: SortOrderInput | SortOrder
+  export type articuloOrderByWithRelationInput = {
+    him_codigo?: SortOrder
     cli_codigo?: SortOrderInput | SortOrder
-    nombre?: SortOrder
+    nombre?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
-    _relevance?: ArticuloOrderByRelevanceInput
+    _relevance?: articuloOrderByRelevanceInput
   }
 
-  export type ArticuloWhereUniqueInput = Prisma.AtLeast<{
-    nombre?: string
-    AND?: ArticuloWhereInput | ArticuloWhereInput[]
-    OR?: ArticuloWhereInput[]
-    NOT?: ArticuloWhereInput | ArticuloWhereInput[]
-    him_codigo?: StringNullableFilter<"Articulo"> | string | null
-    cli_codigo?: StringNullableFilter<"Articulo"> | string | null
-    cant_piezas?: IntNullableFilter<"Articulo"> | number | null
-    plano?: StringNullableFilter<"Articulo"> | string | null
-    precio?: IntNullableFilter<"Articulo"> | number | null
-    cte_ganancia?: IntNullableFilter<"Articulo"> | number | null
-  }, "nombre">
+  export type articuloWhereUniqueInput = Prisma.AtLeast<{
+    him_codigo?: string
+    AND?: articuloWhereInput | articuloWhereInput[]
+    OR?: articuloWhereInput[]
+    NOT?: articuloWhereInput | articuloWhereInput[]
+    cli_codigo?: StringNullableFilter<"articulo"> | string | null
+    nombre?: StringNullableFilter<"articulo"> | string | null
+    cant_piezas?: IntNullableFilter<"articulo"> | number | null
+    plano?: StringNullableFilter<"articulo"> | string | null
+    precio?: IntNullableFilter<"articulo"> | number | null
+    cte_ganancia?: IntNullableFilter<"articulo"> | number | null
+  }, "him_codigo">
 
-  export type ArticuloOrderByWithAggregationInput = {
-    him_codigo?: SortOrderInput | SortOrder
+  export type articuloOrderByWithAggregationInput = {
+    him_codigo?: SortOrder
     cli_codigo?: SortOrderInput | SortOrder
-    nombre?: SortOrder
+    nombre?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
-    _count?: ArticuloCountOrderByAggregateInput
-    _avg?: ArticuloAvgOrderByAggregateInput
-    _max?: ArticuloMaxOrderByAggregateInput
-    _min?: ArticuloMinOrderByAggregateInput
-    _sum?: ArticuloSumOrderByAggregateInput
+    _count?: articuloCountOrderByAggregateInput
+    _avg?: articuloAvgOrderByAggregateInput
+    _max?: articuloMaxOrderByAggregateInput
+    _min?: articuloMinOrderByAggregateInput
+    _sum?: articuloSumOrderByAggregateInput
   }
 
-  export type ArticuloScalarWhereWithAggregatesInput = {
-    AND?: ArticuloScalarWhereWithAggregatesInput | ArticuloScalarWhereWithAggregatesInput[]
-    OR?: ArticuloScalarWhereWithAggregatesInput[]
-    NOT?: ArticuloScalarWhereWithAggregatesInput | ArticuloScalarWhereWithAggregatesInput[]
-    him_codigo?: StringNullableWithAggregatesFilter<"Articulo"> | string | null
-    cli_codigo?: StringNullableWithAggregatesFilter<"Articulo"> | string | null
-    nombre?: StringWithAggregatesFilter<"Articulo"> | string
-    cant_piezas?: IntNullableWithAggregatesFilter<"Articulo"> | number | null
-    plano?: StringNullableWithAggregatesFilter<"Articulo"> | string | null
-    precio?: IntNullableWithAggregatesFilter<"Articulo"> | number | null
-    cte_ganancia?: IntNullableWithAggregatesFilter<"Articulo"> | number | null
+  export type articuloScalarWhereWithAggregatesInput = {
+    AND?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
+    OR?: articuloScalarWhereWithAggregatesInput[]
+    NOT?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
+    him_codigo?: StringWithAggregatesFilter<"articulo"> | string
+    cli_codigo?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    nombre?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    cant_piezas?: IntNullableWithAggregatesFilter<"articulo"> | number | null
+    plano?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    precio?: IntNullableWithAggregatesFilter<"articulo"> | number | null
+    cte_ganancia?: IntNullableWithAggregatesFilter<"articulo"> | number | null
   }
 
-  export type PiezaWhereInput = {
-    AND?: PiezaWhereInput | PiezaWhereInput[]
-    OR?: PiezaWhereInput[]
-    NOT?: PiezaWhereInput | PiezaWhereInput[]
-    id?: IntFilter<"Pieza"> | number
-    nombre?: StringNullableFilter<"Pieza"> | string | null
-    precio_mat_prima?: IntNullableFilter<"Pieza"> | number | null
-    plano_pleg_DWG?: StringNullableFilter<"Pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableFilter<"Pieza"> | string | null
-    plano_laser_DXF?: StringNullableFilter<"Pieza"> | string | null
-    cte_ganancia?: IntNullableFilter<"Pieza"> | number | null
+  export type piezaWhereInput = {
+    AND?: piezaWhereInput | piezaWhereInput[]
+    OR?: piezaWhereInput[]
+    NOT?: piezaWhereInput | piezaWhereInput[]
+    id?: IntFilter<"pieza"> | number
+    nombre?: StringNullableFilter<"pieza"> | string | null
+    precio_mat_prima?: IntNullableFilter<"pieza"> | number | null
+    plano_pleg_DWG?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_SOLID?: StringNullableFilter<"pieza"> | string | null
+    plano_laser_DXF?: StringNullableFilter<"pieza"> | string | null
+    cte_ganancia?: IntNullableFilter<"pieza"> | number | null
   }
 
-  export type PiezaOrderByWithRelationInput = {
+  export type piezaOrderByWithRelationInput = {
     id?: SortOrder
     nombre?: SortOrderInput | SortOrder
     precio_mat_prima?: SortOrderInput | SortOrder
@@ -3040,23 +3040,23 @@ export namespace Prisma {
     plano_pleg_SOLID?: SortOrderInput | SortOrder
     plano_laser_DXF?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
-    _relevance?: PiezaOrderByRelevanceInput
+    _relevance?: piezaOrderByRelevanceInput
   }
 
-  export type PiezaWhereUniqueInput = Prisma.AtLeast<{
+  export type piezaWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: PiezaWhereInput | PiezaWhereInput[]
-    OR?: PiezaWhereInput[]
-    NOT?: PiezaWhereInput | PiezaWhereInput[]
-    nombre?: StringNullableFilter<"Pieza"> | string | null
-    precio_mat_prima?: IntNullableFilter<"Pieza"> | number | null
-    plano_pleg_DWG?: StringNullableFilter<"Pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableFilter<"Pieza"> | string | null
-    plano_laser_DXF?: StringNullableFilter<"Pieza"> | string | null
-    cte_ganancia?: IntNullableFilter<"Pieza"> | number | null
+    AND?: piezaWhereInput | piezaWhereInput[]
+    OR?: piezaWhereInput[]
+    NOT?: piezaWhereInput | piezaWhereInput[]
+    nombre?: StringNullableFilter<"pieza"> | string | null
+    precio_mat_prima?: IntNullableFilter<"pieza"> | number | null
+    plano_pleg_DWG?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_SOLID?: StringNullableFilter<"pieza"> | string | null
+    plano_laser_DXF?: StringNullableFilter<"pieza"> | string | null
+    cte_ganancia?: IntNullableFilter<"pieza"> | number | null
   }, "id">
 
-  export type PiezaOrderByWithAggregationInput = {
+  export type piezaOrderByWithAggregationInput = {
     id?: SortOrder
     nombre?: SortOrderInput | SortOrder
     precio_mat_prima?: SortOrderInput | SortOrder
@@ -3064,97 +3064,97 @@ export namespace Prisma {
     plano_pleg_SOLID?: SortOrderInput | SortOrder
     plano_laser_DXF?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
-    _count?: PiezaCountOrderByAggregateInput
-    _avg?: PiezaAvgOrderByAggregateInput
-    _max?: PiezaMaxOrderByAggregateInput
-    _min?: PiezaMinOrderByAggregateInput
-    _sum?: PiezaSumOrderByAggregateInput
+    _count?: piezaCountOrderByAggregateInput
+    _avg?: piezaAvgOrderByAggregateInput
+    _max?: piezaMaxOrderByAggregateInput
+    _min?: piezaMinOrderByAggregateInput
+    _sum?: piezaSumOrderByAggregateInput
   }
 
-  export type PiezaScalarWhereWithAggregatesInput = {
-    AND?: PiezaScalarWhereWithAggregatesInput | PiezaScalarWhereWithAggregatesInput[]
-    OR?: PiezaScalarWhereWithAggregatesInput[]
-    NOT?: PiezaScalarWhereWithAggregatesInput | PiezaScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Pieza"> | number
-    nombre?: StringNullableWithAggregatesFilter<"Pieza"> | string | null
-    precio_mat_prima?: IntNullableWithAggregatesFilter<"Pieza"> | number | null
-    plano_pleg_DWG?: StringNullableWithAggregatesFilter<"Pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableWithAggregatesFilter<"Pieza"> | string | null
-    plano_laser_DXF?: StringNullableWithAggregatesFilter<"Pieza"> | string | null
-    cte_ganancia?: IntNullableWithAggregatesFilter<"Pieza"> | number | null
+  export type piezaScalarWhereWithAggregatesInput = {
+    AND?: piezaScalarWhereWithAggregatesInput | piezaScalarWhereWithAggregatesInput[]
+    OR?: piezaScalarWhereWithAggregatesInput[]
+    NOT?: piezaScalarWhereWithAggregatesInput | piezaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"pieza"> | number
+    nombre?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    precio_mat_prima?: IntNullableWithAggregatesFilter<"pieza"> | number | null
+    plano_pleg_DWG?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    plano_pleg_SOLID?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    plano_laser_DXF?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    cte_ganancia?: IntNullableWithAggregatesFilter<"pieza"> | number | null
   }
 
-  export type ArticuloCreateInput = {
-    him_codigo?: string | null
+  export type articuloCreateInput = {
+    him_codigo: string
     cli_codigo?: string | null
-    nombre: string
+    nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
     cte_ganancia?: number | null
   }
 
-  export type ArticuloUncheckedCreateInput = {
-    him_codigo?: string | null
+  export type articuloUncheckedCreateInput = {
+    him_codigo: string
     cli_codigo?: string | null
-    nombre: string
+    nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
     cte_ganancia?: number | null
   }
 
-  export type ArticuloUpdateInput = {
-    him_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+  export type articuloUpdateInput = {
+    him_codigo?: StringFieldUpdateOperationsInput | string
     cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
-    nombre?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type ArticuloUncheckedUpdateInput = {
-    him_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+  export type articuloUncheckedUpdateInput = {
+    him_codigo?: StringFieldUpdateOperationsInput | string
     cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
-    nombre?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type ArticuloCreateManyInput = {
-    him_codigo?: string | null
+  export type articuloCreateManyInput = {
+    him_codigo: string
     cli_codigo?: string | null
-    nombre: string
+    nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
     cte_ganancia?: number | null
   }
 
-  export type ArticuloUpdateManyMutationInput = {
-    him_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+  export type articuloUpdateManyMutationInput = {
+    him_codigo?: StringFieldUpdateOperationsInput | string
     cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
-    nombre?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type ArticuloUncheckedUpdateManyInput = {
-    him_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+  export type articuloUncheckedUpdateManyInput = {
+    him_codigo?: StringFieldUpdateOperationsInput | string
     cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
-    nombre?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PiezaCreateInput = {
+  export type piezaCreateInput = {
     nombre?: string | null
     precio_mat_prima?: number | null
     plano_pleg_DWG?: string | null
@@ -3163,7 +3163,7 @@ export namespace Prisma {
     cte_ganancia?: number | null
   }
 
-  export type PiezaUncheckedCreateInput = {
+  export type piezaUncheckedCreateInput = {
     id?: number
     nombre?: string | null
     precio_mat_prima?: number | null
@@ -3173,7 +3173,7 @@ export namespace Prisma {
     cte_ganancia?: number | null
   }
 
-  export type PiezaUpdateInput = {
+  export type piezaUpdateInput = {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
     plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3182,7 +3182,7 @@ export namespace Prisma {
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PiezaUncheckedUpdateInput = {
+  export type piezaUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3192,7 +3192,7 @@ export namespace Prisma {
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PiezaCreateManyInput = {
+  export type piezaCreateManyInput = {
     id?: number
     nombre?: string | null
     precio_mat_prima?: number | null
@@ -3202,7 +3202,7 @@ export namespace Prisma {
     cte_ganancia?: number | null
   }
 
-  export type PiezaUpdateManyMutationInput = {
+  export type piezaUpdateManyMutationInput = {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
     plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3211,7 +3211,7 @@ export namespace Prisma {
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PiezaUncheckedUpdateManyInput = {
+  export type piezaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3219,21 +3219,6 @@ export namespace Prisma {
     plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
     plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3249,6 +3234,21 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -3267,13 +3267,13 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type ArticuloOrderByRelevanceInput = {
-    fields: ArticuloOrderByRelevanceFieldEnum | ArticuloOrderByRelevanceFieldEnum[]
+  export type articuloOrderByRelevanceInput = {
+    fields: articuloOrderByRelevanceFieldEnum | articuloOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type ArticuloCountOrderByAggregateInput = {
+  export type articuloCountOrderByAggregateInput = {
     him_codigo?: SortOrder
     cli_codigo?: SortOrder
     nombre?: SortOrder
@@ -3283,13 +3283,13 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type ArticuloAvgOrderByAggregateInput = {
+  export type articuloAvgOrderByAggregateInput = {
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
   }
 
-  export type ArticuloMaxOrderByAggregateInput = {
+  export type articuloMaxOrderByAggregateInput = {
     him_codigo?: SortOrder
     cli_codigo?: SortOrder
     nombre?: SortOrder
@@ -3299,7 +3299,7 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type ArticuloMinOrderByAggregateInput = {
+  export type articuloMinOrderByAggregateInput = {
     him_codigo?: SortOrder
     cli_codigo?: SortOrder
     nombre?: SortOrder
@@ -3309,28 +3309,10 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type ArticuloSumOrderByAggregateInput = {
+  export type articuloSumOrderByAggregateInput = {
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3349,6 +3331,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -3378,13 +3378,13 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type PiezaOrderByRelevanceInput = {
-    fields: PiezaOrderByRelevanceFieldEnum | PiezaOrderByRelevanceFieldEnum[]
+  export type piezaOrderByRelevanceInput = {
+    fields: piezaOrderByRelevanceFieldEnum | piezaOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type PiezaCountOrderByAggregateInput = {
+  export type piezaCountOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
     precio_mat_prima?: SortOrder
@@ -3394,23 +3394,13 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type PiezaAvgOrderByAggregateInput = {
+  export type piezaAvgOrderByAggregateInput = {
     id?: SortOrder
     precio_mat_prima?: SortOrder
     cte_ganancia?: SortOrder
   }
 
-  export type PiezaMaxOrderByAggregateInput = {
-    id?: SortOrder
-    nombre?: SortOrder
-    precio_mat_prima?: SortOrder
-    plano_pleg_DWG?: SortOrder
-    plano_pleg_SOLID?: SortOrder
-    plano_laser_DXF?: SortOrder
-    cte_ganancia?: SortOrder
-  }
-
-  export type PiezaMinOrderByAggregateInput = {
+  export type piezaMaxOrderByAggregateInput = {
     id?: SortOrder
     nombre?: SortOrder
     precio_mat_prima?: SortOrder
@@ -3420,7 +3410,17 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type PiezaSumOrderByAggregateInput = {
+  export type piezaMinOrderByAggregateInput = {
+    id?: SortOrder
+    nombre?: SortOrder
+    precio_mat_prima?: SortOrder
+    plano_pleg_DWG?: SortOrder
+    plano_pleg_SOLID?: SortOrder
+    plano_laser_DXF?: SortOrder
+    cte_ganancia?: SortOrder
+  }
+
+  export type piezaSumOrderByAggregateInput = {
     id?: SortOrder
     precio_mat_prima?: SortOrder
     cte_ganancia?: SortOrder
@@ -3442,12 +3442,12 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -3466,21 +3466,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -3496,18 +3481,7 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
     notIn?: string[] | null
@@ -3519,10 +3493,18 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3552,6 +3534,24 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
