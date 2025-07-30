@@ -1,15 +1,15 @@
-import express from 'express';
+import express from 'express'
+import articulosRouter from './routes/articulos'
+import cors from 'cors'
 
 
 const app = express();
-const port = 3000;
+app.use(cors())
+app.use(express.json())
 
-app.use(express.json());
+app.use('/arts', articulosRouter)
 
-app.get('/', (req, res) => {
-  res.send('Backend is running!');
-});
+app.listen(3000, () => {
+  console.log('sv anda')
+})
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});

@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../server/generated/prisma"
 }
 
 datasource db {
@@ -15,13 +15,13 @@ datasource db {
 }
 
 model Articulo {
-  him_codigo String   @unique
+  him_codigo String?   
   cli_codigo String?  
-  nombre  String?
+  nombre  String   @unique
   cant_piezas Int?
   plano String?
   precio Int?
-  cte_ganancia Int?
+  cte_ganancia Int? 
 }
 
 model Pieza {

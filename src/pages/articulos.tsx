@@ -1,6 +1,27 @@
 import {useNavigate} from "react-router-dom"
-import {useEffect, useState} from 'react'
 
+export default function Articulos(){
+    const navigate = useNavigate()
+
+    async function agregar(){
+        try {
+            const res = await fetch('http://localhost:3000/arts', {method: 'POST'})
+
+        if (!res.ok) throw new Error('fallo al agregar')
+
+            const data = await res.json()
+            alert('art agregado yeyyy :D')
+        }catch(err){
+            alert('erro :(')
+        }
+    }
+
+    return(
+        <div><button onClick={agregar}>AGREGAR ARTICULO ACA</button></div>
+    )
+}
+
+/*
 export default function App(){
     async function agregarArticulo(){
         try{
@@ -15,7 +36,7 @@ export default function App(){
     return(<div><button onClick={agregarArticulo}>AGREGAR ARTICULO ACA</button></div>)
 }
 
-interface Articulo {
+/*interface Articulo {
   him_codigo: string;
   cli_codigo: string;
   nombre: string;
@@ -34,7 +55,7 @@ interface Articulo {
     )
 }
 
-export default ListaArticulos;*/}
+export default ListaArticulos;}
 
 /*export default function Articulos() {
     const [articulos, setArticulos] = useState<Articulo[]>([]);
