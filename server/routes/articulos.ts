@@ -12,6 +12,7 @@ router.post('/', async (req, res) =>{
         res.json(nuevo)
     }catch (err){
         res.status(500).json({error: 'error al agregar'})
+        console.log('errorsin')
     }
 })  
 
