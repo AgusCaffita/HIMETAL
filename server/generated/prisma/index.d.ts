@@ -970,20 +970,25 @@ export namespace Prisma {
   }
 
   export type ArticuloAvgAggregateOutputType = {
+    id: number | null
+    cliente_id: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
   }
 
   export type ArticuloSumAggregateOutputType = {
+    id: number | null
+    cliente_id: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
   }
 
   export type ArticuloMinAggregateOutputType = {
+    id: number | null
     him_codigo: string | null
-    cli_codigo: string | null
+    cliente_id: number | null
     nombre: string | null
     cant_piezas: number | null
     plano: string | null
@@ -992,8 +997,9 @@ export namespace Prisma {
   }
 
   export type ArticuloMaxAggregateOutputType = {
+    id: number | null
     him_codigo: string | null
-    cli_codigo: string | null
+    cliente_id: number | null
     nombre: string | null
     cant_piezas: number | null
     plano: string | null
@@ -1002,8 +1008,9 @@ export namespace Prisma {
   }
 
   export type ArticuloCountAggregateOutputType = {
+    id: number
     him_codigo: number
-    cli_codigo: number
+    cliente_id: number
     nombre: number
     cant_piezas: number
     plano: number
@@ -1014,20 +1021,25 @@ export namespace Prisma {
 
 
   export type ArticuloAvgAggregateInputType = {
+    id?: true
+    cliente_id?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
   }
 
   export type ArticuloSumAggregateInputType = {
+    id?: true
+    cliente_id?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
   }
 
   export type ArticuloMinAggregateInputType = {
+    id?: true
     him_codigo?: true
-    cli_codigo?: true
+    cliente_id?: true
     nombre?: true
     cant_piezas?: true
     plano?: true
@@ -1036,8 +1048,9 @@ export namespace Prisma {
   }
 
   export type ArticuloMaxAggregateInputType = {
+    id?: true
     him_codigo?: true
-    cli_codigo?: true
+    cliente_id?: true
     nombre?: true
     cant_piezas?: true
     plano?: true
@@ -1046,8 +1059,9 @@ export namespace Prisma {
   }
 
   export type ArticuloCountAggregateInputType = {
+    id?: true
     him_codigo?: true
-    cli_codigo?: true
+    cliente_id?: true
     nombre?: true
     cant_piezas?: true
     plano?: true
@@ -1143,8 +1157,9 @@ export namespace Prisma {
   }
 
   export type ArticuloGroupByOutputType = {
+    id: number
     him_codigo: string
-    cli_codigo: string | null
+    cliente_id: number | null
     nombre: string | null
     cant_piezas: number | null
     plano: string | null
@@ -1172,8 +1187,9 @@ export namespace Prisma {
 
 
   export type articuloSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
     him_codigo?: boolean
-    cli_codigo?: boolean
+    cliente_id?: boolean
     nombre?: boolean
     cant_piezas?: boolean
     plano?: boolean
@@ -1184,8 +1200,9 @@ export namespace Prisma {
 
 
   export type articuloSelectScalar = {
+    id?: boolean
     him_codigo?: boolean
-    cli_codigo?: boolean
+    cliente_id?: boolean
     nombre?: boolean
     cant_piezas?: boolean
     plano?: boolean
@@ -1193,14 +1210,15 @@ export namespace Prisma {
     cte_ganancia?: boolean
   }
 
-  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"him_codigo" | "cli_codigo" | "nombre" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
+  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "him_codigo" | "cliente_id" | "nombre" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
 
   export type $articuloPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "articulo"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
+      id: number
       him_codigo: string
-      cli_codigo: string | null
+      cliente_id: number | null
       nombre: string | null
       cant_piezas: number | null
       plano: string | null
@@ -1289,8 +1307,8 @@ export namespace Prisma {
      * // Get first 10 Articulos
      * const articulos = await prisma.articulo.findMany({ take: 10 })
      * 
-     * // Only select the `him_codigo`
-     * const articuloWithHim_codigoOnly = await prisma.articulo.findMany({ select: { him_codigo: true } })
+     * // Only select the `id`
+     * const articuloWithIdOnly = await prisma.articulo.findMany({ select: { id: true } })
      * 
      */
     findMany<T extends articuloFindManyArgs>(args?: SelectSubset<T, articuloFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1575,8 +1593,9 @@ export namespace Prisma {
    * Fields of the articulo model
    */
   interface articuloFieldRefs {
+    readonly id: FieldRef<"articulo", 'Int'>
     readonly him_codigo: FieldRef<"articulo", 'String'>
-    readonly cli_codigo: FieldRef<"articulo", 'String'>
+    readonly cliente_id: FieldRef<"articulo", 'Int'>
     readonly nombre: FieldRef<"articulo", 'String'>
     readonly cant_piezas: FieldRef<"articulo", 'Int'>
     readonly plano: FieldRef<"articulo", 'String'>
@@ -2864,8 +2883,9 @@ export namespace Prisma {
 
 
   export const ArticuloScalarFieldEnum: {
+    id: 'id',
     him_codigo: 'him_codigo',
-    cli_codigo: 'cli_codigo',
+    cliente_id: 'cliente_id',
     nombre: 'nombre',
     cant_piezas: 'cant_piezas',
     plano: 'plano',
@@ -2907,7 +2927,6 @@ export namespace Prisma {
 
   export const articuloOrderByRelevanceFieldEnum: {
     him_codigo: 'him_codigo',
-    cli_codigo: 'cli_codigo',
     nombre: 'nombre',
     plano: 'plano'
   };
@@ -2931,16 +2950,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'String'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
@@ -2958,8 +2977,9 @@ export namespace Prisma {
     AND?: articuloWhereInput | articuloWhereInput[]
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
+    id?: IntFilter<"articulo"> | number
     him_codigo?: StringFilter<"articulo"> | string
-    cli_codigo?: StringNullableFilter<"articulo"> | string | null
+    cliente_id?: IntNullableFilter<"articulo"> | number | null
     nombre?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano?: StringNullableFilter<"articulo"> | string | null
@@ -2968,8 +2988,9 @@ export namespace Prisma {
   }
 
   export type articuloOrderByWithRelationInput = {
+    id?: SortOrder
     him_codigo?: SortOrder
-    cli_codigo?: SortOrderInput | SortOrder
+    cliente_id?: SortOrderInput | SortOrder
     nombre?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
@@ -2979,21 +3000,23 @@ export namespace Prisma {
   }
 
   export type articuloWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
     him_codigo?: string
     AND?: articuloWhereInput | articuloWhereInput[]
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
-    cli_codigo?: StringNullableFilter<"articulo"> | string | null
+    cliente_id?: IntNullableFilter<"articulo"> | number | null
     nombre?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
-  }, "him_codigo">
+  }, "id" | "id" | "him_codigo">
 
   export type articuloOrderByWithAggregationInput = {
+    id?: SortOrder
     him_codigo?: SortOrder
-    cli_codigo?: SortOrderInput | SortOrder
+    cliente_id?: SortOrderInput | SortOrder
     nombre?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
@@ -3010,8 +3033,9 @@ export namespace Prisma {
     AND?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
     OR?: articuloScalarWhereWithAggregatesInput[]
     NOT?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"articulo"> | number
     him_codigo?: StringWithAggregatesFilter<"articulo"> | string
-    cli_codigo?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    cliente_id?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     nombre?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     cant_piezas?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     plano?: StringNullableWithAggregatesFilter<"articulo"> | string | null
@@ -3054,7 +3078,7 @@ export namespace Prisma {
     plano_pleg_SOLID?: StringNullableFilter<"pieza"> | string | null
     plano_laser_DXF?: StringNullableFilter<"pieza"> | string | null
     cte_ganancia?: IntNullableFilter<"pieza"> | number | null
-  }, "id">
+  }, "id" | "id">
 
   export type piezaOrderByWithAggregationInput = {
     id?: SortOrder
@@ -3086,7 +3110,7 @@ export namespace Prisma {
 
   export type articuloCreateInput = {
     him_codigo: string
-    cli_codigo?: string | null
+    cliente_id?: number | null
     nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
@@ -3095,8 +3119,9 @@ export namespace Prisma {
   }
 
   export type articuloUncheckedCreateInput = {
+    id?: number
     him_codigo: string
-    cli_codigo?: string | null
+    cliente_id?: number | null
     nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
@@ -3106,7 +3131,7 @@ export namespace Prisma {
 
   export type articuloUpdateInput = {
     him_codigo?: StringFieldUpdateOperationsInput | string
-    cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3115,8 +3140,9 @@ export namespace Prisma {
   }
 
   export type articuloUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     him_codigo?: StringFieldUpdateOperationsInput | string
-    cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3125,8 +3151,9 @@ export namespace Prisma {
   }
 
   export type articuloCreateManyInput = {
+    id?: number
     him_codigo: string
-    cli_codigo?: string | null
+    cliente_id?: number | null
     nombre?: string | null
     cant_piezas?: number | null
     plano?: string | null
@@ -3136,7 +3163,7 @@ export namespace Prisma {
 
   export type articuloUpdateManyMutationInput = {
     him_codigo?: StringFieldUpdateOperationsInput | string
-    cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3145,8 +3172,9 @@ export namespace Prisma {
   }
 
   export type articuloUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
     him_codigo?: StringFieldUpdateOperationsInput | string
-    cli_codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
@@ -3221,6 +3249,17 @@ export namespace Prisma {
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[]
@@ -3234,6 +3273,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -3251,17 +3301,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -3274,8 +3313,9 @@ export namespace Prisma {
   }
 
   export type articuloCountOrderByAggregateInput = {
+    id?: SortOrder
     him_codigo?: SortOrder
-    cli_codigo?: SortOrder
+    cliente_id?: SortOrder
     nombre?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
@@ -3284,14 +3324,17 @@ export namespace Prisma {
   }
 
   export type articuloAvgOrderByAggregateInput = {
+    id?: SortOrder
+    cliente_id?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
   }
 
   export type articuloMaxOrderByAggregateInput = {
+    id?: SortOrder
     him_codigo?: SortOrder
-    cli_codigo?: SortOrder
+    cliente_id?: SortOrder
     nombre?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
@@ -3300,8 +3343,9 @@ export namespace Prisma {
   }
 
   export type articuloMinOrderByAggregateInput = {
+    id?: SortOrder
     him_codigo?: SortOrder
-    cli_codigo?: SortOrder
+    cliente_id?: SortOrder
     nombre?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
@@ -3310,9 +3354,27 @@ export namespace Prisma {
   }
 
   export type articuloSumOrderByAggregateInput = {
+    id?: SortOrder
+    cliente_id?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3333,24 +3395,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -3367,15 +3411,22 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type piezaOrderByRelevanceInput = {
@@ -3426,28 +3477,8 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -3458,12 +3489,27 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3481,6 +3527,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -3496,15 +3553,31 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3523,35 +3596,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -3581,31 +3625,22 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
 

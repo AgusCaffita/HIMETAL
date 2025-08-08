@@ -121,8 +121,9 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.ArticuloScalarFieldEnum = {
+  id: 'id',
   him_codigo: 'him_codigo',
-  cli_codigo: 'cli_codigo',
+  cliente_id: 'cliente_id',
   nombre: 'nombre',
   cant_piezas: 'cant_piezas',
   plano: 'plano',
@@ -152,7 +153,6 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.articuloOrderByRelevanceFieldEnum = {
   him_codigo: 'him_codigo',
-  cli_codigo: 'cli_codigo',
   nombre: 'nombre',
   plano: 'plano'
 };

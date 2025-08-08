@@ -9,8 +9,9 @@ datasource db {
 }
 
 model articulo {
+  id           Int     @id @unique @default(autoincrement())
   him_codigo   String  @unique(map: "Articulo_him_codigo_key")
-  cli_codigo   String?
+  cliente_id   Int?
   nombre       String?
   cant_piezas  Int?
   plano        String?
@@ -19,7 +20,7 @@ model articulo {
 }
 
 model pieza {
-  id               Int     @id @default(autoincrement())
+  id               Int     @id @unique @default(autoincrement())
   nombre           String?
   precio_mat_prima Int?
   plano_pleg_DWG   String?
