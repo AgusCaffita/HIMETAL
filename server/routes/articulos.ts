@@ -1,5 +1,6 @@
 import { PrismaClient, Prisma } from '../generated/prisma'
 import express from 'express'
+import { authenticateToken, AuthRequest } from '../middleware/auth'
 
 const prisma = new PrismaClient();
 const router = express.Router()
@@ -16,11 +17,9 @@ const router = express.Router()
 // }
 
 // Crear un nuevo artículo
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    // Obtener el cliente_id del usuario autenticado
-    // Por ahora uso un header, pq nose si hay otro sistema de auth
-    const cliente_id = req.headers['cliente_id'] ? parseInt(req.headers['cliente_id'] as string) : null;
+    const cliente_id = req.user?.userId || null
     
     const { him_codigo, nombre, cant_piezas, plano, precio, cte_ganancia } = req.body
     
@@ -48,9 +47,13 @@ router.post('/', async (req, res) => {
 })
 
 // Obtener todos los artículos
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const articulos = await prisma.articulo.findMany()
+    const cliente_id = req.user?.userId || null
+
+    const articulos = await prisma.articulo.findMany({
+      where: { cliente_id: cliente_id }
+    })
     res.json(articulos)
   } catch (error) {
     console.error(error)
@@ -59,7 +62,7 @@ router.get('/', async (req, res) => {
 })
 
 // Obtener un artículo por him_codigo
-router.get('/:him_codigo', async (req, res) => {
+router.get('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { him_codigo } = req.params
     const articulo = await prisma.articulo.findUnique({
@@ -78,7 +81,7 @@ router.get('/:him_codigo', async (req, res) => {
 })
 
 // Actualizar un artículo por him_codigo
-router.put('/:him_codigo', async (req, res) => {
+router.put('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { him_codigo } = req.params
     const { nombre, cant_piezas, plano, precio, cte_ganancia } = req.body
@@ -106,7 +109,7 @@ router.put('/:him_codigo', async (req, res) => {
 })
 
 // Eliminar un artículo por him_codigo
-router.delete('/:him_codigo', async (req, res) => {
+router.delete('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { him_codigo } = req.params
     
