@@ -1,5 +1,5 @@
 import express from 'express'
-import { PrismaClient } from '../generated/prisma'
+import { PrismaClient, Prisma } from '../generated/prisma'
 
 const router = express.Router()
 const prisma = new PrismaClient()
@@ -32,7 +32,8 @@ router.post('/', async (req, res) => {
     
     res.status(201).json(nuevaPieza)
   } catch (error) {
-    res.status(500).json({ error: 'Error al crear la pieza' + error })
+    console.error(error)
+    res.status(500).json({ error: 'Error al crear la pieza: ' + (error as Error).message })
   }
 })
 
@@ -42,7 +43,8 @@ router.get('/', async (req, res) => {
     const piezas = await prisma.pieza.findMany()
     res.json(piezas)
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener las piezas' + error })
+    console.error(error)
+    res.status(500).json({ error: 'Error al obtener las piezas: ' + (error as Error).message })
   }
 })
 
@@ -60,7 +62,8 @@ router.get('/:id', async (req, res) => {
     
     res.json(pieza)
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener la pieza' + error })
+    console.error(error)
+    res.status(500).json({ error: 'Error al obtener la pieza: ' + (error as Error).message })
   }
 })
 
@@ -84,10 +87,11 @@ router.put('/:id', async (req, res) => {
     
     res.json(piezaActualizada)
   } catch (error) {
-    if (error.code === 'P2025') {
-      res.status(404).json({ error: 'Pieza no encontrada' + error })
+    console.error(error)
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      res.status(404).json({ error: 'Pieza no encontrada' })
     } else {
-      res.status(500).json({ error: 'Error al actualizar la pieza' + error })
+      res.status(500).json({ error: 'Error al actualizar la pieza: ' + (error as Error).message })
     }
   }
 })
@@ -103,10 +107,11 @@ router.delete('/:id', async (req, res) => {
     
     res.status(204).send()
   } catch (error) {
-    if (error.code === 'P2025') {
-      res.status(404).json({ error: 'Pieza no encontrada' + error })
+    console.error(error)
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      res.status(404).json({ error: 'Pieza no encontrada' })
     } else {
-      res.status(500).json({ error: 'Error al eliminar la pieza' + error })
+      res.status(500).json({ error: 'Error al eliminar la pieza: ' + (error as Error).message })
     }
   }
 })
