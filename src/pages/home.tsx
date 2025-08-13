@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom"
+import PingBanner from "../components/PingBanner"
 
 const Home = () => {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Home = () => {
             <p className="bg-blue-300">Estas en la pagina principal </p>
             <button onClick={() => navigate("/in")} className="m-4 hover:text-pink-600">Hacer factura</button>
             <button onClick={() => navigate("/arts")} className="m-4 hover:text-pink-600">Ver articulos</button>
+            <PingBanner />
         </div>
     );
 };
