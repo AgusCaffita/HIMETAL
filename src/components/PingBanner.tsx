@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 
+const API_URL = process.env.BACKEND_URL + ':' + process.env.PORT
+
 const checkPing = (setStatus: React.Dispatch<React.SetStateAction<"ok" | "error" | "loading">>) => {
-  fetch('http://localhost:5173/ping')
+  fetch(`${API_URL}/ping`)
     .then(res => {
       if (res.ok) setStatus("ok")
       else setStatus("error")

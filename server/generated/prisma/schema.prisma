@@ -1,3 +1,7 @@
+// npx prisma migrate dev --name "add_id_and_cliente_id_fields"
+// npx prisma generate
+// npx prisma db push
+
 generator client {
   provider = "prisma-client-js"
   output   = "../server/generated/prisma"
@@ -6,6 +10,26 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model users {
+  id       Int     @id @unique @default(autoincrement())
+  email    String  @unique(map: "users_email_key")
+  password String
+  nombre   String?
+  apellido String?
+
+  users_articulos users_articulos[]
+}
+
+model users_articulos {
+  user_id     Int
+  articulo_id Int
+
+  users    users    @relation(fields: [user_id], references: [id])
+  articulo articulo @relation(fields: [articulo_id], references: [id])
+
+  @@id([user_id, articulo_id])
 }
 
 model articulo {
@@ -17,6 +41,20 @@ model articulo {
   plano        String?
   precio       Int?
   cte_ganancia Int?
+
+  users_articulos users_articulos[]
+
+  articulo_piezas articulo_piezas[]
+}
+
+model articulo_piezas {
+  articulo_id Int
+  pieza_id    Int
+
+  articulo articulo @relation(fields: [articulo_id], references: [id])
+  pieza    pieza    @relation(fields: [pieza_id], references: [id])
+
+  @@id([articulo_id, pieza_id])
 }
 
 model pieza {
@@ -27,4 +65,6 @@ model pieza {
   plano_pleg_SOLID String?
   plano_laser_DXF  String?
   cte_ganancia     Int?
+
+  articulo_piezas articulo_piezas[]
 }

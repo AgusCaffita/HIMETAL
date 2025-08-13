@@ -120,6 +120,19 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UsersScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  nombre: 'nombre',
+  apellido: 'apellido'
+};
+
+exports.Prisma.Users_articulosScalarFieldEnum = {
+  user_id: 'user_id',
+  articulo_id: 'articulo_id'
+};
+
 exports.Prisma.ArticuloScalarFieldEnum = {
   id: 'id',
   him_codigo: 'him_codigo',
@@ -129,6 +142,11 @@ exports.Prisma.ArticuloScalarFieldEnum = {
   plano: 'plano',
   precio: 'precio',
   cte_ganancia: 'cte_ganancia'
+};
+
+exports.Prisma.Articulo_piezasScalarFieldEnum = {
+  articulo_id: 'articulo_id',
+  pieza_id: 'pieza_id'
 };
 
 exports.Prisma.PiezaScalarFieldEnum = {
@@ -151,6 +169,13 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.usersOrderByRelevanceFieldEnum = {
+  email: 'email',
+  password: 'password',
+  nombre: 'nombre',
+  apellido: 'apellido'
+};
+
 exports.Prisma.articuloOrderByRelevanceFieldEnum = {
   him_codigo: 'him_codigo',
   nombre: 'nombre',
@@ -166,7 +191,10 @@ exports.Prisma.piezaOrderByRelevanceFieldEnum = {
 
 
 exports.Prisma.ModelName = {
+  users: 'users',
+  users_articulos: 'users_articulos',
   articulo: 'articulo',
+  articulo_piezas: 'articulo_piezas',
   pieza: 'pieza'
 };
 
