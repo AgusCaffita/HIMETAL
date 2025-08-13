@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-
+import piezasRouter from './routes/piezas'
 
 const app = express();
 app.use(cors())
@@ -10,7 +10,8 @@ app.get('/ping', (req, res) => {
   res.json({ status: 'ok' })
 })
 
-//crud articulos
+// CRUD piezas
+app.use('/piezas', piezasRouter)
 
 
 app.listen(3000, () => {
