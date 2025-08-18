@@ -1,6 +1,8 @@
 import Home from "./pages/home"
 import Invoicer from "./pages/invoicer"
-import Articulos from "./pages/articulos"
+import Piezas from "./pages/piezas"
+import Login from "./pages/login";
+import SignUp from "./pages/signup";
 import {
   Routes,
   Route,
@@ -10,8 +12,11 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path= "/login" element={<Login />} />
+      <Route path= "/signup" element={<SignUp />} />
       <Route path="/in" element={<Invoicer />} />
-      <Route path="/arts" element={<Articulos />} />
+      <Route path="/pcs" element={<Piezas />} />
+
     </Routes>
   )
 }

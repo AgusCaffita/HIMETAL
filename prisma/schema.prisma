@@ -40,7 +40,7 @@ model articulo {
   plano        String?
   precio       Int?
   cte_ganancia Int?
-
+  //borrar: him_codigo  cambiar: nombre a descripcion, clientid a codigo :D
   users_articulos users_articulos[]
 
   articulo_piezas articulo_piezas[]

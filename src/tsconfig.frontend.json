@@ -1,0 +1,8 @@
+// filepath: c:\Users\Mi Compu\Desktop\HIMETAL\tsconfig.frontend.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext"
+  },
+  "include": ["src"]
+}
