@@ -6,32 +6,47 @@ const prisma = new PrismaClient();
 const router = express.Router()
 
 // Ejemplo de uso -> POST url/articulos/
-// Headers: { "cliente_id": "1" } (o el mecanismo de auth que uses)
+// Headers: Authorization con JWT token
 // {
-//   "him_codigo": "HIM001",
-//   "nombre": "Artículo ejemplo",
+//   "codigo": 1001,
+//   "descripcion": "Artículo ejemplo",
 //   "cant_piezas": 5,
 //   "plano": "plano.pdf",
 //   "precio": 2500,
-//   "cte_ganancia": 0.25
+//   "cte_ganancia": 25
 // }
 
 // Crear un nuevo artículo
 router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const cliente_id = req.user?.userId || null
+    const user_id = req.user?.userId
     
-    const { him_codigo, nombre, cant_piezas, plano, precio, cte_ganancia } = req.body
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    const { codigo, descripcion, cant_piezas, plano, precio, cte_ganancia } = req.body
     
     const nuevoArticulo = await prisma.articulo.create({
       data: {
-        him_codigo,
-        cliente_id,
-        nombre,
+        codigo,
+        descripcion,
         cant_piezas,
         plano,
         precio,
-        cte_ganancia
+        cte_ganancia,
+        users_articulos: {
+          create: {
+            user_id: user_id
+          }
+        }
+      },
+      include: {
+        users_articulos: {
+          include: {
+            users: true
+          }
+        }
       }
     })
     
@@ -39,20 +54,42 @@ router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   } catch (error) {
     console.error(error)
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-      res.status(409).json({ error: 'El código HIM ya existe' })
+      res.status(409).json({ error: 'Ya existe un artículo con ese código' })
     } else {
       res.status(500).json({ error: 'Error al crear el artículo: ' + (error as Error).message })
     }
   }
 })
 
-// Obtener todos los artículos
+// Obtener todos los artículos del usuario autenticado
 router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const cliente_id = req.user?.userId || null
+    const user_id = req.user?.userId
+
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
 
     const articulos = await prisma.articulo.findMany({
-      where: { cliente_id: cliente_id }
+      where: {
+        users_articulos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      },
+      include: {
+        users_articulos: {
+          include: {
+            users: true
+          }
+        },
+        articulo_piezas: {
+          include: {
+            pieza: true
+          }
+        }
+      }
     })
     res.json(articulos)
   } catch (error) {
@@ -61,12 +98,37 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Obtener un artículo por him_codigo
-router.get('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
+// Obtener un artículo por ID
+router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const { him_codigo } = req.params
-    const articulo = await prisma.articulo.findUnique({
-      where: { him_codigo: him_codigo }
+    const { id } = req.params
+    const user_id = req.user?.userId
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    const articulo = await prisma.articulo.findFirst({
+      where: {
+        id: parseInt(id),
+        users_articulos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      },
+      include: {
+        users_articulos: {
+          include: {
+            users: true
+          }
+        },
+        articulo_piezas: {
+          include: {
+            pieza: true
+          }
+        }
+      }
     })
     
     if (!articulo) {
@@ -80,20 +142,54 @@ router.get('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Actualizar un artículo por him_codigo
-router.put('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
+// Actualizar un artículo por ID
+router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const { him_codigo } = req.params
-    const { nombre, cant_piezas, plano, precio, cte_ganancia } = req.body
+    const { id } = req.params
+    const user_id = req.user?.userId
+    const { codigo, descripcion, cant_piezas, plano, precio, cte_ganancia } = req.body
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    // Verificar que el artículo pertenece al usuario
+    const articuloExistente = await prisma.articulo.findFirst({
+      where: {
+        id: parseInt(id),
+        users_articulos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      }
+    })
+    
+    if (!articuloExistente) {
+      return res.status(404).json({ error: 'Artículo no encontrado' })
+    }
     
     const articuloActualizado = await prisma.articulo.update({
-      where: { him_codigo: him_codigo },
+      where: { id: parseInt(id) },
       data: {
-        nombre,
+        codigo,
+        descripcion,
         cant_piezas,
         plano,
         precio,
         cte_ganancia
+      },
+      include: {
+        users_articulos: {
+          include: {
+            users: true
+          }
+        },
+        articulo_piezas: {
+          include: {
+            pieza: true
+          }
+        }
       }
     })
     
@@ -108,13 +204,43 @@ router.put('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Eliminar un artículo por him_codigo
-router.delete('/:him_codigo', authenticateToken, async (req: AuthRequest, res) => {
+// Eliminar un artículo por ID
+router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const { him_codigo } = req.params
+    const { id } = req.params
+    const user_id = req.user?.userId
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    // Verificar que el artículo pertenece al usuario
+    const articuloExistente = await prisma.articulo.findFirst({
+      where: {
+        id: parseInt(id),
+        users_articulos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      }
+    })
+    
+    if (!articuloExistente) {
+      return res.status(404).json({ error: 'Artículo no encontrado' })
+    }
+    
+    // Eliminar las relaciones primero y luego el artículo
+    await prisma.users_articulos.deleteMany({
+      where: { articulo_id: parseInt(id) }
+    })
+    
+    await prisma.articulo_piezas.deleteMany({
+      where: { articulo_id: parseInt(id) }
+    })
     
     await prisma.articulo.delete({
-      where: { him_codigo: him_codigo }
+      where: { id: parseInt(id) }
     })
     
     res.status(204).send()

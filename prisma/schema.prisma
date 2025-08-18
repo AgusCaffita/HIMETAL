@@ -33,14 +33,12 @@ model users_articulos {
 
 model articulo {
   id           Int     @id @unique @default(autoincrement())
-  him_codigo   String  @unique(map: "Articulo_him_codigo_key")
-  cliente_id   Int?
-  nombre       String?
+  codigo       Int?
+  descripcion  String?
   cant_piezas  Int?
   plano        String?
   precio       Int?
   cte_ganancia Int?
-  //borrar: him_codigo  cambiar: nombre a descripcion, clientid a codigo :D
   users_articulos users_articulos[]
 
   articulo_piezas articulo_piezas[]

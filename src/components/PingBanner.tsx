@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
 
-//ola perdon me daba error y copilot me tiro esto perdon
-const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + import.meta.env.VITE_PORT
-//const API_URL = process.env.BACKEND_URL + ':' + process.env.PORT
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_PORT}`
 
 
 const checkPing = (setStatus: React.Dispatch<React.SetStateAction<"ok" | "error" | "loading">>) => {

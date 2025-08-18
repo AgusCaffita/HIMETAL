@@ -3248,7 +3248,7 @@ export namespace Prisma {
 
   export type ArticuloAvgAggregateOutputType = {
     id: number | null
-    cliente_id: number | null
+    codigo: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
@@ -3256,7 +3256,7 @@ export namespace Prisma {
 
   export type ArticuloSumAggregateOutputType = {
     id: number | null
-    cliente_id: number | null
+    codigo: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
@@ -3264,9 +3264,8 @@ export namespace Prisma {
 
   export type ArticuloMinAggregateOutputType = {
     id: number | null
-    him_codigo: string | null
-    cliente_id: number | null
-    nombre: string | null
+    codigo: number | null
+    descripcion: string | null
     cant_piezas: number | null
     plano: string | null
     precio: number | null
@@ -3275,9 +3274,8 @@ export namespace Prisma {
 
   export type ArticuloMaxAggregateOutputType = {
     id: number | null
-    him_codigo: string | null
-    cliente_id: number | null
-    nombre: string | null
+    codigo: number | null
+    descripcion: string | null
     cant_piezas: number | null
     plano: string | null
     precio: number | null
@@ -3286,9 +3284,8 @@ export namespace Prisma {
 
   export type ArticuloCountAggregateOutputType = {
     id: number
-    him_codigo: number
-    cliente_id: number
-    nombre: number
+    codigo: number
+    descripcion: number
     cant_piezas: number
     plano: number
     precio: number
@@ -3299,7 +3296,7 @@ export namespace Prisma {
 
   export type ArticuloAvgAggregateInputType = {
     id?: true
-    cliente_id?: true
+    codigo?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
@@ -3307,7 +3304,7 @@ export namespace Prisma {
 
   export type ArticuloSumAggregateInputType = {
     id?: true
-    cliente_id?: true
+    codigo?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
@@ -3315,9 +3312,8 @@ export namespace Prisma {
 
   export type ArticuloMinAggregateInputType = {
     id?: true
-    him_codigo?: true
-    cliente_id?: true
-    nombre?: true
+    codigo?: true
+    descripcion?: true
     cant_piezas?: true
     plano?: true
     precio?: true
@@ -3326,9 +3322,8 @@ export namespace Prisma {
 
   export type ArticuloMaxAggregateInputType = {
     id?: true
-    him_codigo?: true
-    cliente_id?: true
-    nombre?: true
+    codigo?: true
+    descripcion?: true
     cant_piezas?: true
     plano?: true
     precio?: true
@@ -3337,9 +3332,8 @@ export namespace Prisma {
 
   export type ArticuloCountAggregateInputType = {
     id?: true
-    him_codigo?: true
-    cliente_id?: true
-    nombre?: true
+    codigo?: true
+    descripcion?: true
     cant_piezas?: true
     plano?: true
     precio?: true
@@ -3435,9 +3429,8 @@ export namespace Prisma {
 
   export type ArticuloGroupByOutputType = {
     id: number
-    him_codigo: string
-    cliente_id: number | null
-    nombre: string | null
+    codigo: number | null
+    descripcion: string | null
     cant_piezas: number | null
     plano: string | null
     precio: number | null
@@ -3465,9 +3458,8 @@ export namespace Prisma {
 
   export type articuloSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    him_codigo?: boolean
-    cliente_id?: boolean
-    nombre?: boolean
+    codigo?: boolean
+    descripcion?: boolean
     cant_piezas?: boolean
     plano?: boolean
     precio?: boolean
@@ -3481,16 +3473,15 @@ export namespace Prisma {
 
   export type articuloSelectScalar = {
     id?: boolean
-    him_codigo?: boolean
-    cliente_id?: boolean
-    nombre?: boolean
+    codigo?: boolean
+    descripcion?: boolean
     cant_piezas?: boolean
     plano?: boolean
     precio?: boolean
     cte_ganancia?: boolean
   }
 
-  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "him_codigo" | "cliente_id" | "nombre" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
+  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "codigo" | "descripcion" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
   export type articuloInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users_articulos?: boolean | articulo$users_articulosArgs<ExtArgs>
     articulo_piezas?: boolean | articulo$articulo_piezasArgs<ExtArgs>
@@ -3505,9 +3496,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      him_codigo: string
-      cliente_id: number | null
-      nombre: string | null
+      codigo: number | null
+      descripcion: string | null
       cant_piezas: number | null
       plano: string | null
       precio: number | null
@@ -3884,9 +3874,8 @@ export namespace Prisma {
    */
   interface articuloFieldRefs {
     readonly id: FieldRef<"articulo", 'Int'>
-    readonly him_codigo: FieldRef<"articulo", 'String'>
-    readonly cliente_id: FieldRef<"articulo", 'Int'>
-    readonly nombre: FieldRef<"articulo", 'String'>
+    readonly codigo: FieldRef<"articulo", 'Int'>
+    readonly descripcion: FieldRef<"articulo", 'String'>
     readonly cant_piezas: FieldRef<"articulo", 'Int'>
     readonly plano: FieldRef<"articulo", 'String'>
     readonly precio: FieldRef<"articulo", 'Int'>
@@ -4109,7 +4098,7 @@ export namespace Prisma {
     /**
      * The data needed to create a articulo.
      */
-    data: XOR<articuloCreateInput, articuloUncheckedCreateInput>
+    data?: XOR<articuloCreateInput, articuloUncheckedCreateInput>
   }
 
   /**
@@ -6292,9 +6281,8 @@ export namespace Prisma {
 
   export const ArticuloScalarFieldEnum: {
     id: 'id',
-    him_codigo: 'him_codigo',
-    cliente_id: 'cliente_id',
-    nombre: 'nombre',
+    codigo: 'codigo',
+    descripcion: 'descripcion',
     cant_piezas: 'cant_piezas',
     plano: 'plano',
     precio: 'precio',
@@ -6352,8 +6340,7 @@ export namespace Prisma {
 
 
   export const articuloOrderByRelevanceFieldEnum: {
-    him_codigo: 'him_codigo',
-    nombre: 'nombre',
+    descripcion: 'descripcion',
     plano: 'plano'
   };
 
@@ -6508,9 +6495,8 @@ export namespace Prisma {
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
     id?: IntFilter<"articulo"> | number
-    him_codigo?: StringFilter<"articulo"> | string
-    cliente_id?: IntNullableFilter<"articulo"> | number | null
-    nombre?: StringNullableFilter<"articulo"> | string | null
+    codigo?: IntNullableFilter<"articulo"> | number | null
+    descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
@@ -6521,9 +6507,8 @@ export namespace Prisma {
 
   export type articuloOrderByWithRelationInput = {
     id?: SortOrder
-    him_codigo?: SortOrder
-    cliente_id?: SortOrderInput | SortOrder
-    nombre?: SortOrderInput | SortOrder
+    codigo?: SortOrderInput | SortOrder
+    descripcion?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
@@ -6535,25 +6520,23 @@ export namespace Prisma {
 
   export type articuloWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    him_codigo?: string
     AND?: articuloWhereInput | articuloWhereInput[]
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
-    cliente_id?: IntNullableFilter<"articulo"> | number | null
-    nombre?: StringNullableFilter<"articulo"> | string | null
+    codigo?: IntNullableFilter<"articulo"> | number | null
+    descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
     users_articulos?: Users_articulosListRelationFilter
     articulo_piezas?: Articulo_piezasListRelationFilter
-  }, "id" | "id" | "him_codigo">
+  }, "id" | "id">
 
   export type articuloOrderByWithAggregationInput = {
     id?: SortOrder
-    him_codigo?: SortOrder
-    cliente_id?: SortOrderInput | SortOrder
-    nombre?: SortOrderInput | SortOrder
+    codigo?: SortOrderInput | SortOrder
+    descripcion?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
     plano?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
@@ -6570,9 +6553,8 @@ export namespace Prisma {
     OR?: articuloScalarWhereWithAggregatesInput[]
     NOT?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"articulo"> | number
-    him_codigo?: StringWithAggregatesFilter<"articulo"> | string
-    cliente_id?: IntNullableWithAggregatesFilter<"articulo"> | number | null
-    nombre?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    codigo?: IntNullableWithAggregatesFilter<"articulo"> | number | null
+    descripcion?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     cant_piezas?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     plano?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     precio?: IntNullableWithAggregatesFilter<"articulo"> | number | null
@@ -6785,9 +6767,8 @@ export namespace Prisma {
   }
 
   export type articuloCreateInput = {
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -6798,9 +6779,8 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateInput = {
     id?: number
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -6810,9 +6790,8 @@ export namespace Prisma {
   }
 
   export type articuloUpdateInput = {
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6823,9 +6802,8 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6836,9 +6814,8 @@ export namespace Prisma {
 
   export type articuloCreateManyInput = {
     id?: number
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -6846,9 +6823,8 @@ export namespace Prisma {
   }
 
   export type articuloUpdateManyMutationInput = {
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -6857,9 +6833,8 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7186,9 +7161,8 @@ export namespace Prisma {
 
   export type articuloCountOrderByAggregateInput = {
     id?: SortOrder
-    him_codigo?: SortOrder
-    cliente_id?: SortOrder
-    nombre?: SortOrder
+    codigo?: SortOrder
+    descripcion?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
     precio?: SortOrder
@@ -7197,7 +7171,7 @@ export namespace Prisma {
 
   export type articuloAvgOrderByAggregateInput = {
     id?: SortOrder
-    cliente_id?: SortOrder
+    codigo?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
@@ -7205,9 +7179,8 @@ export namespace Prisma {
 
   export type articuloMaxOrderByAggregateInput = {
     id?: SortOrder
-    him_codigo?: SortOrder
-    cliente_id?: SortOrder
-    nombre?: SortOrder
+    codigo?: SortOrder
+    descripcion?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
     precio?: SortOrder
@@ -7216,9 +7189,8 @@ export namespace Prisma {
 
   export type articuloMinOrderByAggregateInput = {
     id?: SortOrder
-    him_codigo?: SortOrder
-    cliente_id?: SortOrder
-    nombre?: SortOrder
+    codigo?: SortOrder
+    descripcion?: SortOrder
     cant_piezas?: SortOrder
     plano?: SortOrder
     precio?: SortOrder
@@ -7227,7 +7199,7 @@ export namespace Prisma {
 
   export type articuloSumOrderByAggregateInput = {
     id?: SortOrder
-    cliente_id?: SortOrder
+    codigo?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
@@ -7785,9 +7757,8 @@ export namespace Prisma {
   }
 
   export type articuloCreateWithoutUsers_articulosInput = {
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -7797,9 +7768,8 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateWithoutUsers_articulosInput = {
     id?: number
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -7850,9 +7820,8 @@ export namespace Prisma {
   }
 
   export type articuloUpdateWithoutUsers_articulosInput = {
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7862,9 +7831,8 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateWithoutUsers_articulosInput = {
     id?: IntFieldUpdateOperationsInput | number
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7949,9 +7917,8 @@ export namespace Prisma {
   }
 
   export type articuloCreateWithoutArticulo_piezasInput = {
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -7961,9 +7928,8 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateWithoutArticulo_piezasInput = {
     id?: number
-    him_codigo: string
-    cliente_id?: number | null
-    nombre?: string | null
+    codigo?: number | null
+    descripcion?: string | null
     cant_piezas?: number | null
     plano?: string | null
     precio?: number | null
@@ -8012,9 +7978,8 @@ export namespace Prisma {
   }
 
   export type articuloUpdateWithoutArticulo_piezasInput = {
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8024,9 +7989,8 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateWithoutArticulo_piezasInput = {
     id?: IntFieldUpdateOperationsInput | number
-    him_codigo?: StringFieldUpdateOperationsInput | string
-    cliente_id?: NullableIntFieldUpdateOperationsInput | number | null
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null

@@ -135,9 +135,8 @@ exports.Prisma.Users_articulosScalarFieldEnum = {
 
 exports.Prisma.ArticuloScalarFieldEnum = {
   id: 'id',
-  him_codigo: 'him_codigo',
-  cliente_id: 'cliente_id',
-  nombre: 'nombre',
+  codigo: 'codigo',
+  descripcion: 'descripcion',
   cant_piezas: 'cant_piezas',
   plano: 'plano',
   precio: 'precio',
@@ -177,8 +176,7 @@ exports.Prisma.usersOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.articuloOrderByRelevanceFieldEnum = {
-  him_codigo: 'him_codigo',
-  nombre: 'nombre',
+  descripcion: 'descripcion',
   plano: 'plano'
 };
 
