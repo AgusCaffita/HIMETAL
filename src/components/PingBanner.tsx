@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_PORT}`
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT || '5174'}`
 
 
 const checkPing = (setStatus: React.Dispatch<React.SetStateAction<"ok" | "error" | "loading">>) => {

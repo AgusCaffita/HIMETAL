@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import PingBanner from "../components/PingBanner"
 import Navbar from "../components/Navbar"
 
-const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + import.meta.env.VITE_PORT
+const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + (import.meta.env.VITE_BACKEND_PORT || '5174')
 
 const Piezas = () => {
     const navigate = useNavigate()
@@ -13,11 +12,36 @@ const Piezas = () => {
     const [editPieza, setEditPieza] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     
+    // Función para obtener el token
+    const getAuthHeaders = () => {
+        const token = localStorage.getItem('token')
+        return {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    }
+    
     // Función para obtener piezas
     const fetchPiezas = () => {
-        fetch(`${API_URL}/piezas`)
-        .then(res => res.json())
-        .then(data => setPiezas(data))
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+            return
+        }
+
+        fetch(`${API_URL}/piezas`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            if (res.status === 401) {
+                navigate('/login')
+                return
+            }
+            return res.json()
+        })
+        .then(data => data && setPiezas(data))
         .catch(() => setPiezas([]))
     }
 
@@ -26,10 +50,29 @@ const Piezas = () => {
     }, [])
 
     const handleDelete = async (id: number) => {
-        await fetch(`${API_URL}/piezas/${id}`, {
-            method: "DELETE"
-        })
-        fetchPiezas() // Actualiza la lista
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+            return
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/piezas/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            
+            if (response.status === 401) {
+                navigate('/login')
+                return
+            }
+            
+            fetchPiezas() // Actualiza la lista
+        } catch (error) {
+            console.error('Error al eliminar pieza:', error)
+        }
     }
 
     const handleEdit = (pieza: any) => {
@@ -40,19 +83,48 @@ const Piezas = () => {
     // Maneja el submit del formulario
     const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+            return
+        }
+
         const form = e.currentTarget
         const nombre = (form.elements.namedItem("nombre") as HTMLInputElement).value
         const precio_mat_prima = Number((form.elements.namedItem("precio_mat_prima") as HTMLInputElement).value)
-        // Agrega otros campos si los necesitas
+        const plano_pleg_DWG = (form.elements.namedItem("plano_pleg_DWG") as HTMLInputElement).value
+        const plano_pleg_SOLID = (form.elements.namedItem("plano_pleg_SOLID") as HTMLInputElement).value
+        const plano_laser_DXF = (form.elements.namedItem("plano_laser_DXF") as HTMLInputElement).value
+        const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
 
-        await fetch(`${API_URL}/piezas`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nombre, precio_mat_prima })
-        })
+        try {
+            const response = await fetch(`${API_URL}/piezas`, {
+                method: "POST",
+                headers: getAuthHeaders(),
+                body: JSON.stringify({ 
+                    nombre, 
+                    precio_mat_prima,
+                    plano_pleg_DWG,
+                    plano_pleg_SOLID,
+                    plano_laser_DXF,
+                    cte_ganancia
+                })
+            })
 
-        setShowModal(false)
-        fetchPiezas() // Actualiza la lista
+            if (response.status === 401) {
+                navigate('/login')
+                return
+            }
+
+            if (response.ok) {
+                setShowModal(false)
+                fetchPiezas() // Actualiza la lista
+            } else {
+                console.error('Error al crear pieza:', await response.text())
+            }
+        } catch (error) {
+            console.error('Error al crear pieza:', error)
+        }
     }
   
   return (
@@ -84,7 +156,28 @@ const Piezas = () => {
                   type="number"
                   required
                 />
-                {/* Agrega más campos según tu modelo */}
+                <input
+                  name="plano_pleg_DWG"
+                  className="border p-2 w-full mb-2"
+                  placeholder="Plano plegado DWG"
+                />
+                <input
+                  name="plano_pleg_SOLID"
+                  className="border p-2 w-full mb-2"
+                  placeholder="Plano plegado SOLID"
+                />
+                <input
+                  name="plano_laser_DXF"
+                  className="border p-2 w-full mb-2"
+                  placeholder="Plano laser DXF"
+                />
+                <input
+                  name="cte_ganancia"
+                  className="border p-2 w-full mb-2"
+                  placeholder="Coeficiente ganancia"
+                  type="number"
+                  step="any"
+                />
                 <div className="flex justify-end gap-2 mt-4">
                   <button
                     type="button"
@@ -147,6 +240,12 @@ const Piezas = () => {
                 <form
                     onSubmit={async (e) => {
                     e.preventDefault()
+                    const token = localStorage.getItem('token')
+                    if (!token) {
+                        navigate('/login')
+                        return
+                    }
+
                     const form = e.currentTarget
                     const nombre = (form.elements.namedItem("nombre") as HTMLInputElement).value
                     const precio_mat_prima = Number((form.elements.namedItem("precio_mat_prima") as HTMLInputElement).value)
@@ -155,21 +254,33 @@ const Piezas = () => {
                     const plano_laser_DXF = (form.elements.namedItem("plano_laser_DXF") as HTMLInputElement).value
                     const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
 
-                    await fetch(`${API_URL}/piezas/${editPieza.id}`, {
-                        method: "PUT",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                        nombre,
-                        precio_mat_prima,
-                        plano_pleg_DWG,
-                        plano_pleg_SOLID,
-                        plano_laser_DXF,
-                        cte_ganancia
+                    try {
+                        const response = await fetch(`${API_URL}/piezas/${editPieza.id}`, {
+                            method: "PUT",
+                            headers: getAuthHeaders(),
+                            body: JSON.stringify({
+                            nombre,
+                            precio_mat_prima,
+                            plano_pleg_DWG,
+                            plano_pleg_SOLID,
+                            plano_laser_DXF,
+                            cte_ganancia
+                            })
                         })
-                    })
-                    setShowEditModal(false)
-                    setEditPieza(null)
-                    fetchPiezas()
+
+                        if (response.status === 401) {
+                            navigate('/login')
+                            return
+                        }
+
+                        if (response.ok) {
+                            setShowEditModal(false)
+                            setEditPieza(null)
+                            fetchPiezas()
+                        }
+                    } catch (error) {
+                        console.error('Error al editar pieza:', error)
+                    }
                     }}
                 >
                     <input
