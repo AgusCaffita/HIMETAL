@@ -6,12 +6,12 @@ const Home = () => {
     return(
         <div>
             <div className="text-pink-600 text-5xl font-bold m-10">
-                    <h2>HIMetal</h2>
-                </div>
+                <h2>HIMetal</h2>
+            </div>
             <p className="bg-blue-300">Estas en la pagina principal </p>
-            <button onClick={() => navigate("/in")} className="m-4 hover:text-pink-600">Hacer factura</button>
-            <button onClick={() => navigate("/arts")} className="m-4 hover:text-pink-600">Ver articulos</button>
-            <button onClick={() => navigate("/pcs")} className="m-4 hover:text-pink-600">Ver piezas</button>
+            <button onClick={() => navigate("/invoicer")} className="m-4 hover:text-pink-600">Hacer factura</button>
+            <button onClick={() => navigate("/articulos")} className="m-4 hover:text-pink-600">Ver articulos</button>
+            <button onClick={() => navigate("/piezas")} className="m-4 hover:text-pink-600">Ver piezas</button>
             <PingBanner />
         </div>
     );

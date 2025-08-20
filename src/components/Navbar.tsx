@@ -17,9 +17,9 @@ const Navbar = () => {
       </button>
       <div className={`flex-col md:flex-row md:flex gap-4 ${open ? "flex" : "hidden"} md:items-center`}>
         <Link to="/home" className="hover:text-pink-200">Pagina principal</Link>
-        <Link to="/in" className="hover:text-pink-200">Hacer factura</Link>
-        <Link to="/pcs" className="hover:text-pink-200">Ver pcs</Link>
-        <Link to="/arts" className="hover:text-pink-200">Ver artículos</Link>
+        <Link to="/invoicer" className="hover:text-pink-200">Hacer factura</Link>
+        <Link to="/piezas" className="hover:text-pink-200">Ver piezas</Link>
+        <Link to="/articulos" className="hover:text-pink-200">Ver artículos</Link>
       </div>
     </nav>
   )

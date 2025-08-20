@@ -12,6 +12,8 @@ const Articulos = () => {
     const [editArticulo, setEditArticulo] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     
+
+
     // Función para obtener el token
     const getAuthHeaders = () => {
         const token = localStorage.getItem('token')
@@ -90,24 +92,26 @@ const Articulos = () => {
         }
 
         const form = e.currentTarget
-        const id = Number((form.elements.namedItem("id") as HTMLInputElement).value)
         const codigo = Number((form.elements.namedItem("codigo") as HTMLInputElement).value)
         const descripcion = (form.elements.namedItem("descripcion") as HTMLInputElement).value
         const cant_piezas = Number((form.elements.namedItem("cant_piezas") as HTMLInputElement).value)
         const plano = (form.elements.namedItem("plano") as HTMLInputElement).value
         const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
+        const precio = Number((form.elements.namedItem("precio") as HTMLInputElement).value)
+       
+                   
 
         try {
             const response = await fetch(`${API_URL}/articulos`, {
                 method: "POST",
                 headers: getAuthHeaders(),
                 body: JSON.stringify({ 
-                    id, 
                     codigo,
                     descripcion,
                     cant_piezas,
                     plano,
-                    cte_ganancia
+                    cte_ganancia,
+                    precio
                 })
             })
 
@@ -144,32 +148,34 @@ const Articulos = () => {
               <h2 className="text-lg font-bold mb-4">Crear nueva articulo</h2>
               <form onSubmit={handleCreate}>
                 <input
-                  name="nombre"
+                  name="codigo"
                   className="border p-2 w-full mb-2"
-                  placeholder="Nombre"
-                  required
-                />
-                <input
-                  name="precio_mat_prima"
-                  className="border p-2 w-full mb-2"
-                  placeholder="Precio materia prima"
+                  placeholder="Codigo"
                   type="number"
                   required
                 />
                 <input
-                  name="plano_pleg_DWG"
+                  name="descripcion"
                   className="border p-2 w-full mb-2"
-                  placeholder="Plano plegado DWG"
+                  placeholder="Descripcion"
                 />
                 <input
-                  name="plano_pleg_SOLID"
+                  name="precio"
                   className="border p-2 w-full mb-2"
-                  placeholder="Plano plegado SOLID"
+                  type="number"
+                  placeholder="Precio"
                 />
                 <input
-                  name="plano_laser_DXF"
+                  name="cant_piezas"
                   className="border p-2 w-full mb-2"
-                  placeholder="Plano laser DXF"
+                  type="number"
+                  placeholder="Cantidad de piezas"
+                />
+                <input
+                  name="plano"
+                  className="border p-2 w-full mb-2"
+                  type="file"
+                  placeholder="Plano"
                 />
                 <input
                   name="cte_ganancia"
@@ -189,6 +195,7 @@ const Articulos = () => {
                   <button
                     type="submit"
                     className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
+                  //BOTON DE CREAR NO HACE NADA(?)
                   >
                     Crear
                   </button>
@@ -247,24 +254,24 @@ const Articulos = () => {
                     }
 
                     const form = e.currentTarget
-                    const nombre = (form.elements.namedItem("nombre") as HTMLInputElement).value
-                    const precio_mat_prima = Number((form.elements.namedItem("precio_mat_prima") as HTMLInputElement).value)
-                    const plano_pleg_DWG = (form.elements.namedItem("plano_pleg_DWG") as HTMLInputElement).value
-                    const plano_pleg_SOLID = (form.elements.namedItem("plano_pleg_SOLID") as HTMLInputElement).value
-                    const plano_laser_DXF = (form.elements.namedItem("plano_laser_DXF") as HTMLInputElement).value
+                    const codigo = Number((form.elements.namedItem("codigo") as HTMLInputElement).value)
+                    const descripcion = (form.elements.namedItem("descripcion") as HTMLInputElement).value
+                    const cant_piezas = Number((form.elements.namedItem("cant_piezas") as HTMLInputElement).value)
+                    const plano = (form.elements.namedItem("plano") as HTMLInputElement).value
                     const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
+                    const precio = Number((form.elements.namedItem("precio") as HTMLInputElement).value)
 
                     try {
-                        const response = await fetch(`${API_URL}/piezas/${editArticulo.id}`, {
+                        const response = await fetch(`${API_URL}/articulos/${editArticulo.id}`, {
                             method: "PUT",
                             headers: getAuthHeaders(),
                             body: JSON.stringify({
-                            nombre,
-                            precio_mat_prima,
-                            plano_pleg_DWG,
-                            plano_pleg_SOLID,
-                            plano_laser_DXF,
-                            cte_ganancia
+                            descripcion,
+                            codigo,
+                            cant_piezas,
+                            plano,
+                            cte_ganancia,
+                            precio
                             })
                         })
 
@@ -284,20 +291,28 @@ const Articulos = () => {
                     }}
                 >
                     <input
-                    name="descripcion"
-                    className="border p-2 w-full mb-2"
-                    placeholder="descripcion"
-                    defaultValue={editArticulo.descripcion || ""}
-                    />
-                    <input
                     name="codigo"
                     className="border p-2 w-full mb-2"
                     placeholder="codigo"
                     type="number"
                     defaultValue={editArticulo.codigo || ""}
                     />
+
                     <input
-                    name="cantidad de piezas"
+                    name="descripcion"
+                    className="border p-2 w-full mb-2"
+                    placeholder="descripcion"
+                    defaultValue={editArticulo.descripcion || ""}
+                    />
+                    <input
+                    name="precio"
+                    className="border p-2 w-full mb-2"
+                    placeholder="precio"
+                    type="number"
+                    defaultValue={editArticulo.precio || ""}
+                    />
+                    <input
+                    name="cant_piezas"
                     className="border p-2 w-full mb-2"
                     placeholder="cantidad de piezas"
                     type="number"
@@ -309,17 +324,11 @@ const Articulos = () => {
                     placeholder="plano"
                     defaultValue={editArticulo.plano || ""}
                     />
-                    <input
-                    name="precio"
-                    className="border p-2 w-full mb-2"
-                    placeholder="precio"
-                    type="number"
-                    defaultValue={editArticulo.precio || ""}
-                    />
+                    
                     <input
                     name="cte_ganancia"
                     className="border p-2 w-full mb-2"
-                    placeholder="Coeficiente ganancia"
+                    placeholder="Constante de ganancia"
                     type="number"
                     step="any"
                     defaultValue={editArticulo.cte_ganancia || ""}
