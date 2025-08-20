@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/login'
-import SignUp from './pages/signup'
-//import Articulos from './pages/articulos'
-import Piezas from './pages/piezas'
-// Importa otros componentes que necesites
+import Home from "./pages/home"
+import Invoicer from "./pages/invoicer"
+import Piezas from "./pages/piezas"
+import Login from "./pages/login";
+import SignUp from "./pages/signup";
+import Arts from "./pages/articulos"
 
 import './index.css'
 
@@ -13,10 +14,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/arts" element={<Articulos />} /> */}
+        <Route path= "/signup" element={<SignUp />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/in" element={<Invoicer />} />
         <Route path="/pcs" element={<Piezas />} />
-        {/* Agrega más rutas según las necesites */}
+        <Route path='/arts' element={<Arts/>} />
+
       </Routes>
     </Router>
   )

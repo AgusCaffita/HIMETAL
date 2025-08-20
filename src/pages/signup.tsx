@@ -23,7 +23,7 @@ const SignUp = () => {
         })
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormEvent>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setError("")
         setSuccess("")
@@ -67,22 +67,18 @@ const SignUp = () => {
             }
         } catch (error) {
             console.error('Error completo:', error)
-            setError(`Error de conexión: ${error.message}`)
-        } finally {
+            if (error instanceof Error) {
+                setError(`Error de conexión: ${error.message}`)
+            } else {
+                setError("Error de conexión desconocido")
+            }
+        }finally {
             setLoading(false)
         }
     }
 
     return (
         <div>
-            <div className="text-pink-600 text-5xl font-bold m-10">
-                <h2>HIMetal</h2>
-            </div>
-            <p className="bg-blue-300">Estas en el signup </p>
-            <button onClick={() => navigate("/in")} className="m-4 hover:text-pink-600">Hacer factura</button>
-            <button onClick={() => navigate("/arts")} className="m-4 hover:text-pink-600">Ver articulos</button>
-            <button onClick={() => navigate("/pcs")} className="m-4 hover:text-pink-600">Ver piezas</button>
-            <PingBanner />
             <div className="flex items-center justify-center min-h-screen bg-gray-100">
                 <form
                     onSubmit={handleSubmit}
