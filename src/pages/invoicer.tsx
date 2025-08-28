@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import Navbar from "../components/Navbar"
-import generarPDF from "../components/convertpdf"
-import copyFieldValue from '../components/copiar'
-import vaciar from '../components/borrar'
+import generarPDF from "../components/Convertpdf"
+import copyFieldValue from '../components/Copiar'
+import vaciar from '../components/Borrar'
 
 
 function Invoicer() {
