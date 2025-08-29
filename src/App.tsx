@@ -2,9 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Home from "./pages/home"
 import Invoicer from "./pages/invoicer"
 import Piezas from "./pages/piezas"
-import Login from "./pages/login";
-import SignUp from "./pages/signup";
+import Login from "./pages/login"
+import SignUp from "./pages/signup"
 import Arts from "./pages/articulos"
+import User from "./pages/user"
 
 import './index.css'
 
@@ -19,7 +20,7 @@ function App() {
         <Route path="/invoicer" element={<Invoicer />} />
         <Route path="/piezas" element={<Piezas />} />
         <Route path='/articulos' element={<Arts/>} />
-
+        <Route path='/user' element={<User/>} />
       </Routes>
     </Router>
   )

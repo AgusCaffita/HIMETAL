@@ -76,7 +76,8 @@ const handleChange = (i: number, j: number, value: string) => {
 
   return (
     <>
-      <div className='w-screen h-screen p-1'>
+      <Navbar></Navbar>
+      <div className='w-screen h-screen p-1 mt-10'>
 
          {/*BOTONES*/}
         <div className='flex justify-center w-screen mt-4 text-2xl'>

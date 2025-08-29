@@ -20,6 +20,7 @@ const Navbar = () => {
         <Link to="/invoicer" className="hover:text-pink-200">Hacer factura</Link>
         <Link to="/piezas" className="hover:text-pink-200">Ver piezas</Link>
         <Link to="/articulos" className="hover:text-pink-200">Ver artículos</Link>
+        <Link to="/user" className="hover:text-pink-200">Ver perfil</Link>
       </div>
     </nav>
   )

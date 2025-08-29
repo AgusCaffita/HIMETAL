@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Mi Compu\\Desktop\\HIMETAL\\server\\generated\\prisma",
+      "value": "C:\\Users\\agusc\\Desktop\\Code\\himetal\\server\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -192,7 +192,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Mi Compu\\Desktop\\HIMETAL\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\agusc\\Desktop\\Code\\himetal\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
