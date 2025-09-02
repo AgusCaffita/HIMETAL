@@ -1,0 +1,3 @@
+# Ignorar archivos subidos pero mantener la estructura de carpetas
+server/uploads/planos/*
+!server/uploads/planos/.gitkeep

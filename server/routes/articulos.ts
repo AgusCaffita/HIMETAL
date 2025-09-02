@@ -1,23 +1,25 @@
 import { PrismaClient, Prisma } from '../generated/prisma'
 import express from 'express'
 import { authenticateToken, AuthRequest } from '../middleware/auth'
+import upload from '../middleware/upload.js'
+import path from 'path'
+import fs from 'fs'
 
 const prisma = new PrismaClient();
 const router = express.Router()
 
 // Ejemplo de uso -> POST url/articulos/
 // Headers: Authorization con JWT token
-// {
-//   "codigo": 1001,
-//   "descripcion": "Artículo ejemplo",
-//   "cant_piezas": 5,
-//   "plano": "plano.pdf",
-//   "precio": 2500,
-//   "cte_ganancia": 25
-// }
+// Enviar como FormData con los siguientes campos:
+// - codigo: number
+// - descripcion: string
+// - cant_piezas: number
+// - plano: archivo (file)
+// - precio: number
+// - cte_ganancia: number
 
 // Crear un nuevo artículo
-router.post('/', authenticateToken, async (req: AuthRequest, res) => {
+router.post('/', authenticateToken, upload.single('plano'), async (req: AuthRequest, res) => {
   try {
     const user_id = req.user?.userId
     
@@ -25,16 +27,17 @@ router.post('/', authenticateToken, async (req: AuthRequest, res) => {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    const { codigo, descripcion, cant_piezas, plano, precio, cte_ganancia } = req.body
+    const { codigo, descripcion, cant_piezas, precio, cte_ganancia } = req.body
+    const plano_file = req.file ? path.relative(process.cwd(), req.file.path) : null
     
     const nuevoArticulo = await prisma.articulo.create({
       data: {
-        codigo,
+        codigo: codigo ? parseInt(codigo) : null,
         descripcion,
-        cant_piezas,
-        plano,
-        precio,
-        cte_ganancia,
+        cant_piezas: cant_piezas ? parseInt(cant_piezas) : null,
+        plano_file,
+        precio: precio ? parseInt(precio) : null,
+        cte_ganancia: cte_ganancia ? parseInt(cte_ganancia) : null,
         users_articulos: {
           create: {
             user_id: user_id
@@ -53,6 +56,14 @@ router.post('/', authenticateToken, async (req: AuthRequest, res) => {
     res.status(201).json(nuevoArticulo)
   } catch (error) {
     console.error(error)
+    // Si hay error, eliminar el archivo subido si existe
+    if (req.file) {
+      try {
+        fs.unlinkSync(req.file.path)
+      } catch (unlinkError) {
+        console.error('Error al eliminar archivo:', unlinkError)
+      }
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
       res.status(409).json({ error: 'Ya existe un artículo con ese código' })
     } else {
@@ -143,11 +154,11 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
 })
 
 // Actualizar un artículo por ID
-router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
+router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
     const user_id = req.user?.userId
-    const { codigo, descripcion, cant_piezas, plano, precio, cte_ganancia } = req.body
+    const { codigo, descripcion, cant_piezas, precio, cte_ganancia } = req.body
     
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
@@ -169,16 +180,34 @@ router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
       return res.status(404).json({ error: 'Artículo no encontrado' })
     }
     
+    // Preparar datos para actualizar
+    const updateData: any = {
+      codigo: codigo ? parseInt(codigo) : undefined,
+      descripcion,
+      cant_piezas: cant_piezas ? parseInt(cant_piezas) : undefined,
+      precio: precio ? parseInt(precio) : undefined,
+      cte_ganancia: cte_ganancia ? parseInt(cte_ganancia) : undefined
+    }
+    
+    // Si se subió un nuevo archivo, eliminar el anterior y actualizar la ruta
+    if (req.file) {
+      // Eliminar archivo anterior si existe
+      if (articuloExistente.plano_file) {
+        try {
+          const oldFilePath = path.join(process.cwd(), articuloExistente.plano_file)
+          if (fs.existsSync(oldFilePath)) {
+            fs.unlinkSync(oldFilePath)
+          }
+        } catch (unlinkError) {
+          console.error('Error al eliminar archivo anterior:', unlinkError)
+        }
+      }
+      updateData.plano_file = path.relative(process.cwd(), req.file.path)
+    }
+    
     const articuloActualizado = await prisma.articulo.update({
       where: { id: parseInt(id) },
-      data: {
-        codigo,
-        descripcion,
-        cant_piezas,
-        plano,
-        precio,
-        cte_ganancia
-      },
+      data: updateData,
       include: {
         users_articulos: {
           include: {
@@ -196,6 +225,14 @@ router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
     res.json(articuloActualizado)
   } catch (error) {
     console.error(error)
+    // Si hay error, eliminar el archivo subido si existe
+    if (req.file) {
+      try {
+        fs.unlinkSync(req.file.path)
+      } catch (unlinkError) {
+        console.error('Error al eliminar archivo:', unlinkError)
+      }
+    }
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
       res.status(404).json({ error: 'Artículo no encontrado' })
     } else {
@@ -214,7 +251,7 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que el artículo pertenece al usuario
+    // Verificar que el artículo pertenece al usuario y obtener info del archivo
     const articuloExistente = await prisma.articulo.findFirst({
       where: {
         id: parseInt(id),
@@ -242,6 +279,18 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
     await prisma.articulo.delete({
       where: { id: parseInt(id) }
     })
+    
+    // Eliminar archivo del plano si existe
+    if (articuloExistente.plano_file) {
+      try {
+        const filePath = path.join(process.cwd(), articuloExistente.plano_file)
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath)
+        }
+      } catch (unlinkError) {
+        console.error('Error al eliminar archivo:', unlinkError)
+      }
+    }
     
     res.status(204).send()
   } catch (error) {

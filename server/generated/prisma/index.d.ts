@@ -3549,7 +3549,7 @@ export namespace Prisma {
     codigo: number | null
     descripcion: string | null
     cant_piezas: number | null
-    plano: string | null
+    plano_file: string | null
     precio: number | null
     cte_ganancia: number | null
   }
@@ -3559,7 +3559,7 @@ export namespace Prisma {
     codigo: number | null
     descripcion: string | null
     cant_piezas: number | null
-    plano: string | null
+    plano_file: string | null
     precio: number | null
     cte_ganancia: number | null
   }
@@ -3569,7 +3569,7 @@ export namespace Prisma {
     codigo: number
     descripcion: number
     cant_piezas: number
-    plano: number
+    plano_file: number
     precio: number
     cte_ganancia: number
     _all: number
@@ -3597,7 +3597,7 @@ export namespace Prisma {
     codigo?: true
     descripcion?: true
     cant_piezas?: true
-    plano?: true
+    plano_file?: true
     precio?: true
     cte_ganancia?: true
   }
@@ -3607,7 +3607,7 @@ export namespace Prisma {
     codigo?: true
     descripcion?: true
     cant_piezas?: true
-    plano?: true
+    plano_file?: true
     precio?: true
     cte_ganancia?: true
   }
@@ -3617,7 +3617,7 @@ export namespace Prisma {
     codigo?: true
     descripcion?: true
     cant_piezas?: true
-    plano?: true
+    plano_file?: true
     precio?: true
     cte_ganancia?: true
     _all?: true
@@ -3714,7 +3714,7 @@ export namespace Prisma {
     codigo: number | null
     descripcion: string | null
     cant_piezas: number | null
-    plano: string | null
+    plano_file: string | null
     precio: number | null
     cte_ganancia: number | null
     _count: ArticuloCountAggregateOutputType | null
@@ -3743,7 +3743,7 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     cant_piezas?: boolean
-    plano?: boolean
+    plano_file?: boolean
     precio?: boolean
     cte_ganancia?: boolean
     users_articulos?: boolean | articulo$users_articulosArgs<ExtArgs>
@@ -3756,7 +3756,7 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     cant_piezas?: boolean
-    plano?: boolean
+    plano_file?: boolean
     precio?: boolean
     cte_ganancia?: boolean
   }, ExtArgs["result"]["articulo"]>
@@ -3766,7 +3766,7 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     cant_piezas?: boolean
-    plano?: boolean
+    plano_file?: boolean
     precio?: boolean
     cte_ganancia?: boolean
   }, ExtArgs["result"]["articulo"]>
@@ -3776,12 +3776,12 @@ export namespace Prisma {
     codigo?: boolean
     descripcion?: boolean
     cant_piezas?: boolean
-    plano?: boolean
+    plano_file?: boolean
     precio?: boolean
     cte_ganancia?: boolean
   }
 
-  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "codigo" | "descripcion" | "cant_piezas" | "plano" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
+  export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "codigo" | "descripcion" | "cant_piezas" | "plano_file" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
   export type articuloInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users_articulos?: boolean | articulo$users_articulosArgs<ExtArgs>
     articulo_piezas?: boolean | articulo$articulo_piezasArgs<ExtArgs>
@@ -3801,7 +3801,7 @@ export namespace Prisma {
       codigo: number | null
       descripcion: string | null
       cant_piezas: number | null
-      plano: string | null
+      plano_file: string | null
       precio: number | null
       cte_ganancia: number | null
     }, ExtArgs["result"]["articulo"]>
@@ -4233,7 +4233,7 @@ export namespace Prisma {
     readonly codigo: FieldRef<"articulo", 'Int'>
     readonly descripcion: FieldRef<"articulo", 'String'>
     readonly cant_piezas: FieldRef<"articulo", 'Int'>
-    readonly plano: FieldRef<"articulo", 'String'>
+    readonly plano_file: FieldRef<"articulo", 'String'>
     readonly precio: FieldRef<"articulo", 'Int'>
     readonly cte_ganancia: FieldRef<"articulo", 'Int'>
   }
@@ -5783,9 +5783,9 @@ export namespace Prisma {
     id: number | null
     nombre: string | null
     precio_mat_prima: number | null
-    plano_pleg_DWG: string | null
-    plano_pleg_SOLID: string | null
-    plano_laser_DXF: string | null
+    plano_pleg_DWG_file: string | null
+    plano_pleg_SOLID_file: string | null
+    plano_laser_DXF_file: string | null
     cte_ganancia: number | null
   }
 
@@ -5793,9 +5793,9 @@ export namespace Prisma {
     id: number | null
     nombre: string | null
     precio_mat_prima: number | null
-    plano_pleg_DWG: string | null
-    plano_pleg_SOLID: string | null
-    plano_laser_DXF: string | null
+    plano_pleg_DWG_file: string | null
+    plano_pleg_SOLID_file: string | null
+    plano_laser_DXF_file: string | null
     cte_ganancia: number | null
   }
 
@@ -5803,9 +5803,9 @@ export namespace Prisma {
     id: number
     nombre: number
     precio_mat_prima: number
-    plano_pleg_DWG: number
-    plano_pleg_SOLID: number
-    plano_laser_DXF: number
+    plano_pleg_DWG_file: number
+    plano_pleg_SOLID_file: number
+    plano_laser_DXF_file: number
     cte_ganancia: number
     _all: number
   }
@@ -5827,9 +5827,9 @@ export namespace Prisma {
     id?: true
     nombre?: true
     precio_mat_prima?: true
-    plano_pleg_DWG?: true
-    plano_pleg_SOLID?: true
-    plano_laser_DXF?: true
+    plano_pleg_DWG_file?: true
+    plano_pleg_SOLID_file?: true
+    plano_laser_DXF_file?: true
     cte_ganancia?: true
   }
 
@@ -5837,9 +5837,9 @@ export namespace Prisma {
     id?: true
     nombre?: true
     precio_mat_prima?: true
-    plano_pleg_DWG?: true
-    plano_pleg_SOLID?: true
-    plano_laser_DXF?: true
+    plano_pleg_DWG_file?: true
+    plano_pleg_SOLID_file?: true
+    plano_laser_DXF_file?: true
     cte_ganancia?: true
   }
 
@@ -5847,9 +5847,9 @@ export namespace Prisma {
     id?: true
     nombre?: true
     precio_mat_prima?: true
-    plano_pleg_DWG?: true
-    plano_pleg_SOLID?: true
-    plano_laser_DXF?: true
+    plano_pleg_DWG_file?: true
+    plano_pleg_SOLID_file?: true
+    plano_laser_DXF_file?: true
     cte_ganancia?: true
     _all?: true
   }
@@ -5944,9 +5944,9 @@ export namespace Prisma {
     id: number
     nombre: string | null
     precio_mat_prima: number | null
-    plano_pleg_DWG: string | null
-    plano_pleg_SOLID: string | null
-    plano_laser_DXF: string | null
+    plano_pleg_DWG_file: string | null
+    plano_pleg_SOLID_file: string | null
+    plano_laser_DXF_file: string | null
     cte_ganancia: number | null
     _count: PiezaCountAggregateOutputType | null
     _avg: PiezaAvgAggregateOutputType | null
@@ -5973,9 +5973,9 @@ export namespace Prisma {
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
-    plano_pleg_DWG?: boolean
-    plano_pleg_SOLID?: boolean
-    plano_laser_DXF?: boolean
+    plano_pleg_DWG_file?: boolean
+    plano_pleg_SOLID_file?: boolean
+    plano_laser_DXF_file?: boolean
     cte_ganancia?: boolean
     articulo_piezas?: boolean | pieza$articulo_piezasArgs<ExtArgs>
     _count?: boolean | PiezaCountOutputTypeDefaultArgs<ExtArgs>
@@ -5985,9 +5985,9 @@ export namespace Prisma {
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
-    plano_pleg_DWG?: boolean
-    plano_pleg_SOLID?: boolean
-    plano_laser_DXF?: boolean
+    plano_pleg_DWG_file?: boolean
+    plano_pleg_SOLID_file?: boolean
+    plano_laser_DXF_file?: boolean
     cte_ganancia?: boolean
   }, ExtArgs["result"]["pieza"]>
 
@@ -5995,9 +5995,9 @@ export namespace Prisma {
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
-    plano_pleg_DWG?: boolean
-    plano_pleg_SOLID?: boolean
-    plano_laser_DXF?: boolean
+    plano_pleg_DWG_file?: boolean
+    plano_pleg_SOLID_file?: boolean
+    plano_laser_DXF_file?: boolean
     cte_ganancia?: boolean
   }, ExtArgs["result"]["pieza"]>
 
@@ -6005,13 +6005,13 @@ export namespace Prisma {
     id?: boolean
     nombre?: boolean
     precio_mat_prima?: boolean
-    plano_pleg_DWG?: boolean
-    plano_pleg_SOLID?: boolean
-    plano_laser_DXF?: boolean
+    plano_pleg_DWG_file?: boolean
+    plano_pleg_SOLID_file?: boolean
+    plano_laser_DXF_file?: boolean
     cte_ganancia?: boolean
   }
 
-  export type piezaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "precio_mat_prima" | "plano_pleg_DWG" | "plano_pleg_SOLID" | "plano_laser_DXF" | "cte_ganancia", ExtArgs["result"]["pieza"]>
+  export type piezaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "precio_mat_prima" | "plano_pleg_DWG_file" | "plano_pleg_SOLID_file" | "plano_laser_DXF_file" | "cte_ganancia", ExtArgs["result"]["pieza"]>
   export type piezaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     articulo_piezas?: boolean | pieza$articulo_piezasArgs<ExtArgs>
     _count?: boolean | PiezaCountOutputTypeDefaultArgs<ExtArgs>
@@ -6028,9 +6028,9 @@ export namespace Prisma {
       id: number
       nombre: string | null
       precio_mat_prima: number | null
-      plano_pleg_DWG: string | null
-      plano_pleg_SOLID: string | null
-      plano_laser_DXF: string | null
+      plano_pleg_DWG_file: string | null
+      plano_pleg_SOLID_file: string | null
+      plano_laser_DXF_file: string | null
       cte_ganancia: number | null
     }, ExtArgs["result"]["pieza"]>
     composites: {}
@@ -6459,9 +6459,9 @@ export namespace Prisma {
     readonly id: FieldRef<"pieza", 'Int'>
     readonly nombre: FieldRef<"pieza", 'String'>
     readonly precio_mat_prima: FieldRef<"pieza", 'Int'>
-    readonly plano_pleg_DWG: FieldRef<"pieza", 'String'>
-    readonly plano_pleg_SOLID: FieldRef<"pieza", 'String'>
-    readonly plano_laser_DXF: FieldRef<"pieza", 'String'>
+    readonly plano_pleg_DWG_file: FieldRef<"pieza", 'String'>
+    readonly plano_pleg_SOLID_file: FieldRef<"pieza", 'String'>
+    readonly plano_laser_DXF_file: FieldRef<"pieza", 'String'>
     readonly cte_ganancia: FieldRef<"pieza", 'Int'>
   }
     
@@ -6931,7 +6931,7 @@ export namespace Prisma {
     codigo: 'codigo',
     descripcion: 'descripcion',
     cant_piezas: 'cant_piezas',
-    plano: 'plano',
+    plano_file: 'plano_file',
     precio: 'precio',
     cte_ganancia: 'cte_ganancia'
   };
@@ -6951,9 +6951,9 @@ export namespace Prisma {
     id: 'id',
     nombre: 'nombre',
     precio_mat_prima: 'precio_mat_prima',
-    plano_pleg_DWG: 'plano_pleg_DWG',
-    plano_pleg_SOLID: 'plano_pleg_SOLID',
-    plano_laser_DXF: 'plano_laser_DXF',
+    plano_pleg_DWG_file: 'plano_pleg_DWG_file',
+    plano_pleg_SOLID_file: 'plano_pleg_SOLID_file',
+    plano_laser_DXF_file: 'plano_laser_DXF_file',
     cte_ganancia: 'cte_ganancia'
   };
 
@@ -7145,7 +7145,7 @@ export namespace Prisma {
     codigo?: IntNullableFilter<"articulo"> | number | null
     descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
-    plano?: StringNullableFilter<"articulo"> | string | null
+    plano_file?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
     users_articulos?: Users_articulosListRelationFilter
@@ -7157,7 +7157,7 @@ export namespace Prisma {
     codigo?: SortOrderInput | SortOrder
     descripcion?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
-    plano?: SortOrderInput | SortOrder
+    plano_file?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
     users_articulos?: users_articulosOrderByRelationAggregateInput
@@ -7172,7 +7172,7 @@ export namespace Prisma {
     codigo?: IntNullableFilter<"articulo"> | number | null
     descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
-    plano?: StringNullableFilter<"articulo"> | string | null
+    plano_file?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
     users_articulos?: Users_articulosListRelationFilter
@@ -7184,7 +7184,7 @@ export namespace Prisma {
     codigo?: SortOrderInput | SortOrder
     descripcion?: SortOrderInput | SortOrder
     cant_piezas?: SortOrderInput | SortOrder
-    plano?: SortOrderInput | SortOrder
+    plano_file?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
     _count?: articuloCountOrderByAggregateInput
@@ -7202,7 +7202,7 @@ export namespace Prisma {
     codigo?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     descripcion?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     cant_piezas?: IntNullableWithAggregatesFilter<"articulo"> | number | null
-    plano?: StringNullableWithAggregatesFilter<"articulo"> | string | null
+    plano_file?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     precio?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableWithAggregatesFilter<"articulo"> | number | null
   }
@@ -7260,9 +7260,9 @@ export namespace Prisma {
     id?: IntFilter<"pieza"> | number
     nombre?: StringNullableFilter<"pieza"> | string | null
     precio_mat_prima?: IntNullableFilter<"pieza"> | number | null
-    plano_pleg_DWG?: StringNullableFilter<"pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableFilter<"pieza"> | string | null
-    plano_laser_DXF?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_DWG_file?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_SOLID_file?: StringNullableFilter<"pieza"> | string | null
+    plano_laser_DXF_file?: StringNullableFilter<"pieza"> | string | null
     cte_ganancia?: IntNullableFilter<"pieza"> | number | null
     articulo_piezas?: Articulo_piezasListRelationFilter
   }
@@ -7271,9 +7271,9 @@ export namespace Prisma {
     id?: SortOrder
     nombre?: SortOrderInput | SortOrder
     precio_mat_prima?: SortOrderInput | SortOrder
-    plano_pleg_DWG?: SortOrderInput | SortOrder
-    plano_pleg_SOLID?: SortOrderInput | SortOrder
-    plano_laser_DXF?: SortOrderInput | SortOrder
+    plano_pleg_DWG_file?: SortOrderInput | SortOrder
+    plano_pleg_SOLID_file?: SortOrderInput | SortOrder
+    plano_laser_DXF_file?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
     articulo_piezas?: articulo_piezasOrderByRelationAggregateInput
   }
@@ -7285,9 +7285,9 @@ export namespace Prisma {
     NOT?: piezaWhereInput | piezaWhereInput[]
     nombre?: StringNullableFilter<"pieza"> | string | null
     precio_mat_prima?: IntNullableFilter<"pieza"> | number | null
-    plano_pleg_DWG?: StringNullableFilter<"pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableFilter<"pieza"> | string | null
-    plano_laser_DXF?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_DWG_file?: StringNullableFilter<"pieza"> | string | null
+    plano_pleg_SOLID_file?: StringNullableFilter<"pieza"> | string | null
+    plano_laser_DXF_file?: StringNullableFilter<"pieza"> | string | null
     cte_ganancia?: IntNullableFilter<"pieza"> | number | null
     articulo_piezas?: Articulo_piezasListRelationFilter
   }, "id" | "id">
@@ -7296,9 +7296,9 @@ export namespace Prisma {
     id?: SortOrder
     nombre?: SortOrderInput | SortOrder
     precio_mat_prima?: SortOrderInput | SortOrder
-    plano_pleg_DWG?: SortOrderInput | SortOrder
-    plano_pleg_SOLID?: SortOrderInput | SortOrder
-    plano_laser_DXF?: SortOrderInput | SortOrder
+    plano_pleg_DWG_file?: SortOrderInput | SortOrder
+    plano_pleg_SOLID_file?: SortOrderInput | SortOrder
+    plano_laser_DXF_file?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
     _count?: piezaCountOrderByAggregateInput
     _avg?: piezaAvgOrderByAggregateInput
@@ -7314,9 +7314,9 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"pieza"> | number
     nombre?: StringNullableWithAggregatesFilter<"pieza"> | string | null
     precio_mat_prima?: IntNullableWithAggregatesFilter<"pieza"> | number | null
-    plano_pleg_DWG?: StringNullableWithAggregatesFilter<"pieza"> | string | null
-    plano_pleg_SOLID?: StringNullableWithAggregatesFilter<"pieza"> | string | null
-    plano_laser_DXF?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    plano_pleg_DWG_file?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    plano_pleg_SOLID_file?: StringNullableWithAggregatesFilter<"pieza"> | string | null
+    plano_laser_DXF_file?: StringNullableWithAggregatesFilter<"pieza"> | string | null
     cte_ganancia?: IntNullableWithAggregatesFilter<"pieza"> | number | null
   }
 
@@ -7415,7 +7415,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     users_articulos?: users_articulosCreateNestedManyWithoutArticuloInput
@@ -7427,7 +7427,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     users_articulos?: users_articulosUncheckedCreateNestedManyWithoutArticuloInput
@@ -7438,7 +7438,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     users_articulos?: users_articulosUpdateManyWithoutArticuloNestedInput
@@ -7450,7 +7450,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     users_articulos?: users_articulosUncheckedUpdateManyWithoutArticuloNestedInput
@@ -7462,7 +7462,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
   }
@@ -7471,7 +7471,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7481,7 +7481,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -7523,9 +7523,9 @@ export namespace Prisma {
   export type piezaCreateInput = {
     nombre?: string | null
     precio_mat_prima?: number | null
-    plano_pleg_DWG?: string | null
-    plano_pleg_SOLID?: string | null
-    plano_laser_DXF?: string | null
+    plano_pleg_DWG_file?: string | null
+    plano_pleg_SOLID_file?: string | null
+    plano_laser_DXF_file?: string | null
     cte_ganancia?: number | null
     articulo_piezas?: articulo_piezasCreateNestedManyWithoutPiezaInput
   }
@@ -7534,9 +7534,9 @@ export namespace Prisma {
     id?: number
     nombre?: string | null
     precio_mat_prima?: number | null
-    plano_pleg_DWG?: string | null
-    plano_pleg_SOLID?: string | null
-    plano_laser_DXF?: string | null
+    plano_pleg_DWG_file?: string | null
+    plano_pleg_SOLID_file?: string | null
+    plano_laser_DXF_file?: string | null
     cte_ganancia?: number | null
     articulo_piezas?: articulo_piezasUncheckedCreateNestedManyWithoutPiezaInput
   }
@@ -7544,9 +7544,9 @@ export namespace Prisma {
   export type piezaUpdateInput = {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     articulo_piezas?: articulo_piezasUpdateManyWithoutPiezaNestedInput
   }
@@ -7555,9 +7555,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     articulo_piezas?: articulo_piezasUncheckedUpdateManyWithoutPiezaNestedInput
   }
@@ -7566,18 +7566,18 @@ export namespace Prisma {
     id?: number
     nombre?: string | null
     precio_mat_prima?: number | null
-    plano_pleg_DWG?: string | null
-    plano_pleg_SOLID?: string | null
-    plano_laser_DXF?: string | null
+    plano_pleg_DWG_file?: string | null
+    plano_pleg_SOLID_file?: string | null
+    plano_laser_DXF_file?: string | null
     cte_ganancia?: number | null
   }
 
   export type piezaUpdateManyMutationInput = {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -7585,9 +7585,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -7797,7 +7797,7 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     cant_piezas?: SortOrder
-    plano?: SortOrder
+    plano_file?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
   }
@@ -7815,7 +7815,7 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     cant_piezas?: SortOrder
-    plano?: SortOrder
+    plano_file?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
   }
@@ -7825,7 +7825,7 @@ export namespace Prisma {
     codigo?: SortOrder
     descripcion?: SortOrder
     cant_piezas?: SortOrder
-    plano?: SortOrder
+    plano_file?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
   }
@@ -7893,9 +7893,9 @@ export namespace Prisma {
     id?: SortOrder
     nombre?: SortOrder
     precio_mat_prima?: SortOrder
-    plano_pleg_DWG?: SortOrder
-    plano_pleg_SOLID?: SortOrder
-    plano_laser_DXF?: SortOrder
+    plano_pleg_DWG_file?: SortOrder
+    plano_pleg_SOLID_file?: SortOrder
+    plano_laser_DXF_file?: SortOrder
     cte_ganancia?: SortOrder
   }
 
@@ -7909,9 +7909,9 @@ export namespace Prisma {
     id?: SortOrder
     nombre?: SortOrder
     precio_mat_prima?: SortOrder
-    plano_pleg_DWG?: SortOrder
-    plano_pleg_SOLID?: SortOrder
-    plano_laser_DXF?: SortOrder
+    plano_pleg_DWG_file?: SortOrder
+    plano_pleg_SOLID_file?: SortOrder
+    plano_laser_DXF_file?: SortOrder
     cte_ganancia?: SortOrder
   }
 
@@ -7919,9 +7919,9 @@ export namespace Prisma {
     id?: SortOrder
     nombre?: SortOrder
     precio_mat_prima?: SortOrder
-    plano_pleg_DWG?: SortOrder
-    plano_pleg_SOLID?: SortOrder
-    plano_laser_DXF?: SortOrder
+    plano_pleg_DWG_file?: SortOrder
+    plano_pleg_SOLID_file?: SortOrder
+    plano_laser_DXF_file?: SortOrder
     cte_ganancia?: SortOrder
   }
 
@@ -8383,7 +8383,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     articulo_piezas?: articulo_piezasCreateNestedManyWithoutArticuloInput
@@ -8394,7 +8394,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     articulo_piezas?: articulo_piezasUncheckedCreateNestedManyWithoutArticuloInput
@@ -8446,7 +8446,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     articulo_piezas?: articulo_piezasUpdateManyWithoutArticuloNestedInput
@@ -8457,7 +8457,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     articulo_piezas?: articulo_piezasUncheckedUpdateManyWithoutArticuloNestedInput
@@ -8543,7 +8543,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     users_articulos?: users_articulosCreateNestedManyWithoutArticuloInput
@@ -8554,7 +8554,7 @@ export namespace Prisma {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
-    plano?: string | null
+    plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
     users_articulos?: users_articulosUncheckedCreateNestedManyWithoutArticuloInput
@@ -8568,9 +8568,9 @@ export namespace Prisma {
   export type piezaCreateWithoutArticulo_piezasInput = {
     nombre?: string | null
     precio_mat_prima?: number | null
-    plano_pleg_DWG?: string | null
-    plano_pleg_SOLID?: string | null
-    plano_laser_DXF?: string | null
+    plano_pleg_DWG_file?: string | null
+    plano_pleg_SOLID_file?: string | null
+    plano_laser_DXF_file?: string | null
     cte_ganancia?: number | null
   }
 
@@ -8578,9 +8578,9 @@ export namespace Prisma {
     id?: number
     nombre?: string | null
     precio_mat_prima?: number | null
-    plano_pleg_DWG?: string | null
-    plano_pleg_SOLID?: string | null
-    plano_laser_DXF?: string | null
+    plano_pleg_DWG_file?: string | null
+    plano_pleg_SOLID_file?: string | null
+    plano_laser_DXF_file?: string | null
     cte_ganancia?: number | null
   }
 
@@ -8604,7 +8604,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     users_articulos?: users_articulosUpdateManyWithoutArticuloNestedInput
@@ -8615,7 +8615,7 @@ export namespace Prisma {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
-    plano?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
     users_articulos?: users_articulosUncheckedUpdateManyWithoutArticuloNestedInput
@@ -8635,9 +8635,9 @@ export namespace Prisma {
   export type piezaUpdateWithoutArticulo_piezasInput = {
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -8645,9 +8645,9 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     precio_mat_prima?: NullableIntFieldUpdateOperationsInput | number | null
-    plano_pleg_DWG?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_pleg_SOLID?: NullableStringFieldUpdateOperationsInput | string | null
-    plano_laser_DXF?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_DWG_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_pleg_SOLID_file?: NullableStringFieldUpdateOperationsInput | string | null
+    plano_laser_DXF_file?: NullableStringFieldUpdateOperationsInput | string | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
   }
 

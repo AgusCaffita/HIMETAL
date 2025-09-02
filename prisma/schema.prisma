@@ -36,7 +36,7 @@ model articulo {
   codigo       Int?
   descripcion  String?
   cant_piezas  Int?
-  plano        String?
+  plano_file   String? // Ruta del archivo de plano subido
   precio       Int?
   cte_ganancia Int?
   users_articulos users_articulos[]
@@ -55,13 +55,13 @@ model articulo_piezas {
 }
 
 model pieza {
-  id               Int     @id @unique @default(autoincrement())
-  nombre           String?
-  precio_mat_prima Int?
-  plano_pleg_DWG   String?
-  plano_pleg_SOLID String?
-  plano_laser_DXF  String?
-  cte_ganancia     Int?
+  id                     Int     @id @unique @default(autoincrement())
+  nombre                 String?
+  precio_mat_prima       Int?
+  plano_pleg_DWG_file    String? // Ruta del archivo DWG
+  plano_pleg_SOLID_file  String? // Ruta del archivo SOLID
+  plano_laser_DXF_file   String? // Ruta del archivo DXF
+  cte_ganancia           Int?
 
   articulo_piezas articulo_piezas[]
 }

@@ -22,8 +22,10 @@
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",
+    "@types/multer": "^2.0.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2"
   }
 }

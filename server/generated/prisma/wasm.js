@@ -138,7 +138,7 @@ exports.Prisma.ArticuloScalarFieldEnum = {
   codigo: 'codigo',
   descripcion: 'descripcion',
   cant_piezas: 'cant_piezas',
-  plano: 'plano',
+  plano_file: 'plano_file',
   precio: 'precio',
   cte_ganancia: 'cte_ganancia'
 };
@@ -152,9 +152,9 @@ exports.Prisma.PiezaScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   precio_mat_prima: 'precio_mat_prima',
-  plano_pleg_DWG: 'plano_pleg_DWG',
-  plano_pleg_SOLID: 'plano_pleg_SOLID',
-  plano_laser_DXF: 'plano_laser_DXF',
+  plano_pleg_DWG_file: 'plano_pleg_DWG_file',
+  plano_pleg_SOLID_file: 'plano_pleg_SOLID_file',
+  plano_laser_DXF_file: 'plano_laser_DXF_file',
   cte_ganancia: 'cte_ganancia'
 };
 
