@@ -136,28 +136,14 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.usersOrderByRelevanceFieldEnum = {
-  email: 'email',
-  password: 'password',
-  nombre: 'nombre',
-  apellido: 'apellido'
-};
-
-exports.Prisma.articuloOrderByRelevanceFieldEnum = {
-  descripcion: 'descripcion',
-  plano: 'plano'
-};
-
-exports.Prisma.piezaOrderByRelevanceFieldEnum = {
-  nombre: 'nombre',
-  plano_pleg_DWG: 'plano_pleg_DWG',
-  plano_pleg_SOLID: 'plano_pleg_SOLID',
-  plano_laser_DXF: 'plano_laser_DXF'
 };
 
 
@@ -179,7 +165,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\agusc\\Desktop\\Code\\himetal\\server\\generated\\prisma",
+      "value": "/home/magma/Desktop/HIMETAL/server/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -188,12 +174,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\agusc\\Desktop\\Code\\himetal\\prisma\\schema.prisma",
+    "sourceFilePath": "/home/magma/Desktop/HIMETAL/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -206,7 +192,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "mysql",
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -215,9 +201,9 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// npx prisma migrate dev --name \"add_id_and_cliente_id_fields\"\n// npx prisma generate\n// npx prisma db push\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../server/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel users {\n  id       Int     @id @unique @default(autoincrement())\n  email    String  @unique(map: \"users_email_key\")\n  password String\n  nombre   String?\n  apellido String?\n\n  users_articulos users_articulos[]\n}\n\nmodel users_articulos {\n  user_id     Int\n  articulo_id Int\n\n  users    users    @relation(fields: [user_id], references: [id])\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n\n  @@id([user_id, articulo_id])\n}\n\nmodel articulo {\n  id              Int               @id @unique @default(autoincrement())\n  codigo          Int?\n  descripcion     String?\n  cant_piezas     Int?\n  plano           String?\n  precio          Int?\n  cte_ganancia    Int?\n  users_articulos users_articulos[]\n\n  articulo_piezas articulo_piezas[]\n}\n\nmodel articulo_piezas {\n  articulo_id Int\n  pieza_id    Int\n\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n  pieza    pieza    @relation(fields: [pieza_id], references: [id])\n\n  @@id([articulo_id, pieza_id])\n}\n\nmodel pieza {\n  id               Int     @id @unique @default(autoincrement())\n  nombre           String?\n  precio_mat_prima Int?\n  plano_pleg_DWG   String?\n  plano_pleg_SOLID String?\n  plano_laser_DXF  String?\n  cte_ganancia     Int?\n\n  articulo_piezas articulo_piezas[]\n}\n",
-  "inlineSchemaHash": "97bad0ac8bf1db1173275c8c6c632eeef78d7bb5290d09acc99d8556bfb8e5c0",
-  "copyEngine": true
+  "inlineSchema": "// npx prisma migrate dev --name \"add_id_and_cliente_id_fields\"\n// npx prisma generate\n// npx prisma db push\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../server/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel users {\n  id       Int     @id @unique @default(autoincrement())\n  email    String  @unique(map: \"users_email_key\")\n  password String\n  nombre   String?\n  apellido String?\n\n  users_articulos users_articulos[]\n}\n\nmodel users_articulos {\n  user_id     Int\n  articulo_id Int\n\n  users    users    @relation(fields: [user_id], references: [id])\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n\n  @@id([user_id, articulo_id])\n}\n\nmodel articulo {\n  id              Int               @id @unique @default(autoincrement())\n  codigo          Int?\n  descripcion     String?\n  cant_piezas     Int?\n  plano           String?\n  precio          Int?\n  cte_ganancia    Int?\n  users_articulos users_articulos[]\n\n  articulo_piezas articulo_piezas[]\n}\n\nmodel articulo_piezas {\n  articulo_id Int\n  pieza_id    Int\n\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n  pieza    pieza    @relation(fields: [pieza_id], references: [id])\n\n  @@id([articulo_id, pieza_id])\n}\n\nmodel pieza {\n  id               Int     @id @unique @default(autoincrement())\n  nombre           String?\n  precio_mat_prima Int?\n  plano_pleg_DWG   String?\n  plano_pleg_SOLID String?\n  plano_laser_DXF  String?\n  cte_ganancia     Int?\n\n  articulo_piezas articulo_piezas[]\n}\n",
+  "inlineSchemaHash": "2d8cf786e5a7873dc3d2ad02fa5de27aea01452d21d731b69676aa65b55b8f8c",
+  "copyEngine": false
 }
 
 const fs = require('fs')
@@ -254,9 +240,3 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-// file annotations for bundling tools to include these files
-path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "server/generated/prisma/query_engine-windows.dll.node")
-// file annotations for bundling tools to include these files
-path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "server/generated/prisma/schema.prisma")

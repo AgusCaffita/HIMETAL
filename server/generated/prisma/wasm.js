@@ -163,28 +163,14 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.usersOrderByRelevanceFieldEnum = {
-  email: 'email',
-  password: 'password',
-  nombre: 'nombre',
-  apellido: 'apellido'
-};
-
-exports.Prisma.articuloOrderByRelevanceFieldEnum = {
-  descripcion: 'descripcion',
-  plano: 'plano'
-};
-
-exports.Prisma.piezaOrderByRelevanceFieldEnum = {
-  nombre: 'nombre',
-  plano_pleg_DWG: 'plano_pleg_DWG',
-  plano_pleg_SOLID: 'plano_pleg_SOLID',
-  plano_laser_DXF: 'plano_laser_DXF'
 };
 
 
