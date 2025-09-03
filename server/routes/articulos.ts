@@ -17,6 +17,7 @@ const router = express.Router()
 // - plano: archivo (file)
 // - precio: number
 // - cte_ganancia: number
+// - pedido_id: number (requerido - el pedido al que pertenece el artículo)
 
 // Crear un nuevo artículo
 router.post('/', authenticateToken, upload.single('plano'), async (req: AuthRequest, res) => {
@@ -27,8 +28,28 @@ router.post('/', authenticateToken, upload.single('plano'), async (req: AuthRequ
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    const { codigo, descripcion, cant_piezas, precio, cte_ganancia } = req.body
+    const { codigo, descripcion, cant_piezas, precio, cte_ganancia, pedido_id } = req.body
     const plano_file = req.file ? path.relative(process.cwd(), req.file.path) : null
+    
+    if (!pedido_id) {
+      return res.status(400).json({ error: 'El pedido_id es requerido' })
+    }
+    
+    // Verificar que el pedido existe y pertenece al usuario
+    const pedido = await prisma.pedido.findFirst({
+      where: {
+        id: parseInt(pedido_id),
+        user_pedidos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      }
+    })
+    
+    if (!pedido) {
+      return res.status(404).json({ error: 'Pedido no encontrado o no autorizado' })
+    }
     
     const nuevoArticulo = await prisma.articulo.create({
       data: {
@@ -38,16 +59,29 @@ router.post('/', authenticateToken, upload.single('plano'), async (req: AuthRequ
         plano_file,
         precio: precio ? parseInt(precio) : null,
         cte_ganancia: cte_ganancia ? parseInt(cte_ganancia) : null,
-        users_articulos: {
+        pedido_articulos: {
           create: {
-            user_id: user_id
+            pedido_id: parseInt(pedido_id)
           }
         }
       },
       include: {
-        users_articulos: {
+        pedido_articulos: {
           include: {
-            users: true
+            pedido: {
+              include: {
+                user_pedidos: {
+                  include: {
+                    users: true
+                  }
+                }
+              }
+            }
+          }
+        },
+        articulo_piezas: {
+          include: {
+            pieza: true
           }
         }
       }
@@ -83,16 +117,30 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
 
     const articulos = await prisma.articulo.findMany({
       where: {
-        users_articulos: {
+        pedido_articulos: {
           some: {
-            user_id: user_id
+            pedido: {
+              user_pedidos: {
+                some: {
+                  user_id: user_id
+                }
+              }
+            }
           }
         }
       },
       include: {
-        users_articulos: {
+        pedido_articulos: {
           include: {
-            users: true
+            pedido: {
+              include: {
+                user_pedidos: {
+                  include: {
+                    users: true
+                  }
+                }
+              }
+            }
           }
         },
         articulo_piezas: {
@@ -122,16 +170,30 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
     const articulo = await prisma.articulo.findFirst({
       where: {
         id: parseInt(id),
-        users_articulos: {
+        pedido_articulos: {
           some: {
-            user_id: user_id
+            pedido: {
+              user_pedidos: {
+                some: {
+                  user_id: user_id
+                }
+              }
+            }
           }
         }
       },
       include: {
-        users_articulos: {
+        pedido_articulos: {
           include: {
-            users: true
+            pedido: {
+              include: {
+                user_pedidos: {
+                  include: {
+                    users: true
+                  }
+                }
+              }
+            }
           }
         },
         articulo_piezas: {
@@ -168,9 +230,15 @@ router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRe
     const articuloExistente = await prisma.articulo.findFirst({
       where: {
         id: parseInt(id),
-        users_articulos: {
+        pedido_articulos: {
           some: {
-            user_id: user_id
+            pedido: {
+              user_pedidos: {
+                some: {
+                  user_id: user_id
+                }
+              }
+            }
           }
         }
       }
@@ -181,7 +249,14 @@ router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRe
     }
     
     // Preparar datos para actualizar
-    const updateData: any = {
+    const updateData: Partial<{
+      codigo: number | null;
+      descripcion: string | null;
+      cant_piezas: number | null;
+      precio: number | null;
+      cte_ganancia: number | null;
+      plano_file: string | null;
+    }> = {
       codigo: codigo ? parseInt(codigo) : undefined,
       descripcion,
       cant_piezas: cant_piezas ? parseInt(cant_piezas) : undefined,
@@ -209,9 +284,17 @@ router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRe
       where: { id: parseInt(id) },
       data: updateData,
       include: {
-        users_articulos: {
+        pedido_articulos: {
           include: {
-            users: true
+            pedido: {
+              include: {
+                user_pedidos: {
+                  include: {
+                    users: true
+                  }
+                }
+              }
+            }
           }
         },
         articulo_piezas: {
@@ -255,9 +338,15 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
     const articuloExistente = await prisma.articulo.findFirst({
       where: {
         id: parseInt(id),
-        users_articulos: {
+        pedido_articulos: {
           some: {
-            user_id: user_id
+            pedido: {
+              user_pedidos: {
+                some: {
+                  user_id: user_id
+                }
+              }
+            }
           }
         }
       }
@@ -268,7 +357,7 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
     }
     
     // Eliminar las relaciones primero y luego el artículo
-    await prisma.users_articulos.deleteMany({
+    await prisma.pedido_articulos.deleteMany({
       where: { articulo_id: parseInt(id) }
     })
     

@@ -1,6 +1,8 @@
 // npx prisma migrate dev --name "add_id_and_cliente_id_fields"
 // npx prisma generate
 // npx prisma db push
+//
+// nvm -v && npx prisma migrate dev --name "change_articulos_to_pedidos" && npx prisma generate && npx prisma db push
 
 generator client {
   provider = "prisma-client-js"
@@ -13,22 +15,43 @@ datasource db {
 }
 
 model users {
-  id       Int      @id @unique @default(autoincrement())
-  email    String   @unique(map: "users_email_key")
+  id       Int     @id @unique @default(autoincrement())
+  email    String  @unique(map: "users_email_key")
   password String
   nombre   String?
   apellido String?
 
-  users_articulos users_articulos[]
+  users_pedidos users_pedidos[]
 }
-model users_articulos {
-  user_id     Int
+
+model users_pedidos {
+  user_id   Int
+  pedido_id Int
+
+  users  users  @relation(fields: [user_id], references: [id])
+  pedido pedido @relation(fields: [pedido_id], references: [id])
+
+  @@id([user_id, pedido_id])
+}
+
+model pedido {
+  id          Int     @id @unique @default(autoincrement())
+  codigo      String?
+  presupuesto Int?
+  estado      String  @default("Pendiente")
+
+  user_pedidos     users_pedidos[]
+  pedido_articulos pedido_articulos[]
+}
+
+model pedido_articulos {
+  pedido_id   Int
   articulo_id Int
 
-  users    users    @relation(fields: [user_id], references: [id])
+  pedido   pedido   @relation(fields: [pedido_id], references: [id])
   articulo articulo @relation(fields: [articulo_id], references: [id])
 
-  @@id([user_id, articulo_id])
+  @@id([pedido_id, articulo_id])
 }
 
 model articulo {
@@ -39,9 +62,9 @@ model articulo {
   plano_file   String? // Ruta del archivo de plano subido
   precio       Int?
   cte_ganancia Int?
-  users_articulos users_articulos[]
 
-  articulo_piezas articulo_piezas[]
+  pedido_articulos pedido_articulos[]
+  articulo_piezas  articulo_piezas[]
 }
 
 model articulo_piezas {
@@ -55,13 +78,13 @@ model articulo_piezas {
 }
 
 model pieza {
-  id                     Int     @id @unique @default(autoincrement())
-  nombre                 String?
-  precio_mat_prima       Int?
-  plano_pleg_DWG_file    String? // Ruta del archivo DWG
-  plano_pleg_SOLID_file  String? // Ruta del archivo SOLID
-  plano_laser_DXF_file   String? // Ruta del archivo DXF
-  cte_ganancia           Int?
+  id                    Int     @id @unique @default(autoincrement())
+  nombre                String?
+  precio_mat_prima      Int?
+  plano_pleg_DWG_file   String? // Ruta del archivo DWG
+  plano_pleg_SOLID_file String? // Ruta del archivo SOLID
+  plano_laser_DXF_file  String? // Ruta del archivo DXF
+  cte_ganancia          Int?
 
   articulo_piezas articulo_piezas[]
 }

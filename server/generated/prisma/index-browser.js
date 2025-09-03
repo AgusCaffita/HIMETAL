@@ -128,8 +128,20 @@ exports.Prisma.UsersScalarFieldEnum = {
   apellido: 'apellido'
 };
 
-exports.Prisma.Users_articulosScalarFieldEnum = {
+exports.Prisma.Users_pedidosScalarFieldEnum = {
   user_id: 'user_id',
+  pedido_id: 'pedido_id'
+};
+
+exports.Prisma.PedidoScalarFieldEnum = {
+  id: 'id',
+  codigo: 'codigo',
+  presupuesto: 'presupuesto',
+  estado: 'estado'
+};
+
+exports.Prisma.Pedido_articulosScalarFieldEnum = {
+  pedido_id: 'pedido_id',
   articulo_id: 'articulo_id'
 };
 
@@ -176,7 +188,9 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   users: 'users',
-  users_articulos: 'users_articulos',
+  users_pedidos: 'users_pedidos',
+  pedido: 'pedido',
+  pedido_articulos: 'pedido_articulos',
   articulo: 'articulo',
   articulo_piezas: 'articulo_piezas',
   pieza: 'pieza'

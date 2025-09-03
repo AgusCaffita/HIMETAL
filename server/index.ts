@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url'
 import authRoutes from './routes/auth.js'
 import articulosRoutes from './routes/articulos.js'
 import piezasRoutes from './routes/piezas.js'
+import pedidosRoutes from './routes/pedidos.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -23,6 +24,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use('/auth', authRoutes)
 app.use('/articulos', articulosRoutes)
 app.use('/piezas', piezasRoutes)
+app.use('/pedidos', pedidosRoutes)
 
 // Ruta de prueba
 app.get('/', (req, res) => {

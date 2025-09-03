@@ -19,10 +19,20 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type users = $Result.DefaultSelection<Prisma.$usersPayload>
 /**
- * Model users_articulos
+ * Model users_pedidos
  * 
  */
-export type users_articulos = $Result.DefaultSelection<Prisma.$users_articulosPayload>
+export type users_pedidos = $Result.DefaultSelection<Prisma.$users_pedidosPayload>
+/**
+ * Model pedido
+ * 
+ */
+export type pedido = $Result.DefaultSelection<Prisma.$pedidoPayload>
+/**
+ * Model pedido_articulos
+ * 
+ */
+export type pedido_articulos = $Result.DefaultSelection<Prisma.$pedido_articulosPayload>
 /**
  * Model articulo
  * 
@@ -175,14 +185,34 @@ export class PrismaClient<
   get users(): Prisma.usersDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.users_articulos`: Exposes CRUD operations for the **users_articulos** model.
+   * `prisma.users_pedidos`: Exposes CRUD operations for the **users_pedidos** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Users_articulos
-    * const users_articulos = await prisma.users_articulos.findMany()
+    * // Fetch zero or more Users_pedidos
+    * const users_pedidos = await prisma.users_pedidos.findMany()
     * ```
     */
-  get users_articulos(): Prisma.users_articulosDelegate<ExtArgs, ClientOptions>;
+  get users_pedidos(): Prisma.users_pedidosDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pedido`: Exposes CRUD operations for the **pedido** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Pedidos
+    * const pedidos = await prisma.pedido.findMany()
+    * ```
+    */
+  get pedido(): Prisma.pedidoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pedido_articulos`: Exposes CRUD operations for the **pedido_articulos** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Pedido_articulos
+    * const pedido_articulos = await prisma.pedido_articulos.findMany()
+    * ```
+    */
+  get pedido_articulos(): Prisma.pedido_articulosDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.articulo`: Exposes CRUD operations for the **articulo** model.
@@ -654,7 +684,9 @@ export namespace Prisma {
 
   export const ModelName: {
     users: 'users',
-    users_articulos: 'users_articulos',
+    users_pedidos: 'users_pedidos',
+    pedido: 'pedido',
+    pedido_articulos: 'pedido_articulos',
     articulo: 'articulo',
     articulo_piezas: 'articulo_piezas',
     pieza: 'pieza'
@@ -676,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "users_articulos" | "articulo" | "articulo_piezas" | "pieza"
+      modelProps: "users" | "users_pedidos" | "pedido" | "pedido_articulos" | "articulo" | "articulo_piezas" | "pieza"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -754,77 +786,225 @@ export namespace Prisma {
           }
         }
       }
-      users_articulos: {
-        payload: Prisma.$users_articulosPayload<ExtArgs>
-        fields: Prisma.users_articulosFieldRefs
+      users_pedidos: {
+        payload: Prisma.$users_pedidosPayload<ExtArgs>
+        fields: Prisma.users_pedidosFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.users_articulosFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload> | null
+            args: Prisma.users_pedidosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.users_articulosFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           findFirst: {
-            args: Prisma.users_articulosFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload> | null
+            args: Prisma.users_pedidosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.users_articulosFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           findMany: {
-            args: Prisma.users_articulosFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>[]
+            args: Prisma.users_pedidosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>[]
           }
           create: {
-            args: Prisma.users_articulosCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           createMany: {
-            args: Prisma.users_articulosCreateManyArgs<ExtArgs>
+            args: Prisma.users_pedidosCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.users_articulosCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>[]
+            args: Prisma.users_pedidosCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>[]
           }
           delete: {
-            args: Prisma.users_articulosDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           update: {
-            args: Prisma.users_articulosUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           deleteMany: {
-            args: Prisma.users_articulosDeleteManyArgs<ExtArgs>
+            args: Prisma.users_pedidosDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.users_articulosUpdateManyArgs<ExtArgs>
+            args: Prisma.users_pedidosUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.users_articulosUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>[]
+            args: Prisma.users_pedidosUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>[]
           }
           upsert: {
-            args: Prisma.users_articulosUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$users_articulosPayload>
+            args: Prisma.users_pedidosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$users_pedidosPayload>
           }
           aggregate: {
-            args: Prisma.Users_articulosAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUsers_articulos>
+            args: Prisma.Users_pedidosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsers_pedidos>
           }
           groupBy: {
-            args: Prisma.users_articulosGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Users_articulosGroupByOutputType>[]
+            args: Prisma.users_pedidosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Users_pedidosGroupByOutputType>[]
           }
           count: {
-            args: Prisma.users_articulosCountArgs<ExtArgs>
-            result: $Utils.Optional<Users_articulosCountAggregateOutputType> | number
+            args: Prisma.users_pedidosCountArgs<ExtArgs>
+            result: $Utils.Optional<Users_pedidosCountAggregateOutputType> | number
+          }
+        }
+      }
+      pedido: {
+        payload: Prisma.$pedidoPayload<ExtArgs>
+        fields: Prisma.pedidoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.pedidoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.pedidoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          findFirst: {
+            args: Prisma.pedidoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.pedidoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          findMany: {
+            args: Prisma.pedidoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>[]
+          }
+          create: {
+            args: Prisma.pedidoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          createMany: {
+            args: Prisma.pedidoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.pedidoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>[]
+          }
+          delete: {
+            args: Prisma.pedidoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          update: {
+            args: Prisma.pedidoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          deleteMany: {
+            args: Prisma.pedidoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.pedidoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.pedidoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>[]
+          }
+          upsert: {
+            args: Prisma.pedidoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedidoPayload>
+          }
+          aggregate: {
+            args: Prisma.PedidoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePedido>
+          }
+          groupBy: {
+            args: Prisma.pedidoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PedidoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.pedidoCountArgs<ExtArgs>
+            result: $Utils.Optional<PedidoCountAggregateOutputType> | number
+          }
+        }
+      }
+      pedido_articulos: {
+        payload: Prisma.$pedido_articulosPayload<ExtArgs>
+        fields: Prisma.pedido_articulosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.pedido_articulosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.pedido_articulosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          findFirst: {
+            args: Prisma.pedido_articulosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.pedido_articulosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          findMany: {
+            args: Prisma.pedido_articulosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>[]
+          }
+          create: {
+            args: Prisma.pedido_articulosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          createMany: {
+            args: Prisma.pedido_articulosCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.pedido_articulosCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>[]
+          }
+          delete: {
+            args: Prisma.pedido_articulosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          update: {
+            args: Prisma.pedido_articulosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          deleteMany: {
+            args: Prisma.pedido_articulosDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.pedido_articulosUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.pedido_articulosUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>[]
+          }
+          upsert: {
+            args: Prisma.pedido_articulosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pedido_articulosPayload>
+          }
+          aggregate: {
+            args: Prisma.Pedido_articulosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePedido_articulos>
+          }
+          groupBy: {
+            args: Prisma.pedido_articulosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Pedido_articulosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.pedido_articulosCountArgs<ExtArgs>
+            result: $Utils.Optional<Pedido_articulosCountAggregateOutputType> | number
           }
         }
       }
@@ -1143,7 +1323,9 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     users?: usersOmit
-    users_articulos?: users_articulosOmit
+    users_pedidos?: users_pedidosOmit
+    pedido?: pedidoOmit
+    pedido_articulos?: pedido_articulosOmit
     articulo?: articuloOmit
     articulo_piezas?: articulo_piezasOmit
     pieza?: piezaOmit
@@ -1246,11 +1428,11 @@ export namespace Prisma {
    */
 
   export type UsersCountOutputType = {
-    users_articulos: number
+    users_pedidos: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users_articulos?: boolean | UsersCountOutputTypeCountUsers_articulosArgs
+    users_pedidos?: boolean | UsersCountOutputTypeCountUsers_pedidosArgs
   }
 
   // Custom InputTypes
@@ -1267,8 +1449,48 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountUsers_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: users_articulosWhereInput
+  export type UsersCountOutputTypeCountUsers_pedidosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: users_pedidosWhereInput
+  }
+
+
+  /**
+   * Count Type PedidoCountOutputType
+   */
+
+  export type PedidoCountOutputType = {
+    user_pedidos: number
+    pedido_articulos: number
+  }
+
+  export type PedidoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_pedidos?: boolean | PedidoCountOutputTypeCountUser_pedidosArgs
+    pedido_articulos?: boolean | PedidoCountOutputTypeCountPedido_articulosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PedidoCountOutputType without action
+   */
+  export type PedidoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PedidoCountOutputType
+     */
+    select?: PedidoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PedidoCountOutputType without action
+   */
+  export type PedidoCountOutputTypeCountUser_pedidosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: users_pedidosWhereInput
+  }
+
+  /**
+   * PedidoCountOutputType without action
+   */
+  export type PedidoCountOutputTypeCountPedido_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pedido_articulosWhereInput
   }
 
 
@@ -1277,12 +1499,12 @@ export namespace Prisma {
    */
 
   export type ArticuloCountOutputType = {
-    users_articulos: number
+    pedido_articulos: number
     articulo_piezas: number
   }
 
   export type ArticuloCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users_articulos?: boolean | ArticuloCountOutputTypeCountUsers_articulosArgs
+    pedido_articulos?: boolean | ArticuloCountOutputTypeCountPedido_articulosArgs
     articulo_piezas?: boolean | ArticuloCountOutputTypeCountArticulo_piezasArgs
   }
 
@@ -1300,8 +1522,8 @@ export namespace Prisma {
   /**
    * ArticuloCountOutputType without action
    */
-  export type ArticuloCountOutputTypeCountUsers_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: users_articulosWhereInput
+  export type ArticuloCountOutputTypeCountPedido_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pedido_articulosWhereInput
   }
 
   /**
@@ -1545,7 +1767,7 @@ export namespace Prisma {
     password?: boolean
     nombre?: boolean
     apellido?: boolean
-    users_articulos?: boolean | users$users_articulosArgs<ExtArgs>
+    users_pedidos?: boolean | users$users_pedidosArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -1575,7 +1797,7 @@ export namespace Prisma {
 
   export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "nombre" | "apellido", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users_articulos?: boolean | users$users_articulosArgs<ExtArgs>
+    users_pedidos?: boolean | users$users_pedidosArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type usersIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1584,7 +1806,7 @@ export namespace Prisma {
   export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "users"
     objects: {
-      users_articulos: Prisma.$users_articulosPayload<ExtArgs>[]
+      users_pedidos: Prisma.$users_pedidosPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1986,7 +2208,7 @@ export namespace Prisma {
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users_articulos<T extends users$users_articulosArgs<ExtArgs> = {}>(args?: Subset<T, users$users_articulosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    users_pedidos<T extends users$users_pedidosArgs<ExtArgs> = {}>(args?: Subset<T, users$users_pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2409,27 +2631,27 @@ export namespace Prisma {
   }
 
   /**
-   * users.users_articulos
+   * users.users_pedidos
    */
-  export type users$users_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users$users_pedidosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the users_pedidos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: users_pedidosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the users_pedidos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: users_pedidosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
-    where?: users_articulosWhereInput
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
-    cursor?: users_articulosWhereUniqueInput
+    include?: users_pedidosInclude<ExtArgs> | null
+    where?: users_pedidosWhereInput
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
+    cursor?: users_pedidosWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Users_articulosScalarFieldEnum | Users_articulosScalarFieldEnum[]
+    distinct?: Users_pedidosScalarFieldEnum | Users_pedidosScalarFieldEnum[]
   }
 
   /**
@@ -2452,359 +2674,359 @@ export namespace Prisma {
 
 
   /**
-   * Model users_articulos
+   * Model users_pedidos
    */
 
-  export type AggregateUsers_articulos = {
-    _count: Users_articulosCountAggregateOutputType | null
-    _avg: Users_articulosAvgAggregateOutputType | null
-    _sum: Users_articulosSumAggregateOutputType | null
-    _min: Users_articulosMinAggregateOutputType | null
-    _max: Users_articulosMaxAggregateOutputType | null
+  export type AggregateUsers_pedidos = {
+    _count: Users_pedidosCountAggregateOutputType | null
+    _avg: Users_pedidosAvgAggregateOutputType | null
+    _sum: Users_pedidosSumAggregateOutputType | null
+    _min: Users_pedidosMinAggregateOutputType | null
+    _max: Users_pedidosMaxAggregateOutputType | null
   }
 
-  export type Users_articulosAvgAggregateOutputType = {
+  export type Users_pedidosAvgAggregateOutputType = {
     user_id: number | null
-    articulo_id: number | null
+    pedido_id: number | null
   }
 
-  export type Users_articulosSumAggregateOutputType = {
+  export type Users_pedidosSumAggregateOutputType = {
     user_id: number | null
-    articulo_id: number | null
+    pedido_id: number | null
   }
 
-  export type Users_articulosMinAggregateOutputType = {
+  export type Users_pedidosMinAggregateOutputType = {
     user_id: number | null
-    articulo_id: number | null
+    pedido_id: number | null
   }
 
-  export type Users_articulosMaxAggregateOutputType = {
+  export type Users_pedidosMaxAggregateOutputType = {
     user_id: number | null
-    articulo_id: number | null
+    pedido_id: number | null
   }
 
-  export type Users_articulosCountAggregateOutputType = {
+  export type Users_pedidosCountAggregateOutputType = {
     user_id: number
-    articulo_id: number
+    pedido_id: number
     _all: number
   }
 
 
-  export type Users_articulosAvgAggregateInputType = {
+  export type Users_pedidosAvgAggregateInputType = {
     user_id?: true
-    articulo_id?: true
+    pedido_id?: true
   }
 
-  export type Users_articulosSumAggregateInputType = {
+  export type Users_pedidosSumAggregateInputType = {
     user_id?: true
-    articulo_id?: true
+    pedido_id?: true
   }
 
-  export type Users_articulosMinAggregateInputType = {
+  export type Users_pedidosMinAggregateInputType = {
     user_id?: true
-    articulo_id?: true
+    pedido_id?: true
   }
 
-  export type Users_articulosMaxAggregateInputType = {
+  export type Users_pedidosMaxAggregateInputType = {
     user_id?: true
-    articulo_id?: true
+    pedido_id?: true
   }
 
-  export type Users_articulosCountAggregateInputType = {
+  export type Users_pedidosCountAggregateInputType = {
     user_id?: true
-    articulo_id?: true
+    pedido_id?: true
     _all?: true
   }
 
-  export type Users_articulosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Users_pedidosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which users_articulos to aggregate.
+     * Filter which users_pedidos to aggregate.
      */
-    where?: users_articulosWhereInput
+    where?: users_pedidosWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of users_articulos to fetch.
+     * Determine the order of users_pedidos to fetch.
      */
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: users_articulosWhereUniqueInput
+    cursor?: users_pedidosWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` users_articulos from the position of the cursor.
+     * Take `±n` users_pedidos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` users_articulos.
+     * Skip the first `n` users_pedidos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned users_articulos
+     * Count returned users_pedidos
     **/
-    _count?: true | Users_articulosCountAggregateInputType
+    _count?: true | Users_pedidosCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: Users_articulosAvgAggregateInputType
+    _avg?: Users_pedidosAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: Users_articulosSumAggregateInputType
+    _sum?: Users_pedidosSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: Users_articulosMinAggregateInputType
+    _min?: Users_pedidosMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: Users_articulosMaxAggregateInputType
+    _max?: Users_pedidosMaxAggregateInputType
   }
 
-  export type GetUsers_articulosAggregateType<T extends Users_articulosAggregateArgs> = {
-        [P in keyof T & keyof AggregateUsers_articulos]: P extends '_count' | 'count'
+  export type GetUsers_pedidosAggregateType<T extends Users_pedidosAggregateArgs> = {
+        [P in keyof T & keyof AggregateUsers_pedidos]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateUsers_articulos[P]>
-      : GetScalarType<T[P], AggregateUsers_articulos[P]>
+        : GetScalarType<T[P], AggregateUsers_pedidos[P]>
+      : GetScalarType<T[P], AggregateUsers_pedidos[P]>
   }
 
 
 
 
-  export type users_articulosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: users_articulosWhereInput
-    orderBy?: users_articulosOrderByWithAggregationInput | users_articulosOrderByWithAggregationInput[]
-    by: Users_articulosScalarFieldEnum[] | Users_articulosScalarFieldEnum
-    having?: users_articulosScalarWhereWithAggregatesInput
+  export type users_pedidosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: users_pedidosWhereInput
+    orderBy?: users_pedidosOrderByWithAggregationInput | users_pedidosOrderByWithAggregationInput[]
+    by: Users_pedidosScalarFieldEnum[] | Users_pedidosScalarFieldEnum
+    having?: users_pedidosScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: Users_articulosCountAggregateInputType | true
-    _avg?: Users_articulosAvgAggregateInputType
-    _sum?: Users_articulosSumAggregateInputType
-    _min?: Users_articulosMinAggregateInputType
-    _max?: Users_articulosMaxAggregateInputType
+    _count?: Users_pedidosCountAggregateInputType | true
+    _avg?: Users_pedidosAvgAggregateInputType
+    _sum?: Users_pedidosSumAggregateInputType
+    _min?: Users_pedidosMinAggregateInputType
+    _max?: Users_pedidosMaxAggregateInputType
   }
 
-  export type Users_articulosGroupByOutputType = {
+  export type Users_pedidosGroupByOutputType = {
     user_id: number
-    articulo_id: number
-    _count: Users_articulosCountAggregateOutputType | null
-    _avg: Users_articulosAvgAggregateOutputType | null
-    _sum: Users_articulosSumAggregateOutputType | null
-    _min: Users_articulosMinAggregateOutputType | null
-    _max: Users_articulosMaxAggregateOutputType | null
+    pedido_id: number
+    _count: Users_pedidosCountAggregateOutputType | null
+    _avg: Users_pedidosAvgAggregateOutputType | null
+    _sum: Users_pedidosSumAggregateOutputType | null
+    _min: Users_pedidosMinAggregateOutputType | null
+    _max: Users_pedidosMaxAggregateOutputType | null
   }
 
-  type GetUsers_articulosGroupByPayload<T extends users_articulosGroupByArgs> = Prisma.PrismaPromise<
+  type GetUsers_pedidosGroupByPayload<T extends users_pedidosGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<Users_articulosGroupByOutputType, T['by']> &
+      PickEnumerable<Users_pedidosGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof Users_articulosGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof Users_pedidosGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], Users_articulosGroupByOutputType[P]>
-            : GetScalarType<T[P], Users_articulosGroupByOutputType[P]>
+              : GetScalarType<T[P], Users_pedidosGroupByOutputType[P]>
+            : GetScalarType<T[P], Users_pedidosGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type users_articulosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type users_pedidosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
-    articulo_id?: boolean
+    pedido_id?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["users_articulos"]>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["users_pedidos"]>
 
-  export type users_articulosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type users_pedidosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
-    articulo_id?: boolean
+    pedido_id?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["users_articulos"]>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["users_pedidos"]>
 
-  export type users_articulosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type users_pedidosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_id?: boolean
-    articulo_id?: boolean
+    pedido_id?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["users_articulos"]>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["users_pedidos"]>
 
-  export type users_articulosSelectScalar = {
+  export type users_pedidosSelectScalar = {
     user_id?: boolean
-    articulo_id?: boolean
+    pedido_id?: boolean
   }
 
-  export type users_articulosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "articulo_id", ExtArgs["result"]["users_articulos"]>
-  export type users_articulosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users_pedidosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "pedido_id", ExtArgs["result"]["users_pedidos"]>
+  export type users_pedidosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
   }
-  export type users_articulosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users_pedidosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
   }
-  export type users_articulosIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users_pedidosIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
-    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
   }
 
-  export type $users_articulosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "users_articulos"
+  export type $users_pedidosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "users_pedidos"
     objects: {
       users: Prisma.$usersPayload<ExtArgs>
-      articulo: Prisma.$articuloPayload<ExtArgs>
+      pedido: Prisma.$pedidoPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       user_id: number
-      articulo_id: number
-    }, ExtArgs["result"]["users_articulos"]>
+      pedido_id: number
+    }, ExtArgs["result"]["users_pedidos"]>
     composites: {}
   }
 
-  type users_articulosGetPayload<S extends boolean | null | undefined | users_articulosDefaultArgs> = $Result.GetResult<Prisma.$users_articulosPayload, S>
+  type users_pedidosGetPayload<S extends boolean | null | undefined | users_pedidosDefaultArgs> = $Result.GetResult<Prisma.$users_pedidosPayload, S>
 
-  type users_articulosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<users_articulosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Users_articulosCountAggregateInputType | true
+  type users_pedidosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<users_pedidosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Users_pedidosCountAggregateInputType | true
     }
 
-  export interface users_articulosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['users_articulos'], meta: { name: 'users_articulos' } }
+  export interface users_pedidosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['users_pedidos'], meta: { name: 'users_pedidos' } }
     /**
-     * Find zero or one Users_articulos that matches the filter.
-     * @param {users_articulosFindUniqueArgs} args - Arguments to find a Users_articulos
+     * Find zero or one Users_pedidos that matches the filter.
+     * @param {users_pedidosFindUniqueArgs} args - Arguments to find a Users_pedidos
      * @example
-     * // Get one Users_articulos
-     * const users_articulos = await prisma.users_articulos.findUnique({
+     * // Get one Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends users_articulosFindUniqueArgs>(args: SelectSubset<T, users_articulosFindUniqueArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends users_pedidosFindUniqueArgs>(args: SelectSubset<T, users_pedidosFindUniqueArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Users_articulos that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Users_pedidos that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {users_articulosFindUniqueOrThrowArgs} args - Arguments to find a Users_articulos
+     * @param {users_pedidosFindUniqueOrThrowArgs} args - Arguments to find a Users_pedidos
      * @example
-     * // Get one Users_articulos
-     * const users_articulos = await prisma.users_articulos.findUniqueOrThrow({
+     * // Get one Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends users_articulosFindUniqueOrThrowArgs>(args: SelectSubset<T, users_articulosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends users_pedidosFindUniqueOrThrowArgs>(args: SelectSubset<T, users_pedidosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Users_articulos that matches the filter.
+     * Find the first Users_pedidos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosFindFirstArgs} args - Arguments to find a Users_articulos
+     * @param {users_pedidosFindFirstArgs} args - Arguments to find a Users_pedidos
      * @example
-     * // Get one Users_articulos
-     * const users_articulos = await prisma.users_articulos.findFirst({
+     * // Get one Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends users_articulosFindFirstArgs>(args?: SelectSubset<T, users_articulosFindFirstArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends users_pedidosFindFirstArgs>(args?: SelectSubset<T, users_pedidosFindFirstArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Users_articulos that matches the filter or
+     * Find the first Users_pedidos that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosFindFirstOrThrowArgs} args - Arguments to find a Users_articulos
+     * @param {users_pedidosFindFirstOrThrowArgs} args - Arguments to find a Users_pedidos
      * @example
-     * // Get one Users_articulos
-     * const users_articulos = await prisma.users_articulos.findFirstOrThrow({
+     * // Get one Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends users_articulosFindFirstOrThrowArgs>(args?: SelectSubset<T, users_articulosFindFirstOrThrowArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends users_pedidosFindFirstOrThrowArgs>(args?: SelectSubset<T, users_pedidosFindFirstOrThrowArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Users_articulos that matches the filter.
+     * Find zero or more Users_pedidos that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {users_pedidosFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Users_articulos
-     * const users_articulos = await prisma.users_articulos.findMany()
+     * // Get all Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findMany()
      * 
-     * // Get first 10 Users_articulos
-     * const users_articulos = await prisma.users_articulos.findMany({ take: 10 })
+     * // Get first 10 Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.findMany({ take: 10 })
      * 
      * // Only select the `user_id`
-     * const users_articulosWithUser_idOnly = await prisma.users_articulos.findMany({ select: { user_id: true } })
+     * const users_pedidosWithUser_idOnly = await prisma.users_pedidos.findMany({ select: { user_id: true } })
      * 
      */
-    findMany<T extends users_articulosFindManyArgs>(args?: SelectSubset<T, users_articulosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends users_pedidosFindManyArgs>(args?: SelectSubset<T, users_pedidosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Users_articulos.
-     * @param {users_articulosCreateArgs} args - Arguments to create a Users_articulos.
+     * Create a Users_pedidos.
+     * @param {users_pedidosCreateArgs} args - Arguments to create a Users_pedidos.
      * @example
-     * // Create one Users_articulos
-     * const Users_articulos = await prisma.users_articulos.create({
+     * // Create one Users_pedidos
+     * const Users_pedidos = await prisma.users_pedidos.create({
      *   data: {
-     *     // ... data to create a Users_articulos
+     *     // ... data to create a Users_pedidos
      *   }
      * })
      * 
      */
-    create<T extends users_articulosCreateArgs>(args: SelectSubset<T, users_articulosCreateArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends users_pedidosCreateArgs>(args: SelectSubset<T, users_pedidosCreateArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Users_articulos.
-     * @param {users_articulosCreateManyArgs} args - Arguments to create many Users_articulos.
+     * Create many Users_pedidos.
+     * @param {users_pedidosCreateManyArgs} args - Arguments to create many Users_pedidos.
      * @example
-     * // Create many Users_articulos
-     * const users_articulos = await prisma.users_articulos.createMany({
+     * // Create many Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends users_articulosCreateManyArgs>(args?: SelectSubset<T, users_articulosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends users_pedidosCreateManyArgs>(args?: SelectSubset<T, users_pedidosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Users_articulos and returns the data saved in the database.
-     * @param {users_articulosCreateManyAndReturnArgs} args - Arguments to create many Users_articulos.
+     * Create many Users_pedidos and returns the data saved in the database.
+     * @param {users_pedidosCreateManyAndReturnArgs} args - Arguments to create many Users_pedidos.
      * @example
-     * // Create many Users_articulos
-     * const users_articulos = await prisma.users_articulos.createManyAndReturn({
+     * // Create many Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Users_articulos and only return the `user_id`
-     * const users_articulosWithUser_idOnly = await prisma.users_articulos.createManyAndReturn({
+     * // Create many Users_pedidos and only return the `user_id`
+     * const users_pedidosWithUser_idOnly = await prisma.users_pedidos.createManyAndReturn({
      *   select: { user_id: true },
      *   data: [
      *     // ... provide data here
@@ -2814,28 +3036,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends users_articulosCreateManyAndReturnArgs>(args?: SelectSubset<T, users_articulosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends users_pedidosCreateManyAndReturnArgs>(args?: SelectSubset<T, users_pedidosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Users_articulos.
-     * @param {users_articulosDeleteArgs} args - Arguments to delete one Users_articulos.
+     * Delete a Users_pedidos.
+     * @param {users_pedidosDeleteArgs} args - Arguments to delete one Users_pedidos.
      * @example
-     * // Delete one Users_articulos
-     * const Users_articulos = await prisma.users_articulos.delete({
+     * // Delete one Users_pedidos
+     * const Users_pedidos = await prisma.users_pedidos.delete({
      *   where: {
-     *     // ... filter to delete one Users_articulos
+     *     // ... filter to delete one Users_pedidos
      *   }
      * })
      * 
      */
-    delete<T extends users_articulosDeleteArgs>(args: SelectSubset<T, users_articulosDeleteArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends users_pedidosDeleteArgs>(args: SelectSubset<T, users_pedidosDeleteArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Users_articulos.
-     * @param {users_articulosUpdateArgs} args - Arguments to update one Users_articulos.
+     * Update one Users_pedidos.
+     * @param {users_pedidosUpdateArgs} args - Arguments to update one Users_pedidos.
      * @example
-     * // Update one Users_articulos
-     * const users_articulos = await prisma.users_articulos.update({
+     * // Update one Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2845,30 +3067,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends users_articulosUpdateArgs>(args: SelectSubset<T, users_articulosUpdateArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends users_pedidosUpdateArgs>(args: SelectSubset<T, users_pedidosUpdateArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Users_articulos.
-     * @param {users_articulosDeleteManyArgs} args - Arguments to filter Users_articulos to delete.
+     * Delete zero or more Users_pedidos.
+     * @param {users_pedidosDeleteManyArgs} args - Arguments to filter Users_pedidos to delete.
      * @example
-     * // Delete a few Users_articulos
-     * const { count } = await prisma.users_articulos.deleteMany({
+     * // Delete a few Users_pedidos
+     * const { count } = await prisma.users_pedidos.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends users_articulosDeleteManyArgs>(args?: SelectSubset<T, users_articulosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends users_pedidosDeleteManyArgs>(args?: SelectSubset<T, users_pedidosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Users_articulos.
+     * Update zero or more Users_pedidos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {users_pedidosUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Users_articulos
-     * const users_articulos = await prisma.users_articulos.updateMany({
+     * // Update many Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2878,14 +3100,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends users_articulosUpdateManyArgs>(args: SelectSubset<T, users_articulosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends users_pedidosUpdateManyArgs>(args: SelectSubset<T, users_pedidosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Users_articulos and returns the data updated in the database.
-     * @param {users_articulosUpdateManyAndReturnArgs} args - Arguments to update many Users_articulos.
+     * Update zero or more Users_pedidos and returns the data updated in the database.
+     * @param {users_pedidosUpdateManyAndReturnArgs} args - Arguments to update many Users_pedidos.
      * @example
-     * // Update many Users_articulos
-     * const users_articulos = await prisma.users_articulos.updateManyAndReturn({
+     * // Update many Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2894,8 +3116,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Users_articulos and only return the `user_id`
-     * const users_articulosWithUser_idOnly = await prisma.users_articulos.updateManyAndReturn({
+     * // Update zero or more Users_pedidos and only return the `user_id`
+     * const users_pedidosWithUser_idOnly = await prisma.users_pedidos.updateManyAndReturn({
      *   select: { user_id: true },
      *   where: {
      *     // ... provide filter here
@@ -2908,56 +3130,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends users_articulosUpdateManyAndReturnArgs>(args: SelectSubset<T, users_articulosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends users_pedidosUpdateManyAndReturnArgs>(args: SelectSubset<T, users_pedidosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Users_articulos.
-     * @param {users_articulosUpsertArgs} args - Arguments to update or create a Users_articulos.
+     * Create or update one Users_pedidos.
+     * @param {users_pedidosUpsertArgs} args - Arguments to update or create a Users_pedidos.
      * @example
-     * // Update or create a Users_articulos
-     * const users_articulos = await prisma.users_articulos.upsert({
+     * // Update or create a Users_pedidos
+     * const users_pedidos = await prisma.users_pedidos.upsert({
      *   create: {
-     *     // ... data to create a Users_articulos
+     *     // ... data to create a Users_pedidos
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Users_articulos we want to update
+     *     // ... the filter for the Users_pedidos we want to update
      *   }
      * })
      */
-    upsert<T extends users_articulosUpsertArgs>(args: SelectSubset<T, users_articulosUpsertArgs<ExtArgs>>): Prisma__users_articulosClient<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends users_pedidosUpsertArgs>(args: SelectSubset<T, users_pedidosUpsertArgs<ExtArgs>>): Prisma__users_pedidosClient<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Users_articulos.
+     * Count the number of Users_pedidos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosCountArgs} args - Arguments to filter Users_articulos to count.
+     * @param {users_pedidosCountArgs} args - Arguments to filter Users_pedidos to count.
      * @example
-     * // Count the number of Users_articulos
-     * const count = await prisma.users_articulos.count({
+     * // Count the number of Users_pedidos
+     * const count = await prisma.users_pedidos.count({
      *   where: {
-     *     // ... the filter for the Users_articulos we want to count
+     *     // ... the filter for the Users_pedidos we want to count
      *   }
      * })
     **/
-    count<T extends users_articulosCountArgs>(
-      args?: Subset<T, users_articulosCountArgs>,
+    count<T extends users_pedidosCountArgs>(
+      args?: Subset<T, users_pedidosCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], Users_articulosCountAggregateOutputType>
+          : GetScalarType<T['select'], Users_pedidosCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Users_articulos.
+     * Allows you to perform aggregations operations on a Users_pedidos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {Users_articulosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {Users_pedidosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2977,13 +3199,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends Users_articulosAggregateArgs>(args: Subset<T, Users_articulosAggregateArgs>): Prisma.PrismaPromise<GetUsers_articulosAggregateType<T>>
+    aggregate<T extends Users_pedidosAggregateArgs>(args: Subset<T, Users_pedidosAggregateArgs>): Prisma.PrismaPromise<GetUsers_pedidosAggregateType<T>>
 
     /**
-     * Group by Users_articulos.
+     * Group by Users_pedidos.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {users_articulosGroupByArgs} args - Group by arguments.
+     * @param {users_pedidosGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2998,14 +3220,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends users_articulosGroupByArgs,
+      T extends users_pedidosGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: users_articulosGroupByArgs['orderBy'] }
-        : { orderBy?: users_articulosGroupByArgs['orderBy'] },
+        ? { orderBy: users_pedidosGroupByArgs['orderBy'] }
+        : { orderBy?: users_pedidosGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -3054,22 +3276,2210 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, users_articulosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsers_articulosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, users_pedidosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUsers_pedidosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the users_articulos model
+   * Fields of the users_pedidos model
    */
-  readonly fields: users_articulosFieldRefs;
+  readonly fields: users_pedidosFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for users_articulos.
+   * The delegate class that acts as a "Promise-like" for users_pedidos.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__users_articulosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__users_pedidosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    pedido<T extends pedidoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pedidoDefaultArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the users_pedidos model
+   */
+  interface users_pedidosFieldRefs {
+    readonly user_id: FieldRef<"users_pedidos", 'Int'>
+    readonly pedido_id: FieldRef<"users_pedidos", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * users_pedidos findUnique
+   */
+  export type users_pedidosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter, which users_pedidos to fetch.
+     */
+    where: users_pedidosWhereUniqueInput
+  }
+
+  /**
+   * users_pedidos findUniqueOrThrow
+   */
+  export type users_pedidosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter, which users_pedidos to fetch.
+     */
+    where: users_pedidosWhereUniqueInput
+  }
+
+  /**
+   * users_pedidos findFirst
+   */
+  export type users_pedidosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter, which users_pedidos to fetch.
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users_pedidos to fetch.
+     */
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for users_pedidos.
+     */
+    cursor?: users_pedidosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users_pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users_pedidos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of users_pedidos.
+     */
+    distinct?: Users_pedidosScalarFieldEnum | Users_pedidosScalarFieldEnum[]
+  }
+
+  /**
+   * users_pedidos findFirstOrThrow
+   */
+  export type users_pedidosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter, which users_pedidos to fetch.
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users_pedidos to fetch.
+     */
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for users_pedidos.
+     */
+    cursor?: users_pedidosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users_pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users_pedidos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of users_pedidos.
+     */
+    distinct?: Users_pedidosScalarFieldEnum | Users_pedidosScalarFieldEnum[]
+  }
+
+  /**
+   * users_pedidos findMany
+   */
+  export type users_pedidosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter, which users_pedidos to fetch.
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of users_pedidos to fetch.
+     */
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing users_pedidos.
+     */
+    cursor?: users_pedidosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` users_pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` users_pedidos.
+     */
+    skip?: number
+    distinct?: Users_pedidosScalarFieldEnum | Users_pedidosScalarFieldEnum[]
+  }
+
+  /**
+   * users_pedidos create
+   */
+  export type users_pedidosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a users_pedidos.
+     */
+    data: XOR<users_pedidosCreateInput, users_pedidosUncheckedCreateInput>
+  }
+
+  /**
+   * users_pedidos createMany
+   */
+  export type users_pedidosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many users_pedidos.
+     */
+    data: users_pedidosCreateManyInput | users_pedidosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * users_pedidos createManyAndReturn
+   */
+  export type users_pedidosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * The data used to create many users_pedidos.
+     */
+    data: users_pedidosCreateManyInput | users_pedidosCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * users_pedidos update
+   */
+  export type users_pedidosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a users_pedidos.
+     */
+    data: XOR<users_pedidosUpdateInput, users_pedidosUncheckedUpdateInput>
+    /**
+     * Choose, which users_pedidos to update.
+     */
+    where: users_pedidosWhereUniqueInput
+  }
+
+  /**
+   * users_pedidos updateMany
+   */
+  export type users_pedidosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update users_pedidos.
+     */
+    data: XOR<users_pedidosUpdateManyMutationInput, users_pedidosUncheckedUpdateManyInput>
+    /**
+     * Filter which users_pedidos to update
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * Limit how many users_pedidos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * users_pedidos updateManyAndReturn
+   */
+  export type users_pedidosUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * The data used to update users_pedidos.
+     */
+    data: XOR<users_pedidosUpdateManyMutationInput, users_pedidosUncheckedUpdateManyInput>
+    /**
+     * Filter which users_pedidos to update
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * Limit how many users_pedidos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * users_pedidos upsert
+   */
+  export type users_pedidosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the users_pedidos to update in case it exists.
+     */
+    where: users_pedidosWhereUniqueInput
+    /**
+     * In case the users_pedidos found by the `where` argument doesn't exist, create a new users_pedidos with this data.
+     */
+    create: XOR<users_pedidosCreateInput, users_pedidosUncheckedCreateInput>
+    /**
+     * In case the users_pedidos was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<users_pedidosUpdateInput, users_pedidosUncheckedUpdateInput>
+  }
+
+  /**
+   * users_pedidos delete
+   */
+  export type users_pedidosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    /**
+     * Filter which users_pedidos to delete.
+     */
+    where: users_pedidosWhereUniqueInput
+  }
+
+  /**
+   * users_pedidos deleteMany
+   */
+  export type users_pedidosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which users_pedidos to delete
+     */
+    where?: users_pedidosWhereInput
+    /**
+     * Limit how many users_pedidos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * users_pedidos without action
+   */
+  export type users_pedidosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model pedido
+   */
+
+  export type AggregatePedido = {
+    _count: PedidoCountAggregateOutputType | null
+    _avg: PedidoAvgAggregateOutputType | null
+    _sum: PedidoSumAggregateOutputType | null
+    _min: PedidoMinAggregateOutputType | null
+    _max: PedidoMaxAggregateOutputType | null
+  }
+
+  export type PedidoAvgAggregateOutputType = {
+    id: number | null
+    presupuesto: number | null
+  }
+
+  export type PedidoSumAggregateOutputType = {
+    id: number | null
+    presupuesto: number | null
+  }
+
+  export type PedidoMinAggregateOutputType = {
+    id: number | null
+    codigo: string | null
+    presupuesto: number | null
+    estado: string | null
+  }
+
+  export type PedidoMaxAggregateOutputType = {
+    id: number | null
+    codigo: string | null
+    presupuesto: number | null
+    estado: string | null
+  }
+
+  export type PedidoCountAggregateOutputType = {
+    id: number
+    codigo: number
+    presupuesto: number
+    estado: number
+    _all: number
+  }
+
+
+  export type PedidoAvgAggregateInputType = {
+    id?: true
+    presupuesto?: true
+  }
+
+  export type PedidoSumAggregateInputType = {
+    id?: true
+    presupuesto?: true
+  }
+
+  export type PedidoMinAggregateInputType = {
+    id?: true
+    codigo?: true
+    presupuesto?: true
+    estado?: true
+  }
+
+  export type PedidoMaxAggregateInputType = {
+    id?: true
+    codigo?: true
+    presupuesto?: true
+    estado?: true
+  }
+
+  export type PedidoCountAggregateInputType = {
+    id?: true
+    codigo?: true
+    presupuesto?: true
+    estado?: true
+    _all?: true
+  }
+
+  export type PedidoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which pedido to aggregate.
+     */
+    where?: pedidoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pedidos to fetch.
+     */
+    orderBy?: pedidoOrderByWithRelationInput | pedidoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: pedidoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pedidos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned pedidos
+    **/
+    _count?: true | PedidoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PedidoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PedidoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PedidoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PedidoMaxAggregateInputType
+  }
+
+  export type GetPedidoAggregateType<T extends PedidoAggregateArgs> = {
+        [P in keyof T & keyof AggregatePedido]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePedido[P]>
+      : GetScalarType<T[P], AggregatePedido[P]>
+  }
+
+
+
+
+  export type pedidoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pedidoWhereInput
+    orderBy?: pedidoOrderByWithAggregationInput | pedidoOrderByWithAggregationInput[]
+    by: PedidoScalarFieldEnum[] | PedidoScalarFieldEnum
+    having?: pedidoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PedidoCountAggregateInputType | true
+    _avg?: PedidoAvgAggregateInputType
+    _sum?: PedidoSumAggregateInputType
+    _min?: PedidoMinAggregateInputType
+    _max?: PedidoMaxAggregateInputType
+  }
+
+  export type PedidoGroupByOutputType = {
+    id: number
+    codigo: string | null
+    presupuesto: number | null
+    estado: string
+    _count: PedidoCountAggregateOutputType | null
+    _avg: PedidoAvgAggregateOutputType | null
+    _sum: PedidoSumAggregateOutputType | null
+    _min: PedidoMinAggregateOutputType | null
+    _max: PedidoMaxAggregateOutputType | null
+  }
+
+  type GetPedidoGroupByPayload<T extends pedidoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PedidoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PedidoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PedidoGroupByOutputType[P]>
+            : GetScalarType<T[P], PedidoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type pedidoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    codigo?: boolean
+    presupuesto?: boolean
+    estado?: boolean
+    user_pedidos?: boolean | pedido$user_pedidosArgs<ExtArgs>
+    pedido_articulos?: boolean | pedido$pedido_articulosArgs<ExtArgs>
+    _count?: boolean | PedidoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pedido"]>
+
+  export type pedidoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    codigo?: boolean
+    presupuesto?: boolean
+    estado?: boolean
+  }, ExtArgs["result"]["pedido"]>
+
+  export type pedidoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    codigo?: boolean
+    presupuesto?: boolean
+    estado?: boolean
+  }, ExtArgs["result"]["pedido"]>
+
+  export type pedidoSelectScalar = {
+    id?: boolean
+    codigo?: boolean
+    presupuesto?: boolean
+    estado?: boolean
+  }
+
+  export type pedidoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "codigo" | "presupuesto" | "estado", ExtArgs["result"]["pedido"]>
+  export type pedidoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user_pedidos?: boolean | pedido$user_pedidosArgs<ExtArgs>
+    pedido_articulos?: boolean | pedido$pedido_articulosArgs<ExtArgs>
+    _count?: boolean | PedidoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type pedidoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type pedidoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $pedidoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pedido"
+    objects: {
+      user_pedidos: Prisma.$users_pedidosPayload<ExtArgs>[]
+      pedido_articulos: Prisma.$pedido_articulosPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      codigo: string | null
+      presupuesto: number | null
+      estado: string
+    }, ExtArgs["result"]["pedido"]>
+    composites: {}
+  }
+
+  type pedidoGetPayload<S extends boolean | null | undefined | pedidoDefaultArgs> = $Result.GetResult<Prisma.$pedidoPayload, S>
+
+  type pedidoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<pedidoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PedidoCountAggregateInputType | true
+    }
+
+  export interface pedidoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pedido'], meta: { name: 'pedido' } }
+    /**
+     * Find zero or one Pedido that matches the filter.
+     * @param {pedidoFindUniqueArgs} args - Arguments to find a Pedido
+     * @example
+     * // Get one Pedido
+     * const pedido = await prisma.pedido.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends pedidoFindUniqueArgs>(args: SelectSubset<T, pedidoFindUniqueArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Pedido that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {pedidoFindUniqueOrThrowArgs} args - Arguments to find a Pedido
+     * @example
+     * // Get one Pedido
+     * const pedido = await prisma.pedido.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends pedidoFindUniqueOrThrowArgs>(args: SelectSubset<T, pedidoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pedido that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoFindFirstArgs} args - Arguments to find a Pedido
+     * @example
+     * // Get one Pedido
+     * const pedido = await prisma.pedido.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends pedidoFindFirstArgs>(args?: SelectSubset<T, pedidoFindFirstArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pedido that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoFindFirstOrThrowArgs} args - Arguments to find a Pedido
+     * @example
+     * // Get one Pedido
+     * const pedido = await prisma.pedido.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends pedidoFindFirstOrThrowArgs>(args?: SelectSubset<T, pedidoFindFirstOrThrowArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Pedidos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Pedidos
+     * const pedidos = await prisma.pedido.findMany()
+     * 
+     * // Get first 10 Pedidos
+     * const pedidos = await prisma.pedido.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pedidoWithIdOnly = await prisma.pedido.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends pedidoFindManyArgs>(args?: SelectSubset<T, pedidoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Pedido.
+     * @param {pedidoCreateArgs} args - Arguments to create a Pedido.
+     * @example
+     * // Create one Pedido
+     * const Pedido = await prisma.pedido.create({
+     *   data: {
+     *     // ... data to create a Pedido
+     *   }
+     * })
+     * 
+     */
+    create<T extends pedidoCreateArgs>(args: SelectSubset<T, pedidoCreateArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Pedidos.
+     * @param {pedidoCreateManyArgs} args - Arguments to create many Pedidos.
+     * @example
+     * // Create many Pedidos
+     * const pedido = await prisma.pedido.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends pedidoCreateManyArgs>(args?: SelectSubset<T, pedidoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Pedidos and returns the data saved in the database.
+     * @param {pedidoCreateManyAndReturnArgs} args - Arguments to create many Pedidos.
+     * @example
+     * // Create many Pedidos
+     * const pedido = await prisma.pedido.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Pedidos and only return the `id`
+     * const pedidoWithIdOnly = await prisma.pedido.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends pedidoCreateManyAndReturnArgs>(args?: SelectSubset<T, pedidoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Pedido.
+     * @param {pedidoDeleteArgs} args - Arguments to delete one Pedido.
+     * @example
+     * // Delete one Pedido
+     * const Pedido = await prisma.pedido.delete({
+     *   where: {
+     *     // ... filter to delete one Pedido
+     *   }
+     * })
+     * 
+     */
+    delete<T extends pedidoDeleteArgs>(args: SelectSubset<T, pedidoDeleteArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Pedido.
+     * @param {pedidoUpdateArgs} args - Arguments to update one Pedido.
+     * @example
+     * // Update one Pedido
+     * const pedido = await prisma.pedido.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends pedidoUpdateArgs>(args: SelectSubset<T, pedidoUpdateArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Pedidos.
+     * @param {pedidoDeleteManyArgs} args - Arguments to filter Pedidos to delete.
+     * @example
+     * // Delete a few Pedidos
+     * const { count } = await prisma.pedido.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends pedidoDeleteManyArgs>(args?: SelectSubset<T, pedidoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Pedidos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Pedidos
+     * const pedido = await prisma.pedido.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends pedidoUpdateManyArgs>(args: SelectSubset<T, pedidoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Pedidos and returns the data updated in the database.
+     * @param {pedidoUpdateManyAndReturnArgs} args - Arguments to update many Pedidos.
+     * @example
+     * // Update many Pedidos
+     * const pedido = await prisma.pedido.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Pedidos and only return the `id`
+     * const pedidoWithIdOnly = await prisma.pedido.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends pedidoUpdateManyAndReturnArgs>(args: SelectSubset<T, pedidoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Pedido.
+     * @param {pedidoUpsertArgs} args - Arguments to update or create a Pedido.
+     * @example
+     * // Update or create a Pedido
+     * const pedido = await prisma.pedido.upsert({
+     *   create: {
+     *     // ... data to create a Pedido
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Pedido we want to update
+     *   }
+     * })
+     */
+    upsert<T extends pedidoUpsertArgs>(args: SelectSubset<T, pedidoUpsertArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Pedidos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoCountArgs} args - Arguments to filter Pedidos to count.
+     * @example
+     * // Count the number of Pedidos
+     * const count = await prisma.pedido.count({
+     *   where: {
+     *     // ... the filter for the Pedidos we want to count
+     *   }
+     * })
+    **/
+    count<T extends pedidoCountArgs>(
+      args?: Subset<T, pedidoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PedidoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Pedido.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PedidoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PedidoAggregateArgs>(args: Subset<T, PedidoAggregateArgs>): Prisma.PrismaPromise<GetPedidoAggregateType<T>>
+
+    /**
+     * Group by Pedido.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedidoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends pedidoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: pedidoGroupByArgs['orderBy'] }
+        : { orderBy?: pedidoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, pedidoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPedidoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the pedido model
+   */
+  readonly fields: pedidoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for pedido.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__pedidoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user_pedidos<T extends pedido$user_pedidosArgs<ExtArgs> = {}>(args?: Subset<T, pedido$user_pedidosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_pedidosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pedido_articulos<T extends pedido$pedido_articulosArgs<ExtArgs> = {}>(args?: Subset<T, pedido$pedido_articulosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the pedido model
+   */
+  interface pedidoFieldRefs {
+    readonly id: FieldRef<"pedido", 'Int'>
+    readonly codigo: FieldRef<"pedido", 'String'>
+    readonly presupuesto: FieldRef<"pedido", 'Int'>
+    readonly estado: FieldRef<"pedido", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * pedido findUnique
+   */
+  export type pedidoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter, which pedido to fetch.
+     */
+    where: pedidoWhereUniqueInput
+  }
+
+  /**
+   * pedido findUniqueOrThrow
+   */
+  export type pedidoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter, which pedido to fetch.
+     */
+    where: pedidoWhereUniqueInput
+  }
+
+  /**
+   * pedido findFirst
+   */
+  export type pedidoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter, which pedido to fetch.
+     */
+    where?: pedidoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pedidos to fetch.
+     */
+    orderBy?: pedidoOrderByWithRelationInput | pedidoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for pedidos.
+     */
+    cursor?: pedidoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pedidos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of pedidos.
+     */
+    distinct?: PedidoScalarFieldEnum | PedidoScalarFieldEnum[]
+  }
+
+  /**
+   * pedido findFirstOrThrow
+   */
+  export type pedidoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter, which pedido to fetch.
+     */
+    where?: pedidoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pedidos to fetch.
+     */
+    orderBy?: pedidoOrderByWithRelationInput | pedidoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for pedidos.
+     */
+    cursor?: pedidoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pedidos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of pedidos.
+     */
+    distinct?: PedidoScalarFieldEnum | PedidoScalarFieldEnum[]
+  }
+
+  /**
+   * pedido findMany
+   */
+  export type pedidoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter, which pedidos to fetch.
+     */
+    where?: pedidoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pedidos to fetch.
+     */
+    orderBy?: pedidoOrderByWithRelationInput | pedidoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing pedidos.
+     */
+    cursor?: pedidoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pedidos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pedidos.
+     */
+    skip?: number
+    distinct?: PedidoScalarFieldEnum | PedidoScalarFieldEnum[]
+  }
+
+  /**
+   * pedido create
+   */
+  export type pedidoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a pedido.
+     */
+    data?: XOR<pedidoCreateInput, pedidoUncheckedCreateInput>
+  }
+
+  /**
+   * pedido createMany
+   */
+  export type pedidoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many pedidos.
+     */
+    data: pedidoCreateManyInput | pedidoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * pedido createManyAndReturn
+   */
+  export type pedidoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * The data used to create many pedidos.
+     */
+    data: pedidoCreateManyInput | pedidoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * pedido update
+   */
+  export type pedidoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a pedido.
+     */
+    data: XOR<pedidoUpdateInput, pedidoUncheckedUpdateInput>
+    /**
+     * Choose, which pedido to update.
+     */
+    where: pedidoWhereUniqueInput
+  }
+
+  /**
+   * pedido updateMany
+   */
+  export type pedidoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update pedidos.
+     */
+    data: XOR<pedidoUpdateManyMutationInput, pedidoUncheckedUpdateManyInput>
+    /**
+     * Filter which pedidos to update
+     */
+    where?: pedidoWhereInput
+    /**
+     * Limit how many pedidos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * pedido updateManyAndReturn
+   */
+  export type pedidoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * The data used to update pedidos.
+     */
+    data: XOR<pedidoUpdateManyMutationInput, pedidoUncheckedUpdateManyInput>
+    /**
+     * Filter which pedidos to update
+     */
+    where?: pedidoWhereInput
+    /**
+     * Limit how many pedidos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * pedido upsert
+   */
+  export type pedidoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the pedido to update in case it exists.
+     */
+    where: pedidoWhereUniqueInput
+    /**
+     * In case the pedido found by the `where` argument doesn't exist, create a new pedido with this data.
+     */
+    create: XOR<pedidoCreateInput, pedidoUncheckedCreateInput>
+    /**
+     * In case the pedido was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<pedidoUpdateInput, pedidoUncheckedUpdateInput>
+  }
+
+  /**
+   * pedido delete
+   */
+  export type pedidoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+    /**
+     * Filter which pedido to delete.
+     */
+    where: pedidoWhereUniqueInput
+  }
+
+  /**
+   * pedido deleteMany
+   */
+  export type pedidoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which pedidos to delete
+     */
+    where?: pedidoWhereInput
+    /**
+     * Limit how many pedidos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * pedido.user_pedidos
+   */
+  export type pedido$user_pedidosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the users_pedidos
+     */
+    select?: users_pedidosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users_pedidos
+     */
+    omit?: users_pedidosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: users_pedidosInclude<ExtArgs> | null
+    where?: users_pedidosWhereInput
+    orderBy?: users_pedidosOrderByWithRelationInput | users_pedidosOrderByWithRelationInput[]
+    cursor?: users_pedidosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Users_pedidosScalarFieldEnum | Users_pedidosScalarFieldEnum[]
+  }
+
+  /**
+   * pedido.pedido_articulos
+   */
+  export type pedido$pedido_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido_articulos
+     */
+    select?: pedido_articulosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido_articulos
+     */
+    omit?: pedido_articulosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedido_articulosInclude<ExtArgs> | null
+    where?: pedido_articulosWhereInput
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
+    cursor?: pedido_articulosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Pedido_articulosScalarFieldEnum | Pedido_articulosScalarFieldEnum[]
+  }
+
+  /**
+   * pedido without action
+   */
+  export type pedidoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pedido
+     */
+    select?: pedidoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the pedido
+     */
+    omit?: pedidoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pedidoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model pedido_articulos
+   */
+
+  export type AggregatePedido_articulos = {
+    _count: Pedido_articulosCountAggregateOutputType | null
+    _avg: Pedido_articulosAvgAggregateOutputType | null
+    _sum: Pedido_articulosSumAggregateOutputType | null
+    _min: Pedido_articulosMinAggregateOutputType | null
+    _max: Pedido_articulosMaxAggregateOutputType | null
+  }
+
+  export type Pedido_articulosAvgAggregateOutputType = {
+    pedido_id: number | null
+    articulo_id: number | null
+  }
+
+  export type Pedido_articulosSumAggregateOutputType = {
+    pedido_id: number | null
+    articulo_id: number | null
+  }
+
+  export type Pedido_articulosMinAggregateOutputType = {
+    pedido_id: number | null
+    articulo_id: number | null
+  }
+
+  export type Pedido_articulosMaxAggregateOutputType = {
+    pedido_id: number | null
+    articulo_id: number | null
+  }
+
+  export type Pedido_articulosCountAggregateOutputType = {
+    pedido_id: number
+    articulo_id: number
+    _all: number
+  }
+
+
+  export type Pedido_articulosAvgAggregateInputType = {
+    pedido_id?: true
+    articulo_id?: true
+  }
+
+  export type Pedido_articulosSumAggregateInputType = {
+    pedido_id?: true
+    articulo_id?: true
+  }
+
+  export type Pedido_articulosMinAggregateInputType = {
+    pedido_id?: true
+    articulo_id?: true
+  }
+
+  export type Pedido_articulosMaxAggregateInputType = {
+    pedido_id?: true
+    articulo_id?: true
+  }
+
+  export type Pedido_articulosCountAggregateInputType = {
+    pedido_id?: true
+    articulo_id?: true
+    _all?: true
+  }
+
+  export type Pedido_articulosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which pedido_articulos to aggregate.
+     */
+    where?: pedido_articulosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of pedido_articulos to fetch.
+     */
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: pedido_articulosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` pedido_articulos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` pedido_articulos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned pedido_articulos
+    **/
+    _count?: true | Pedido_articulosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Pedido_articulosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Pedido_articulosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Pedido_articulosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Pedido_articulosMaxAggregateInputType
+  }
+
+  export type GetPedido_articulosAggregateType<T extends Pedido_articulosAggregateArgs> = {
+        [P in keyof T & keyof AggregatePedido_articulos]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePedido_articulos[P]>
+      : GetScalarType<T[P], AggregatePedido_articulos[P]>
+  }
+
+
+
+
+  export type pedido_articulosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pedido_articulosWhereInput
+    orderBy?: pedido_articulosOrderByWithAggregationInput | pedido_articulosOrderByWithAggregationInput[]
+    by: Pedido_articulosScalarFieldEnum[] | Pedido_articulosScalarFieldEnum
+    having?: pedido_articulosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Pedido_articulosCountAggregateInputType | true
+    _avg?: Pedido_articulosAvgAggregateInputType
+    _sum?: Pedido_articulosSumAggregateInputType
+    _min?: Pedido_articulosMinAggregateInputType
+    _max?: Pedido_articulosMaxAggregateInputType
+  }
+
+  export type Pedido_articulosGroupByOutputType = {
+    pedido_id: number
+    articulo_id: number
+    _count: Pedido_articulosCountAggregateOutputType | null
+    _avg: Pedido_articulosAvgAggregateOutputType | null
+    _sum: Pedido_articulosSumAggregateOutputType | null
+    _min: Pedido_articulosMinAggregateOutputType | null
+    _max: Pedido_articulosMaxAggregateOutputType | null
+  }
+
+  type GetPedido_articulosGroupByPayload<T extends pedido_articulosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Pedido_articulosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Pedido_articulosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Pedido_articulosGroupByOutputType[P]>
+            : GetScalarType<T[P], Pedido_articulosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type pedido_articulosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    pedido_id?: boolean
+    articulo_id?: boolean
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pedido_articulos"]>
+
+  export type pedido_articulosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    pedido_id?: boolean
+    articulo_id?: boolean
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pedido_articulos"]>
+
+  export type pedido_articulosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    pedido_id?: boolean
+    articulo_id?: boolean
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pedido_articulos"]>
+
+  export type pedido_articulosSelectScalar = {
+    pedido_id?: boolean
+    articulo_id?: boolean
+  }
+
+  export type pedido_articulosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"pedido_id" | "articulo_id", ExtArgs["result"]["pedido_articulos"]>
+  export type pedido_articulosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }
+  export type pedido_articulosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }
+  export type pedido_articulosIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pedido?: boolean | pedidoDefaultArgs<ExtArgs>
+    articulo?: boolean | articuloDefaultArgs<ExtArgs>
+  }
+
+  export type $pedido_articulosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pedido_articulos"
+    objects: {
+      pedido: Prisma.$pedidoPayload<ExtArgs>
+      articulo: Prisma.$articuloPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      pedido_id: number
+      articulo_id: number
+    }, ExtArgs["result"]["pedido_articulos"]>
+    composites: {}
+  }
+
+  type pedido_articulosGetPayload<S extends boolean | null | undefined | pedido_articulosDefaultArgs> = $Result.GetResult<Prisma.$pedido_articulosPayload, S>
+
+  type pedido_articulosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<pedido_articulosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Pedido_articulosCountAggregateInputType | true
+    }
+
+  export interface pedido_articulosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pedido_articulos'], meta: { name: 'pedido_articulos' } }
+    /**
+     * Find zero or one Pedido_articulos that matches the filter.
+     * @param {pedido_articulosFindUniqueArgs} args - Arguments to find a Pedido_articulos
+     * @example
+     * // Get one Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends pedido_articulosFindUniqueArgs>(args: SelectSubset<T, pedido_articulosFindUniqueArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Pedido_articulos that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {pedido_articulosFindUniqueOrThrowArgs} args - Arguments to find a Pedido_articulos
+     * @example
+     * // Get one Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends pedido_articulosFindUniqueOrThrowArgs>(args: SelectSubset<T, pedido_articulosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pedido_articulos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosFindFirstArgs} args - Arguments to find a Pedido_articulos
+     * @example
+     * // Get one Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends pedido_articulosFindFirstArgs>(args?: SelectSubset<T, pedido_articulosFindFirstArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Pedido_articulos that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosFindFirstOrThrowArgs} args - Arguments to find a Pedido_articulos
+     * @example
+     * // Get one Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends pedido_articulosFindFirstOrThrowArgs>(args?: SelectSubset<T, pedido_articulosFindFirstOrThrowArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Pedido_articulos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findMany()
+     * 
+     * // Get first 10 Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.findMany({ take: 10 })
+     * 
+     * // Only select the `pedido_id`
+     * const pedido_articulosWithPedido_idOnly = await prisma.pedido_articulos.findMany({ select: { pedido_id: true } })
+     * 
+     */
+    findMany<T extends pedido_articulosFindManyArgs>(args?: SelectSubset<T, pedido_articulosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Pedido_articulos.
+     * @param {pedido_articulosCreateArgs} args - Arguments to create a Pedido_articulos.
+     * @example
+     * // Create one Pedido_articulos
+     * const Pedido_articulos = await prisma.pedido_articulos.create({
+     *   data: {
+     *     // ... data to create a Pedido_articulos
+     *   }
+     * })
+     * 
+     */
+    create<T extends pedido_articulosCreateArgs>(args: SelectSubset<T, pedido_articulosCreateArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Pedido_articulos.
+     * @param {pedido_articulosCreateManyArgs} args - Arguments to create many Pedido_articulos.
+     * @example
+     * // Create many Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends pedido_articulosCreateManyArgs>(args?: SelectSubset<T, pedido_articulosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Pedido_articulos and returns the data saved in the database.
+     * @param {pedido_articulosCreateManyAndReturnArgs} args - Arguments to create many Pedido_articulos.
+     * @example
+     * // Create many Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Pedido_articulos and only return the `pedido_id`
+     * const pedido_articulosWithPedido_idOnly = await prisma.pedido_articulos.createManyAndReturn({
+     *   select: { pedido_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends pedido_articulosCreateManyAndReturnArgs>(args?: SelectSubset<T, pedido_articulosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Pedido_articulos.
+     * @param {pedido_articulosDeleteArgs} args - Arguments to delete one Pedido_articulos.
+     * @example
+     * // Delete one Pedido_articulos
+     * const Pedido_articulos = await prisma.pedido_articulos.delete({
+     *   where: {
+     *     // ... filter to delete one Pedido_articulos
+     *   }
+     * })
+     * 
+     */
+    delete<T extends pedido_articulosDeleteArgs>(args: SelectSubset<T, pedido_articulosDeleteArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Pedido_articulos.
+     * @param {pedido_articulosUpdateArgs} args - Arguments to update one Pedido_articulos.
+     * @example
+     * // Update one Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends pedido_articulosUpdateArgs>(args: SelectSubset<T, pedido_articulosUpdateArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Pedido_articulos.
+     * @param {pedido_articulosDeleteManyArgs} args - Arguments to filter Pedido_articulos to delete.
+     * @example
+     * // Delete a few Pedido_articulos
+     * const { count } = await prisma.pedido_articulos.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends pedido_articulosDeleteManyArgs>(args?: SelectSubset<T, pedido_articulosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Pedido_articulos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends pedido_articulosUpdateManyArgs>(args: SelectSubset<T, pedido_articulosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Pedido_articulos and returns the data updated in the database.
+     * @param {pedido_articulosUpdateManyAndReturnArgs} args - Arguments to update many Pedido_articulos.
+     * @example
+     * // Update many Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Pedido_articulos and only return the `pedido_id`
+     * const pedido_articulosWithPedido_idOnly = await prisma.pedido_articulos.updateManyAndReturn({
+     *   select: { pedido_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends pedido_articulosUpdateManyAndReturnArgs>(args: SelectSubset<T, pedido_articulosUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Pedido_articulos.
+     * @param {pedido_articulosUpsertArgs} args - Arguments to update or create a Pedido_articulos.
+     * @example
+     * // Update or create a Pedido_articulos
+     * const pedido_articulos = await prisma.pedido_articulos.upsert({
+     *   create: {
+     *     // ... data to create a Pedido_articulos
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Pedido_articulos we want to update
+     *   }
+     * })
+     */
+    upsert<T extends pedido_articulosUpsertArgs>(args: SelectSubset<T, pedido_articulosUpsertArgs<ExtArgs>>): Prisma__pedido_articulosClient<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Pedido_articulos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosCountArgs} args - Arguments to filter Pedido_articulos to count.
+     * @example
+     * // Count the number of Pedido_articulos
+     * const count = await prisma.pedido_articulos.count({
+     *   where: {
+     *     // ... the filter for the Pedido_articulos we want to count
+     *   }
+     * })
+    **/
+    count<T extends pedido_articulosCountArgs>(
+      args?: Subset<T, pedido_articulosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Pedido_articulosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Pedido_articulos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Pedido_articulosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Pedido_articulosAggregateArgs>(args: Subset<T, Pedido_articulosAggregateArgs>): Prisma.PrismaPromise<GetPedido_articulosAggregateType<T>>
+
+    /**
+     * Group by Pedido_articulos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {pedido_articulosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends pedido_articulosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: pedido_articulosGroupByArgs['orderBy'] }
+        : { orderBy?: pedido_articulosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, pedido_articulosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPedido_articulosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the pedido_articulos model
+   */
+  readonly fields: pedido_articulosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for pedido_articulos.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__pedido_articulosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pedido<T extends pedidoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, pedidoDefaultArgs<ExtArgs>>): Prisma__pedidoClient<$Result.GetResult<Prisma.$pedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     articulo<T extends articuloDefaultArgs<ExtArgs> = {}>(args?: Subset<T, articuloDefaultArgs<ExtArgs>>): Prisma__articuloClient<$Result.GetResult<Prisma.$articuloPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3097,422 +5507,422 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the users_articulos model
+   * Fields of the pedido_articulos model
    */
-  interface users_articulosFieldRefs {
-    readonly user_id: FieldRef<"users_articulos", 'Int'>
-    readonly articulo_id: FieldRef<"users_articulos", 'Int'>
+  interface pedido_articulosFieldRefs {
+    readonly pedido_id: FieldRef<"pedido_articulos", 'Int'>
+    readonly articulo_id: FieldRef<"pedido_articulos", 'Int'>
   }
     
 
   // Custom InputTypes
   /**
-   * users_articulos findUnique
+   * pedido_articulos findUnique
    */
-  export type users_articulosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter, which users_articulos to fetch.
+     * Filter, which pedido_articulos to fetch.
      */
-    where: users_articulosWhereUniqueInput
+    where: pedido_articulosWhereUniqueInput
   }
 
   /**
-   * users_articulos findUniqueOrThrow
+   * pedido_articulos findUniqueOrThrow
    */
-  export type users_articulosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter, which users_articulos to fetch.
+     * Filter, which pedido_articulos to fetch.
      */
-    where: users_articulosWhereUniqueInput
+    where: pedido_articulosWhereUniqueInput
   }
 
   /**
-   * users_articulos findFirst
+   * pedido_articulos findFirst
    */
-  export type users_articulosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter, which users_articulos to fetch.
+     * Filter, which pedido_articulos to fetch.
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of users_articulos to fetch.
+     * Determine the order of pedido_articulos to fetch.
      */
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for users_articulos.
+     * Sets the position for searching for pedido_articulos.
      */
-    cursor?: users_articulosWhereUniqueInput
+    cursor?: pedido_articulosWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` users_articulos from the position of the cursor.
+     * Take `±n` pedido_articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` users_articulos.
+     * Skip the first `n` pedido_articulos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of users_articulos.
+     * Filter by unique combinations of pedido_articulos.
      */
-    distinct?: Users_articulosScalarFieldEnum | Users_articulosScalarFieldEnum[]
+    distinct?: Pedido_articulosScalarFieldEnum | Pedido_articulosScalarFieldEnum[]
   }
 
   /**
-   * users_articulos findFirstOrThrow
+   * pedido_articulos findFirstOrThrow
    */
-  export type users_articulosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter, which users_articulos to fetch.
+     * Filter, which pedido_articulos to fetch.
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of users_articulos to fetch.
+     * Determine the order of pedido_articulos to fetch.
      */
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for users_articulos.
+     * Sets the position for searching for pedido_articulos.
      */
-    cursor?: users_articulosWhereUniqueInput
+    cursor?: pedido_articulosWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` users_articulos from the position of the cursor.
+     * Take `±n` pedido_articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` users_articulos.
+     * Skip the first `n` pedido_articulos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of users_articulos.
+     * Filter by unique combinations of pedido_articulos.
      */
-    distinct?: Users_articulosScalarFieldEnum | Users_articulosScalarFieldEnum[]
+    distinct?: Pedido_articulosScalarFieldEnum | Pedido_articulosScalarFieldEnum[]
   }
 
   /**
-   * users_articulos findMany
+   * pedido_articulos findMany
    */
-  export type users_articulosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter, which users_articulos to fetch.
+     * Filter, which pedido_articulos to fetch.
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of users_articulos to fetch.
+     * Determine the order of pedido_articulos to fetch.
      */
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing users_articulos.
+     * Sets the position for listing pedido_articulos.
      */
-    cursor?: users_articulosWhereUniqueInput
+    cursor?: pedido_articulosWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` users_articulos from the position of the cursor.
+     * Take `±n` pedido_articulos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` users_articulos.
+     * Skip the first `n` pedido_articulos.
      */
     skip?: number
-    distinct?: Users_articulosScalarFieldEnum | Users_articulosScalarFieldEnum[]
+    distinct?: Pedido_articulosScalarFieldEnum | Pedido_articulosScalarFieldEnum[]
   }
 
   /**
-   * users_articulos create
+   * pedido_articulos create
    */
-  export type users_articulosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * The data needed to create a users_articulos.
+     * The data needed to create a pedido_articulos.
      */
-    data: XOR<users_articulosCreateInput, users_articulosUncheckedCreateInput>
+    data: XOR<pedido_articulosCreateInput, pedido_articulosUncheckedCreateInput>
   }
 
   /**
-   * users_articulos createMany
+   * pedido_articulos createMany
    */
-  export type users_articulosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many users_articulos.
+     * The data used to create many pedido_articulos.
      */
-    data: users_articulosCreateManyInput | users_articulosCreateManyInput[]
+    data: pedido_articulosCreateManyInput | pedido_articulosCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * users_articulos createManyAndReturn
+   * pedido_articulos createManyAndReturn
    */
-  export type users_articulosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelectCreateManyAndReturn<ExtArgs> | null
+    select?: pedido_articulosSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
-     * The data used to create many users_articulos.
+     * The data used to create many pedido_articulos.
      */
-    data: users_articulosCreateManyInput | users_articulosCreateManyInput[]
+    data: pedido_articulosCreateManyInput | pedido_articulosCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: pedido_articulosIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * users_articulos update
+   * pedido_articulos update
    */
-  export type users_articulosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * The data needed to update a users_articulos.
+     * The data needed to update a pedido_articulos.
      */
-    data: XOR<users_articulosUpdateInput, users_articulosUncheckedUpdateInput>
+    data: XOR<pedido_articulosUpdateInput, pedido_articulosUncheckedUpdateInput>
     /**
-     * Choose, which users_articulos to update.
+     * Choose, which pedido_articulos to update.
      */
-    where: users_articulosWhereUniqueInput
+    where: pedido_articulosWhereUniqueInput
   }
 
   /**
-   * users_articulos updateMany
+   * pedido_articulos updateMany
    */
-  export type users_articulosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update users_articulos.
+     * The data used to update pedido_articulos.
      */
-    data: XOR<users_articulosUpdateManyMutationInput, users_articulosUncheckedUpdateManyInput>
+    data: XOR<pedido_articulosUpdateManyMutationInput, pedido_articulosUncheckedUpdateManyInput>
     /**
-     * Filter which users_articulos to update
+     * Filter which pedido_articulos to update
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
-     * Limit how many users_articulos to update.
+     * Limit how many pedido_articulos to update.
      */
     limit?: number
   }
 
   /**
-   * users_articulos updateManyAndReturn
+   * pedido_articulos updateManyAndReturn
    */
-  export type users_articulosUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: pedido_articulosSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
-     * The data used to update users_articulos.
+     * The data used to update pedido_articulos.
      */
-    data: XOR<users_articulosUpdateManyMutationInput, users_articulosUncheckedUpdateManyInput>
+    data: XOR<pedido_articulosUpdateManyMutationInput, pedido_articulosUncheckedUpdateManyInput>
     /**
-     * Filter which users_articulos to update
+     * Filter which pedido_articulos to update
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
-     * Limit how many users_articulos to update.
+     * Limit how many pedido_articulos to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: pedido_articulosIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * users_articulos upsert
+   * pedido_articulos upsert
    */
-  export type users_articulosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * The filter to search for the users_articulos to update in case it exists.
+     * The filter to search for the pedido_articulos to update in case it exists.
      */
-    where: users_articulosWhereUniqueInput
+    where: pedido_articulosWhereUniqueInput
     /**
-     * In case the users_articulos found by the `where` argument doesn't exist, create a new users_articulos with this data.
+     * In case the pedido_articulos found by the `where` argument doesn't exist, create a new pedido_articulos with this data.
      */
-    create: XOR<users_articulosCreateInput, users_articulosUncheckedCreateInput>
+    create: XOR<pedido_articulosCreateInput, pedido_articulosUncheckedCreateInput>
     /**
-     * In case the users_articulos was found with the provided `where` argument, update it with this data.
+     * In case the pedido_articulos was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<users_articulosUpdateInput, users_articulosUncheckedUpdateInput>
+    update: XOR<pedido_articulosUpdateInput, pedido_articulosUncheckedUpdateInput>
   }
 
   /**
-   * users_articulos delete
+   * pedido_articulos delete
    */
-  export type users_articulosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
     /**
-     * Filter which users_articulos to delete.
+     * Filter which pedido_articulos to delete.
      */
-    where: users_articulosWhereUniqueInput
+    where: pedido_articulosWhereUniqueInput
   }
 
   /**
-   * users_articulos deleteMany
+   * pedido_articulos deleteMany
    */
-  export type users_articulosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which users_articulos to delete
+     * Filter which pedido_articulos to delete
      */
-    where?: users_articulosWhereInput
+    where?: pedido_articulosWhereInput
     /**
-     * Limit how many users_articulos to delete.
+     * Limit how many pedido_articulos to delete.
      */
     limit?: number
   }
 
   /**
-   * users_articulos without action
+   * pedido_articulos without action
    */
-  export type users_articulosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pedido_articulosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
+    include?: pedido_articulosInclude<ExtArgs> | null
   }
 
 
@@ -3746,7 +6156,7 @@ export namespace Prisma {
     plano_file?: boolean
     precio?: boolean
     cte_ganancia?: boolean
-    users_articulos?: boolean | articulo$users_articulosArgs<ExtArgs>
+    pedido_articulos?: boolean | articulo$pedido_articulosArgs<ExtArgs>
     articulo_piezas?: boolean | articulo$articulo_piezasArgs<ExtArgs>
     _count?: boolean | ArticuloCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["articulo"]>
@@ -3783,7 +6193,7 @@ export namespace Prisma {
 
   export type articuloOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "codigo" | "descripcion" | "cant_piezas" | "plano_file" | "precio" | "cte_ganancia", ExtArgs["result"]["articulo"]>
   export type articuloInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users_articulos?: boolean | articulo$users_articulosArgs<ExtArgs>
+    pedido_articulos?: boolean | articulo$pedido_articulosArgs<ExtArgs>
     articulo_piezas?: boolean | articulo$articulo_piezasArgs<ExtArgs>
     _count?: boolean | ArticuloCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -3793,7 +6203,7 @@ export namespace Prisma {
   export type $articuloPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "articulo"
     objects: {
-      users_articulos: Prisma.$users_articulosPayload<ExtArgs>[]
+      pedido_articulos: Prisma.$pedido_articulosPayload<ExtArgs>[]
       articulo_piezas: Prisma.$articulo_piezasPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4198,7 +6608,7 @@ export namespace Prisma {
    */
   export interface Prisma__articuloClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users_articulos<T extends articulo$users_articulosArgs<ExtArgs> = {}>(args?: Subset<T, articulo$users_articulosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$users_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pedido_articulos<T extends articulo$pedido_articulosArgs<ExtArgs> = {}>(args?: Subset<T, articulo$pedido_articulosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pedido_articulosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     articulo_piezas<T extends articulo$articulo_piezasArgs<ExtArgs> = {}>(args?: Subset<T, articulo$articulo_piezasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$articulo_piezasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4624,27 +7034,27 @@ export namespace Prisma {
   }
 
   /**
-   * articulo.users_articulos
+   * articulo.pedido_articulos
    */
-  export type articulo$users_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type articulo$pedido_articulosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the users_articulos
+     * Select specific fields to fetch from the pedido_articulos
      */
-    select?: users_articulosSelect<ExtArgs> | null
+    select?: pedido_articulosSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the users_articulos
+     * Omit specific fields from the pedido_articulos
      */
-    omit?: users_articulosOmit<ExtArgs> | null
+    omit?: pedido_articulosOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: users_articulosInclude<ExtArgs> | null
-    where?: users_articulosWhereInput
-    orderBy?: users_articulosOrderByWithRelationInput | users_articulosOrderByWithRelationInput[]
-    cursor?: users_articulosWhereUniqueInput
+    include?: pedido_articulosInclude<ExtArgs> | null
+    where?: pedido_articulosWhereInput
+    orderBy?: pedido_articulosOrderByWithRelationInput | pedido_articulosOrderByWithRelationInput[]
+    cursor?: pedido_articulosWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Users_articulosScalarFieldEnum | Users_articulosScalarFieldEnum[]
+    distinct?: Pedido_articulosScalarFieldEnum | Pedido_articulosScalarFieldEnum[]
   }
 
   /**
@@ -6918,12 +9328,30 @@ export namespace Prisma {
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
-  export const Users_articulosScalarFieldEnum: {
+  export const Users_pedidosScalarFieldEnum: {
     user_id: 'user_id',
+    pedido_id: 'pedido_id'
+  };
+
+  export type Users_pedidosScalarFieldEnum = (typeof Users_pedidosScalarFieldEnum)[keyof typeof Users_pedidosScalarFieldEnum]
+
+
+  export const PedidoScalarFieldEnum: {
+    id: 'id',
+    codigo: 'codigo',
+    presupuesto: 'presupuesto',
+    estado: 'estado'
+  };
+
+  export type PedidoScalarFieldEnum = (typeof PedidoScalarFieldEnum)[keyof typeof PedidoScalarFieldEnum]
+
+
+  export const Pedido_articulosScalarFieldEnum: {
+    pedido_id: 'pedido_id',
     articulo_id: 'articulo_id'
   };
 
-  export type Users_articulosScalarFieldEnum = (typeof Users_articulosScalarFieldEnum)[keyof typeof Users_articulosScalarFieldEnum]
+  export type Pedido_articulosScalarFieldEnum = (typeof Pedido_articulosScalarFieldEnum)[keyof typeof Pedido_articulosScalarFieldEnum]
 
 
   export const ArticuloScalarFieldEnum: {
@@ -7043,7 +9471,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nombre?: StringNullableFilter<"users"> | string | null
     apellido?: StringNullableFilter<"users"> | string | null
-    users_articulos?: Users_articulosListRelationFilter
+    users_pedidos?: Users_pedidosListRelationFilter
   }
 
   export type usersOrderByWithRelationInput = {
@@ -7052,7 +9480,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrderInput | SortOrder
     apellido?: SortOrderInput | SortOrder
-    users_articulos?: users_articulosOrderByRelationAggregateInput
+    users_pedidos?: users_pedidosOrderByRelationAggregateInput
   }
 
   export type usersWhereUniqueInput = Prisma.AtLeast<{
@@ -7064,7 +9492,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nombre?: StringNullableFilter<"users"> | string | null
     apellido?: StringNullableFilter<"users"> | string | null
-    users_articulos?: Users_articulosListRelationFilter
+    users_pedidos?: Users_pedidosListRelationFilter
   }, "id" | "id" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -7091,50 +9519,151 @@ export namespace Prisma {
     apellido?: StringNullableWithAggregatesFilter<"users"> | string | null
   }
 
-  export type users_articulosWhereInput = {
-    AND?: users_articulosWhereInput | users_articulosWhereInput[]
-    OR?: users_articulosWhereInput[]
-    NOT?: users_articulosWhereInput | users_articulosWhereInput[]
-    user_id?: IntFilter<"users_articulos"> | number
-    articulo_id?: IntFilter<"users_articulos"> | number
+  export type users_pedidosWhereInput = {
+    AND?: users_pedidosWhereInput | users_pedidosWhereInput[]
+    OR?: users_pedidosWhereInput[]
+    NOT?: users_pedidosWhereInput | users_pedidosWhereInput[]
+    user_id?: IntFilter<"users_pedidos"> | number
+    pedido_id?: IntFilter<"users_pedidos"> | number
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
+  }
+
+  export type users_pedidosOrderByWithRelationInput = {
+    user_id?: SortOrder
+    pedido_id?: SortOrder
+    users?: usersOrderByWithRelationInput
+    pedido?: pedidoOrderByWithRelationInput
+  }
+
+  export type users_pedidosWhereUniqueInput = Prisma.AtLeast<{
+    user_id_pedido_id?: users_pedidosUser_idPedido_idCompoundUniqueInput
+    AND?: users_pedidosWhereInput | users_pedidosWhereInput[]
+    OR?: users_pedidosWhereInput[]
+    NOT?: users_pedidosWhereInput | users_pedidosWhereInput[]
+    user_id?: IntFilter<"users_pedidos"> | number
+    pedido_id?: IntFilter<"users_pedidos"> | number
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
+  }, "user_id_pedido_id">
+
+  export type users_pedidosOrderByWithAggregationInput = {
+    user_id?: SortOrder
+    pedido_id?: SortOrder
+    _count?: users_pedidosCountOrderByAggregateInput
+    _avg?: users_pedidosAvgOrderByAggregateInput
+    _max?: users_pedidosMaxOrderByAggregateInput
+    _min?: users_pedidosMinOrderByAggregateInput
+    _sum?: users_pedidosSumOrderByAggregateInput
+  }
+
+  export type users_pedidosScalarWhereWithAggregatesInput = {
+    AND?: users_pedidosScalarWhereWithAggregatesInput | users_pedidosScalarWhereWithAggregatesInput[]
+    OR?: users_pedidosScalarWhereWithAggregatesInput[]
+    NOT?: users_pedidosScalarWhereWithAggregatesInput | users_pedidosScalarWhereWithAggregatesInput[]
+    user_id?: IntWithAggregatesFilter<"users_pedidos"> | number
+    pedido_id?: IntWithAggregatesFilter<"users_pedidos"> | number
+  }
+
+  export type pedidoWhereInput = {
+    AND?: pedidoWhereInput | pedidoWhereInput[]
+    OR?: pedidoWhereInput[]
+    NOT?: pedidoWhereInput | pedidoWhereInput[]
+    id?: IntFilter<"pedido"> | number
+    codigo?: StringNullableFilter<"pedido"> | string | null
+    presupuesto?: IntNullableFilter<"pedido"> | number | null
+    estado?: StringFilter<"pedido"> | string
+    user_pedidos?: Users_pedidosListRelationFilter
+    pedido_articulos?: Pedido_articulosListRelationFilter
+  }
+
+  export type pedidoOrderByWithRelationInput = {
+    id?: SortOrder
+    codigo?: SortOrderInput | SortOrder
+    presupuesto?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    user_pedidos?: users_pedidosOrderByRelationAggregateInput
+    pedido_articulos?: pedido_articulosOrderByRelationAggregateInput
+  }
+
+  export type pedidoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: pedidoWhereInput | pedidoWhereInput[]
+    OR?: pedidoWhereInput[]
+    NOT?: pedidoWhereInput | pedidoWhereInput[]
+    codigo?: StringNullableFilter<"pedido"> | string | null
+    presupuesto?: IntNullableFilter<"pedido"> | number | null
+    estado?: StringFilter<"pedido"> | string
+    user_pedidos?: Users_pedidosListRelationFilter
+    pedido_articulos?: Pedido_articulosListRelationFilter
+  }, "id" | "id">
+
+  export type pedidoOrderByWithAggregationInput = {
+    id?: SortOrder
+    codigo?: SortOrderInput | SortOrder
+    presupuesto?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    _count?: pedidoCountOrderByAggregateInput
+    _avg?: pedidoAvgOrderByAggregateInput
+    _max?: pedidoMaxOrderByAggregateInput
+    _min?: pedidoMinOrderByAggregateInput
+    _sum?: pedidoSumOrderByAggregateInput
+  }
+
+  export type pedidoScalarWhereWithAggregatesInput = {
+    AND?: pedidoScalarWhereWithAggregatesInput | pedidoScalarWhereWithAggregatesInput[]
+    OR?: pedidoScalarWhereWithAggregatesInput[]
+    NOT?: pedidoScalarWhereWithAggregatesInput | pedidoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"pedido"> | number
+    codigo?: StringNullableWithAggregatesFilter<"pedido"> | string | null
+    presupuesto?: IntNullableWithAggregatesFilter<"pedido"> | number | null
+    estado?: StringWithAggregatesFilter<"pedido"> | string
+  }
+
+  export type pedido_articulosWhereInput = {
+    AND?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
+    OR?: pedido_articulosWhereInput[]
+    NOT?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
+    pedido_id?: IntFilter<"pedido_articulos"> | number
+    articulo_id?: IntFilter<"pedido_articulos"> | number
+    pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
     articulo?: XOR<ArticuloScalarRelationFilter, articuloWhereInput>
   }
 
-  export type users_articulosOrderByWithRelationInput = {
-    user_id?: SortOrder
+  export type pedido_articulosOrderByWithRelationInput = {
+    pedido_id?: SortOrder
     articulo_id?: SortOrder
-    users?: usersOrderByWithRelationInput
+    pedido?: pedidoOrderByWithRelationInput
     articulo?: articuloOrderByWithRelationInput
   }
 
-  export type users_articulosWhereUniqueInput = Prisma.AtLeast<{
-    user_id_articulo_id?: users_articulosUser_idArticulo_idCompoundUniqueInput
-    AND?: users_articulosWhereInput | users_articulosWhereInput[]
-    OR?: users_articulosWhereInput[]
-    NOT?: users_articulosWhereInput | users_articulosWhereInput[]
-    user_id?: IntFilter<"users_articulos"> | number
-    articulo_id?: IntFilter<"users_articulos"> | number
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  export type pedido_articulosWhereUniqueInput = Prisma.AtLeast<{
+    pedido_id_articulo_id?: pedido_articulosPedido_idArticulo_idCompoundUniqueInput
+    AND?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
+    OR?: pedido_articulosWhereInput[]
+    NOT?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
+    pedido_id?: IntFilter<"pedido_articulos"> | number
+    articulo_id?: IntFilter<"pedido_articulos"> | number
+    pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
     articulo?: XOR<ArticuloScalarRelationFilter, articuloWhereInput>
-  }, "user_id_articulo_id">
+  }, "pedido_id_articulo_id">
 
-  export type users_articulosOrderByWithAggregationInput = {
-    user_id?: SortOrder
+  export type pedido_articulosOrderByWithAggregationInput = {
+    pedido_id?: SortOrder
     articulo_id?: SortOrder
-    _count?: users_articulosCountOrderByAggregateInput
-    _avg?: users_articulosAvgOrderByAggregateInput
-    _max?: users_articulosMaxOrderByAggregateInput
-    _min?: users_articulosMinOrderByAggregateInput
-    _sum?: users_articulosSumOrderByAggregateInput
+    _count?: pedido_articulosCountOrderByAggregateInput
+    _avg?: pedido_articulosAvgOrderByAggregateInput
+    _max?: pedido_articulosMaxOrderByAggregateInput
+    _min?: pedido_articulosMinOrderByAggregateInput
+    _sum?: pedido_articulosSumOrderByAggregateInput
   }
 
-  export type users_articulosScalarWhereWithAggregatesInput = {
-    AND?: users_articulosScalarWhereWithAggregatesInput | users_articulosScalarWhereWithAggregatesInput[]
-    OR?: users_articulosScalarWhereWithAggregatesInput[]
-    NOT?: users_articulosScalarWhereWithAggregatesInput | users_articulosScalarWhereWithAggregatesInput[]
-    user_id?: IntWithAggregatesFilter<"users_articulos"> | number
-    articulo_id?: IntWithAggregatesFilter<"users_articulos"> | number
+  export type pedido_articulosScalarWhereWithAggregatesInput = {
+    AND?: pedido_articulosScalarWhereWithAggregatesInput | pedido_articulosScalarWhereWithAggregatesInput[]
+    OR?: pedido_articulosScalarWhereWithAggregatesInput[]
+    NOT?: pedido_articulosScalarWhereWithAggregatesInput | pedido_articulosScalarWhereWithAggregatesInput[]
+    pedido_id?: IntWithAggregatesFilter<"pedido_articulos"> | number
+    articulo_id?: IntWithAggregatesFilter<"pedido_articulos"> | number
   }
 
   export type articuloWhereInput = {
@@ -7148,7 +9677,7 @@ export namespace Prisma {
     plano_file?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
-    users_articulos?: Users_articulosListRelationFilter
+    pedido_articulos?: Pedido_articulosListRelationFilter
     articulo_piezas?: Articulo_piezasListRelationFilter
   }
 
@@ -7160,7 +9689,7 @@ export namespace Prisma {
     plano_file?: SortOrderInput | SortOrder
     precio?: SortOrderInput | SortOrder
     cte_ganancia?: SortOrderInput | SortOrder
-    users_articulos?: users_articulosOrderByRelationAggregateInput
+    pedido_articulos?: pedido_articulosOrderByRelationAggregateInput
     articulo_piezas?: articulo_piezasOrderByRelationAggregateInput
   }
 
@@ -7175,7 +9704,7 @@ export namespace Prisma {
     plano_file?: StringNullableFilter<"articulo"> | string | null
     precio?: IntNullableFilter<"articulo"> | number | null
     cte_ganancia?: IntNullableFilter<"articulo"> | number | null
-    users_articulos?: Users_articulosListRelationFilter
+    pedido_articulos?: Pedido_articulosListRelationFilter
     articulo_piezas?: Articulo_piezasListRelationFilter
   }, "id" | "id">
 
@@ -7325,7 +9854,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
-    users_articulos?: users_articulosCreateNestedManyWithoutUsersInput
+    users_pedidos?: users_pedidosCreateNestedManyWithoutUsersInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -7334,7 +9863,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
-    users_articulos?: users_articulosUncheckedCreateNestedManyWithoutUsersInput
+    users_pedidos?: users_pedidosUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
@@ -7342,7 +9871,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
-    users_articulos?: users_articulosUpdateManyWithoutUsersNestedInput
+    users_pedidos?: users_pedidosUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -7351,7 +9880,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
-    users_articulos?: users_articulosUncheckedUpdateManyWithoutUsersNestedInput
+    users_pedidos?: users_pedidosUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -7377,37 +9906,125 @@ export namespace Prisma {
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type users_articulosCreateInput = {
-    users: usersCreateNestedOneWithoutUsers_articulosInput
-    articulo: articuloCreateNestedOneWithoutUsers_articulosInput
+  export type users_pedidosCreateInput = {
+    users: usersCreateNestedOneWithoutUsers_pedidosInput
+    pedido: pedidoCreateNestedOneWithoutUser_pedidosInput
   }
 
-  export type users_articulosUncheckedCreateInput = {
+  export type users_pedidosUncheckedCreateInput = {
     user_id: number
+    pedido_id: number
+  }
+
+  export type users_pedidosUpdateInput = {
+    users?: usersUpdateOneRequiredWithoutUsers_pedidosNestedInput
+    pedido?: pedidoUpdateOneRequiredWithoutUser_pedidosNestedInput
+  }
+
+  export type users_pedidosUncheckedUpdateInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    pedido_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type users_pedidosCreateManyInput = {
+    user_id: number
+    pedido_id: number
+  }
+
+  export type users_pedidosUpdateManyMutationInput = {
+
+  }
+
+  export type users_pedidosUncheckedUpdateManyInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    pedido_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type pedidoCreateInput = {
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    user_pedidos?: users_pedidosCreateNestedManyWithoutPedidoInput
+    pedido_articulos?: pedido_articulosCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoUncheckedCreateInput = {
+    id?: number
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    user_pedidos?: users_pedidosUncheckedCreateNestedManyWithoutPedidoInput
+    pedido_articulos?: pedido_articulosUncheckedCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoUpdateInput = {
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    user_pedidos?: users_pedidosUpdateManyWithoutPedidoNestedInput
+    pedido_articulos?: pedido_articulosUpdateManyWithoutPedidoNestedInput
+  }
+
+  export type pedidoUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    user_pedidos?: users_pedidosUncheckedUpdateManyWithoutPedidoNestedInput
+    pedido_articulos?: pedido_articulosUncheckedUpdateManyWithoutPedidoNestedInput
+  }
+
+  export type pedidoCreateManyInput = {
+    id?: number
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+  }
+
+  export type pedidoUpdateManyMutationInput = {
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pedidoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type pedido_articulosCreateInput = {
+    pedido: pedidoCreateNestedOneWithoutPedido_articulosInput
+    articulo: articuloCreateNestedOneWithoutPedido_articulosInput
+  }
+
+  export type pedido_articulosUncheckedCreateInput = {
+    pedido_id: number
     articulo_id: number
   }
 
-  export type users_articulosUpdateInput = {
-    users?: usersUpdateOneRequiredWithoutUsers_articulosNestedInput
-    articulo?: articuloUpdateOneRequiredWithoutUsers_articulosNestedInput
+  export type pedido_articulosUpdateInput = {
+    pedido?: pedidoUpdateOneRequiredWithoutPedido_articulosNestedInput
+    articulo?: articuloUpdateOneRequiredWithoutPedido_articulosNestedInput
   }
 
-  export type users_articulosUncheckedUpdateInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type pedido_articulosUncheckedUpdateInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
     articulo_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type users_articulosCreateManyInput = {
-    user_id: number
+  export type pedido_articulosCreateManyInput = {
+    pedido_id: number
     articulo_id: number
   }
 
-  export type users_articulosUpdateManyMutationInput = {
+  export type pedido_articulosUpdateManyMutationInput = {
 
   }
 
-  export type users_articulosUncheckedUpdateManyInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type pedido_articulosUncheckedUpdateManyInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
     articulo_id?: IntFieldUpdateOperationsInput | number
   }
 
@@ -7418,7 +10035,7 @@ export namespace Prisma {
     plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
-    users_articulos?: users_articulosCreateNestedManyWithoutArticuloInput
+    pedido_articulos?: pedido_articulosCreateNestedManyWithoutArticuloInput
     articulo_piezas?: articulo_piezasCreateNestedManyWithoutArticuloInput
   }
 
@@ -7430,7 +10047,7 @@ export namespace Prisma {
     plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
-    users_articulos?: users_articulosUncheckedCreateNestedManyWithoutArticuloInput
+    pedido_articulos?: pedido_articulosUncheckedCreateNestedManyWithoutArticuloInput
     articulo_piezas?: articulo_piezasUncheckedCreateNestedManyWithoutArticuloInput
   }
 
@@ -7441,7 +10058,7 @@ export namespace Prisma {
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
-    users_articulos?: users_articulosUpdateManyWithoutArticuloNestedInput
+    pedido_articulos?: pedido_articulosUpdateManyWithoutArticuloNestedInput
     articulo_piezas?: articulo_piezasUpdateManyWithoutArticuloNestedInput
   }
 
@@ -7453,7 +10070,7 @@ export namespace Prisma {
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
-    users_articulos?: users_articulosUncheckedUpdateManyWithoutArticuloNestedInput
+    pedido_articulos?: pedido_articulosUncheckedUpdateManyWithoutArticuloNestedInput
     articulo_piezas?: articulo_piezasUncheckedUpdateManyWithoutArticuloNestedInput
   }
 
@@ -7632,10 +10249,10 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type Users_articulosListRelationFilter = {
-    every?: users_articulosWhereInput
-    some?: users_articulosWhereInput
-    none?: users_articulosWhereInput
+  export type Users_pedidosListRelationFilter = {
+    every?: users_pedidosWhereInput
+    some?: users_pedidosWhereInput
+    none?: users_pedidosWhereInput
   }
 
   export type SortOrderInput = {
@@ -7643,7 +10260,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type users_articulosOrderByRelationAggregateInput = {
+  export type users_pedidosOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7736,39 +10353,39 @@ export namespace Prisma {
     isNot?: usersWhereInput
   }
 
-  export type ArticuloScalarRelationFilter = {
-    is?: articuloWhereInput
-    isNot?: articuloWhereInput
+  export type PedidoScalarRelationFilter = {
+    is?: pedidoWhereInput
+    isNot?: pedidoWhereInput
   }
 
-  export type users_articulosUser_idArticulo_idCompoundUniqueInput = {
+  export type users_pedidosUser_idPedido_idCompoundUniqueInput = {
     user_id: number
-    articulo_id: number
+    pedido_id: number
   }
 
-  export type users_articulosCountOrderByAggregateInput = {
+  export type users_pedidosCountOrderByAggregateInput = {
     user_id?: SortOrder
-    articulo_id?: SortOrder
+    pedido_id?: SortOrder
   }
 
-  export type users_articulosAvgOrderByAggregateInput = {
+  export type users_pedidosAvgOrderByAggregateInput = {
     user_id?: SortOrder
-    articulo_id?: SortOrder
+    pedido_id?: SortOrder
   }
 
-  export type users_articulosMaxOrderByAggregateInput = {
+  export type users_pedidosMaxOrderByAggregateInput = {
     user_id?: SortOrder
-    articulo_id?: SortOrder
+    pedido_id?: SortOrder
   }
 
-  export type users_articulosMinOrderByAggregateInput = {
+  export type users_pedidosMinOrderByAggregateInput = {
     user_id?: SortOrder
-    articulo_id?: SortOrder
+    pedido_id?: SortOrder
   }
 
-  export type users_articulosSumOrderByAggregateInput = {
+  export type users_pedidosSumOrderByAggregateInput = {
     user_id?: SortOrder
-    articulo_id?: SortOrder
+    pedido_id?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -7780,6 +10397,98 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type Pedido_articulosListRelationFilter = {
+    every?: pedido_articulosWhereInput
+    some?: pedido_articulosWhereInput
+    none?: pedido_articulosWhereInput
+  }
+
+  export type pedido_articulosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type pedidoCountOrderByAggregateInput = {
+    id?: SortOrder
+    codigo?: SortOrder
+    presupuesto?: SortOrder
+    estado?: SortOrder
+  }
+
+  export type pedidoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    presupuesto?: SortOrder
+  }
+
+  export type pedidoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    codigo?: SortOrder
+    presupuesto?: SortOrder
+    estado?: SortOrder
+  }
+
+  export type pedidoMinOrderByAggregateInput = {
+    id?: SortOrder
+    codigo?: SortOrder
+    presupuesto?: SortOrder
+    estado?: SortOrder
+  }
+
+  export type pedidoSumOrderByAggregateInput = {
+    id?: SortOrder
+    presupuesto?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type ArticuloScalarRelationFilter = {
+    is?: articuloWhereInput
+    isNot?: articuloWhereInput
+  }
+
+  export type pedido_articulosPedido_idArticulo_idCompoundUniqueInput = {
+    pedido_id: number
+    articulo_id: number
+  }
+
+  export type pedido_articulosCountOrderByAggregateInput = {
+    pedido_id?: SortOrder
+    articulo_id?: SortOrder
+  }
+
+  export type pedido_articulosAvgOrderByAggregateInput = {
+    pedido_id?: SortOrder
+    articulo_id?: SortOrder
+  }
+
+  export type pedido_articulosMaxOrderByAggregateInput = {
+    pedido_id?: SortOrder
+    articulo_id?: SortOrder
+  }
+
+  export type pedido_articulosMinOrderByAggregateInput = {
+    pedido_id?: SortOrder
+    articulo_id?: SortOrder
+  }
+
+  export type pedido_articulosSumOrderByAggregateInput = {
+    pedido_id?: SortOrder
+    articulo_id?: SortOrder
   }
 
   export type Articulo_piezasListRelationFilter = {
@@ -7836,22 +10545,6 @@ export namespace Prisma {
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type PiezaScalarRelationFilter = {
@@ -7931,18 +10624,18 @@ export namespace Prisma {
     cte_ganancia?: SortOrder
   }
 
-  export type users_articulosCreateNestedManyWithoutUsersInput = {
-    create?: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput> | users_articulosCreateWithoutUsersInput[] | users_articulosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutUsersInput | users_articulosCreateOrConnectWithoutUsersInput[]
-    createMany?: users_articulosCreateManyUsersInputEnvelope
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
+  export type users_pedidosCreateNestedManyWithoutUsersInput = {
+    create?: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput> | users_pedidosCreateWithoutUsersInput[] | users_pedidosUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutUsersInput | users_pedidosCreateOrConnectWithoutUsersInput[]
+    createMany?: users_pedidosCreateManyUsersInputEnvelope
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
   }
 
-  export type users_articulosUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput> | users_articulosCreateWithoutUsersInput[] | users_articulosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutUsersInput | users_articulosCreateOrConnectWithoutUsersInput[]
-    createMany?: users_articulosCreateManyUsersInputEnvelope
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
+  export type users_pedidosUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput> | users_pedidosCreateWithoutUsersInput[] | users_pedidosUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutUsersInput | users_pedidosCreateOrConnectWithoutUsersInput[]
+    createMany?: users_pedidosCreateManyUsersInputEnvelope
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -7953,18 +10646,18 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type users_articulosUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput> | users_articulosCreateWithoutUsersInput[] | users_articulosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutUsersInput | users_articulosCreateOrConnectWithoutUsersInput[]
-    upsert?: users_articulosUpsertWithWhereUniqueWithoutUsersInput | users_articulosUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: users_articulosCreateManyUsersInputEnvelope
-    set?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    disconnect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    delete?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    update?: users_articulosUpdateWithWhereUniqueWithoutUsersInput | users_articulosUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: users_articulosUpdateManyWithWhereWithoutUsersInput | users_articulosUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
+  export type users_pedidosUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput> | users_pedidosCreateWithoutUsersInput[] | users_pedidosUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutUsersInput | users_pedidosCreateOrConnectWithoutUsersInput[]
+    upsert?: users_pedidosUpsertWithWhereUniqueWithoutUsersInput | users_pedidosUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: users_pedidosCreateManyUsersInputEnvelope
+    set?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    disconnect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    delete?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    update?: users_pedidosUpdateWithWhereUniqueWithoutUsersInput | users_pedidosUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: users_pedidosUpdateManyWithWhereWithoutUsersInput | users_pedidosUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -7975,74 +10668,74 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type users_articulosUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput> | users_articulosCreateWithoutUsersInput[] | users_articulosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutUsersInput | users_articulosCreateOrConnectWithoutUsersInput[]
-    upsert?: users_articulosUpsertWithWhereUniqueWithoutUsersInput | users_articulosUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: users_articulosCreateManyUsersInputEnvelope
-    set?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    disconnect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    delete?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    update?: users_articulosUpdateWithWhereUniqueWithoutUsersInput | users_articulosUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: users_articulosUpdateManyWithWhereWithoutUsersInput | users_articulosUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
+  export type users_pedidosUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput> | users_pedidosCreateWithoutUsersInput[] | users_pedidosUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutUsersInput | users_pedidosCreateOrConnectWithoutUsersInput[]
+    upsert?: users_pedidosUpsertWithWhereUniqueWithoutUsersInput | users_pedidosUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: users_pedidosCreateManyUsersInputEnvelope
+    set?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    disconnect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    delete?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    update?: users_pedidosUpdateWithWhereUniqueWithoutUsersInput | users_pedidosUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: users_pedidosUpdateManyWithWhereWithoutUsersInput | users_pedidosUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
   }
 
-  export type usersCreateNestedOneWithoutUsers_articulosInput = {
-    create?: XOR<usersCreateWithoutUsers_articulosInput, usersUncheckedCreateWithoutUsers_articulosInput>
-    connectOrCreate?: usersCreateOrConnectWithoutUsers_articulosInput
+  export type usersCreateNestedOneWithoutUsers_pedidosInput = {
+    create?: XOR<usersCreateWithoutUsers_pedidosInput, usersUncheckedCreateWithoutUsers_pedidosInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUsers_pedidosInput
     connect?: usersWhereUniqueInput
   }
 
-  export type articuloCreateNestedOneWithoutUsers_articulosInput = {
-    create?: XOR<articuloCreateWithoutUsers_articulosInput, articuloUncheckedCreateWithoutUsers_articulosInput>
-    connectOrCreate?: articuloCreateOrConnectWithoutUsers_articulosInput
-    connect?: articuloWhereUniqueInput
+  export type pedidoCreateNestedOneWithoutUser_pedidosInput = {
+    create?: XOR<pedidoCreateWithoutUser_pedidosInput, pedidoUncheckedCreateWithoutUser_pedidosInput>
+    connectOrCreate?: pedidoCreateOrConnectWithoutUser_pedidosInput
+    connect?: pedidoWhereUniqueInput
   }
 
-  export type usersUpdateOneRequiredWithoutUsers_articulosNestedInput = {
-    create?: XOR<usersCreateWithoutUsers_articulosInput, usersUncheckedCreateWithoutUsers_articulosInput>
-    connectOrCreate?: usersCreateOrConnectWithoutUsers_articulosInput
-    upsert?: usersUpsertWithoutUsers_articulosInput
+  export type usersUpdateOneRequiredWithoutUsers_pedidosNestedInput = {
+    create?: XOR<usersCreateWithoutUsers_pedidosInput, usersUncheckedCreateWithoutUsers_pedidosInput>
+    connectOrCreate?: usersCreateOrConnectWithoutUsers_pedidosInput
+    upsert?: usersUpsertWithoutUsers_pedidosInput
     connect?: usersWhereUniqueInput
-    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUsers_articulosInput, usersUpdateWithoutUsers_articulosInput>, usersUncheckedUpdateWithoutUsers_articulosInput>
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutUsers_pedidosInput, usersUpdateWithoutUsers_pedidosInput>, usersUncheckedUpdateWithoutUsers_pedidosInput>
   }
 
-  export type articuloUpdateOneRequiredWithoutUsers_articulosNestedInput = {
-    create?: XOR<articuloCreateWithoutUsers_articulosInput, articuloUncheckedCreateWithoutUsers_articulosInput>
-    connectOrCreate?: articuloCreateOrConnectWithoutUsers_articulosInput
-    upsert?: articuloUpsertWithoutUsers_articulosInput
-    connect?: articuloWhereUniqueInput
-    update?: XOR<XOR<articuloUpdateToOneWithWhereWithoutUsers_articulosInput, articuloUpdateWithoutUsers_articulosInput>, articuloUncheckedUpdateWithoutUsers_articulosInput>
+  export type pedidoUpdateOneRequiredWithoutUser_pedidosNestedInput = {
+    create?: XOR<pedidoCreateWithoutUser_pedidosInput, pedidoUncheckedCreateWithoutUser_pedidosInput>
+    connectOrCreate?: pedidoCreateOrConnectWithoutUser_pedidosInput
+    upsert?: pedidoUpsertWithoutUser_pedidosInput
+    connect?: pedidoWhereUniqueInput
+    update?: XOR<XOR<pedidoUpdateToOneWithWhereWithoutUser_pedidosInput, pedidoUpdateWithoutUser_pedidosInput>, pedidoUncheckedUpdateWithoutUser_pedidosInput>
   }
 
-  export type users_articulosCreateNestedManyWithoutArticuloInput = {
-    create?: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput> | users_articulosCreateWithoutArticuloInput[] | users_articulosUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutArticuloInput | users_articulosCreateOrConnectWithoutArticuloInput[]
-    createMany?: users_articulosCreateManyArticuloInputEnvelope
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
+  export type users_pedidosCreateNestedManyWithoutPedidoInput = {
+    create?: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput> | users_pedidosCreateWithoutPedidoInput[] | users_pedidosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutPedidoInput | users_pedidosCreateOrConnectWithoutPedidoInput[]
+    createMany?: users_pedidosCreateManyPedidoInputEnvelope
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
   }
 
-  export type articulo_piezasCreateNestedManyWithoutArticuloInput = {
-    create?: XOR<articulo_piezasCreateWithoutArticuloInput, articulo_piezasUncheckedCreateWithoutArticuloInput> | articulo_piezasCreateWithoutArticuloInput[] | articulo_piezasUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: articulo_piezasCreateOrConnectWithoutArticuloInput | articulo_piezasCreateOrConnectWithoutArticuloInput[]
-    createMany?: articulo_piezasCreateManyArticuloInputEnvelope
-    connect?: articulo_piezasWhereUniqueInput | articulo_piezasWhereUniqueInput[]
+  export type pedido_articulosCreateNestedManyWithoutPedidoInput = {
+    create?: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput> | pedido_articulosCreateWithoutPedidoInput[] | pedido_articulosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutPedidoInput | pedido_articulosCreateOrConnectWithoutPedidoInput[]
+    createMany?: pedido_articulosCreateManyPedidoInputEnvelope
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
   }
 
-  export type users_articulosUncheckedCreateNestedManyWithoutArticuloInput = {
-    create?: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput> | users_articulosCreateWithoutArticuloInput[] | users_articulosUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutArticuloInput | users_articulosCreateOrConnectWithoutArticuloInput[]
-    createMany?: users_articulosCreateManyArticuloInputEnvelope
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
+  export type users_pedidosUncheckedCreateNestedManyWithoutPedidoInput = {
+    create?: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput> | users_pedidosCreateWithoutPedidoInput[] | users_pedidosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutPedidoInput | users_pedidosCreateOrConnectWithoutPedidoInput[]
+    createMany?: users_pedidosCreateManyPedidoInputEnvelope
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
   }
 
-  export type articulo_piezasUncheckedCreateNestedManyWithoutArticuloInput = {
-    create?: XOR<articulo_piezasCreateWithoutArticuloInput, articulo_piezasUncheckedCreateWithoutArticuloInput> | articulo_piezasCreateWithoutArticuloInput[] | articulo_piezasUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: articulo_piezasCreateOrConnectWithoutArticuloInput | articulo_piezasCreateOrConnectWithoutArticuloInput[]
-    createMany?: articulo_piezasCreateManyArticuloInputEnvelope
-    connect?: articulo_piezasWhereUniqueInput | articulo_piezasWhereUniqueInput[]
+  export type pedido_articulosUncheckedCreateNestedManyWithoutPedidoInput = {
+    create?: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput> | pedido_articulosCreateWithoutPedidoInput[] | pedido_articulosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutPedidoInput | pedido_articulosCreateOrConnectWithoutPedidoInput[]
+    createMany?: pedido_articulosCreateManyPedidoInputEnvelope
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -8053,18 +10746,130 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type users_articulosUpdateManyWithoutArticuloNestedInput = {
-    create?: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput> | users_articulosCreateWithoutArticuloInput[] | users_articulosUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutArticuloInput | users_articulosCreateOrConnectWithoutArticuloInput[]
-    upsert?: users_articulosUpsertWithWhereUniqueWithoutArticuloInput | users_articulosUpsertWithWhereUniqueWithoutArticuloInput[]
-    createMany?: users_articulosCreateManyArticuloInputEnvelope
-    set?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    disconnect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    delete?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    update?: users_articulosUpdateWithWhereUniqueWithoutArticuloInput | users_articulosUpdateWithWhereUniqueWithoutArticuloInput[]
-    updateMany?: users_articulosUpdateManyWithWhereWithoutArticuloInput | users_articulosUpdateManyWithWhereWithoutArticuloInput[]
-    deleteMany?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
+  export type users_pedidosUpdateManyWithoutPedidoNestedInput = {
+    create?: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput> | users_pedidosCreateWithoutPedidoInput[] | users_pedidosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutPedidoInput | users_pedidosCreateOrConnectWithoutPedidoInput[]
+    upsert?: users_pedidosUpsertWithWhereUniqueWithoutPedidoInput | users_pedidosUpsertWithWhereUniqueWithoutPedidoInput[]
+    createMany?: users_pedidosCreateManyPedidoInputEnvelope
+    set?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    disconnect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    delete?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    update?: users_pedidosUpdateWithWhereUniqueWithoutPedidoInput | users_pedidosUpdateWithWhereUniqueWithoutPedidoInput[]
+    updateMany?: users_pedidosUpdateManyWithWhereWithoutPedidoInput | users_pedidosUpdateManyWithWhereWithoutPedidoInput[]
+    deleteMany?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
+  }
+
+  export type pedido_articulosUpdateManyWithoutPedidoNestedInput = {
+    create?: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput> | pedido_articulosCreateWithoutPedidoInput[] | pedido_articulosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutPedidoInput | pedido_articulosCreateOrConnectWithoutPedidoInput[]
+    upsert?: pedido_articulosUpsertWithWhereUniqueWithoutPedidoInput | pedido_articulosUpsertWithWhereUniqueWithoutPedidoInput[]
+    createMany?: pedido_articulosCreateManyPedidoInputEnvelope
+    set?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    disconnect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    delete?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    update?: pedido_articulosUpdateWithWhereUniqueWithoutPedidoInput | pedido_articulosUpdateWithWhereUniqueWithoutPedidoInput[]
+    updateMany?: pedido_articulosUpdateManyWithWhereWithoutPedidoInput | pedido_articulosUpdateManyWithWhereWithoutPedidoInput[]
+    deleteMany?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
+  }
+
+  export type users_pedidosUncheckedUpdateManyWithoutPedidoNestedInput = {
+    create?: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput> | users_pedidosCreateWithoutPedidoInput[] | users_pedidosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: users_pedidosCreateOrConnectWithoutPedidoInput | users_pedidosCreateOrConnectWithoutPedidoInput[]
+    upsert?: users_pedidosUpsertWithWhereUniqueWithoutPedidoInput | users_pedidosUpsertWithWhereUniqueWithoutPedidoInput[]
+    createMany?: users_pedidosCreateManyPedidoInputEnvelope
+    set?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    disconnect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    delete?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    connect?: users_pedidosWhereUniqueInput | users_pedidosWhereUniqueInput[]
+    update?: users_pedidosUpdateWithWhereUniqueWithoutPedidoInput | users_pedidosUpdateWithWhereUniqueWithoutPedidoInput[]
+    updateMany?: users_pedidosUpdateManyWithWhereWithoutPedidoInput | users_pedidosUpdateManyWithWhereWithoutPedidoInput[]
+    deleteMany?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
+  }
+
+  export type pedido_articulosUncheckedUpdateManyWithoutPedidoNestedInput = {
+    create?: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput> | pedido_articulosCreateWithoutPedidoInput[] | pedido_articulosUncheckedCreateWithoutPedidoInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutPedidoInput | pedido_articulosCreateOrConnectWithoutPedidoInput[]
+    upsert?: pedido_articulosUpsertWithWhereUniqueWithoutPedidoInput | pedido_articulosUpsertWithWhereUniqueWithoutPedidoInput[]
+    createMany?: pedido_articulosCreateManyPedidoInputEnvelope
+    set?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    disconnect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    delete?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    update?: pedido_articulosUpdateWithWhereUniqueWithoutPedidoInput | pedido_articulosUpdateWithWhereUniqueWithoutPedidoInput[]
+    updateMany?: pedido_articulosUpdateManyWithWhereWithoutPedidoInput | pedido_articulosUpdateManyWithWhereWithoutPedidoInput[]
+    deleteMany?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
+  }
+
+  export type pedidoCreateNestedOneWithoutPedido_articulosInput = {
+    create?: XOR<pedidoCreateWithoutPedido_articulosInput, pedidoUncheckedCreateWithoutPedido_articulosInput>
+    connectOrCreate?: pedidoCreateOrConnectWithoutPedido_articulosInput
+    connect?: pedidoWhereUniqueInput
+  }
+
+  export type articuloCreateNestedOneWithoutPedido_articulosInput = {
+    create?: XOR<articuloCreateWithoutPedido_articulosInput, articuloUncheckedCreateWithoutPedido_articulosInput>
+    connectOrCreate?: articuloCreateOrConnectWithoutPedido_articulosInput
+    connect?: articuloWhereUniqueInput
+  }
+
+  export type pedidoUpdateOneRequiredWithoutPedido_articulosNestedInput = {
+    create?: XOR<pedidoCreateWithoutPedido_articulosInput, pedidoUncheckedCreateWithoutPedido_articulosInput>
+    connectOrCreate?: pedidoCreateOrConnectWithoutPedido_articulosInput
+    upsert?: pedidoUpsertWithoutPedido_articulosInput
+    connect?: pedidoWhereUniqueInput
+    update?: XOR<XOR<pedidoUpdateToOneWithWhereWithoutPedido_articulosInput, pedidoUpdateWithoutPedido_articulosInput>, pedidoUncheckedUpdateWithoutPedido_articulosInput>
+  }
+
+  export type articuloUpdateOneRequiredWithoutPedido_articulosNestedInput = {
+    create?: XOR<articuloCreateWithoutPedido_articulosInput, articuloUncheckedCreateWithoutPedido_articulosInput>
+    connectOrCreate?: articuloCreateOrConnectWithoutPedido_articulosInput
+    upsert?: articuloUpsertWithoutPedido_articulosInput
+    connect?: articuloWhereUniqueInput
+    update?: XOR<XOR<articuloUpdateToOneWithWhereWithoutPedido_articulosInput, articuloUpdateWithoutPedido_articulosInput>, articuloUncheckedUpdateWithoutPedido_articulosInput>
+  }
+
+  export type pedido_articulosCreateNestedManyWithoutArticuloInput = {
+    create?: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput> | pedido_articulosCreateWithoutArticuloInput[] | pedido_articulosUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutArticuloInput | pedido_articulosCreateOrConnectWithoutArticuloInput[]
+    createMany?: pedido_articulosCreateManyArticuloInputEnvelope
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+  }
+
+  export type articulo_piezasCreateNestedManyWithoutArticuloInput = {
+    create?: XOR<articulo_piezasCreateWithoutArticuloInput, articulo_piezasUncheckedCreateWithoutArticuloInput> | articulo_piezasCreateWithoutArticuloInput[] | articulo_piezasUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: articulo_piezasCreateOrConnectWithoutArticuloInput | articulo_piezasCreateOrConnectWithoutArticuloInput[]
+    createMany?: articulo_piezasCreateManyArticuloInputEnvelope
+    connect?: articulo_piezasWhereUniqueInput | articulo_piezasWhereUniqueInput[]
+  }
+
+  export type pedido_articulosUncheckedCreateNestedManyWithoutArticuloInput = {
+    create?: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput> | pedido_articulosCreateWithoutArticuloInput[] | pedido_articulosUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutArticuloInput | pedido_articulosCreateOrConnectWithoutArticuloInput[]
+    createMany?: pedido_articulosCreateManyArticuloInputEnvelope
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+  }
+
+  export type articulo_piezasUncheckedCreateNestedManyWithoutArticuloInput = {
+    create?: XOR<articulo_piezasCreateWithoutArticuloInput, articulo_piezasUncheckedCreateWithoutArticuloInput> | articulo_piezasCreateWithoutArticuloInput[] | articulo_piezasUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: articulo_piezasCreateOrConnectWithoutArticuloInput | articulo_piezasCreateOrConnectWithoutArticuloInput[]
+    createMany?: articulo_piezasCreateManyArticuloInputEnvelope
+    connect?: articulo_piezasWhereUniqueInput | articulo_piezasWhereUniqueInput[]
+  }
+
+  export type pedido_articulosUpdateManyWithoutArticuloNestedInput = {
+    create?: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput> | pedido_articulosCreateWithoutArticuloInput[] | pedido_articulosUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutArticuloInput | pedido_articulosCreateOrConnectWithoutArticuloInput[]
+    upsert?: pedido_articulosUpsertWithWhereUniqueWithoutArticuloInput | pedido_articulosUpsertWithWhereUniqueWithoutArticuloInput[]
+    createMany?: pedido_articulosCreateManyArticuloInputEnvelope
+    set?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    disconnect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    delete?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    update?: pedido_articulosUpdateWithWhereUniqueWithoutArticuloInput | pedido_articulosUpdateWithWhereUniqueWithoutArticuloInput[]
+    updateMany?: pedido_articulosUpdateManyWithWhereWithoutArticuloInput | pedido_articulosUpdateManyWithWhereWithoutArticuloInput[]
+    deleteMany?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
   }
 
   export type articulo_piezasUpdateManyWithoutArticuloNestedInput = {
@@ -8081,18 +10886,18 @@ export namespace Prisma {
     deleteMany?: articulo_piezasScalarWhereInput | articulo_piezasScalarWhereInput[]
   }
 
-  export type users_articulosUncheckedUpdateManyWithoutArticuloNestedInput = {
-    create?: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput> | users_articulosCreateWithoutArticuloInput[] | users_articulosUncheckedCreateWithoutArticuloInput[]
-    connectOrCreate?: users_articulosCreateOrConnectWithoutArticuloInput | users_articulosCreateOrConnectWithoutArticuloInput[]
-    upsert?: users_articulosUpsertWithWhereUniqueWithoutArticuloInput | users_articulosUpsertWithWhereUniqueWithoutArticuloInput[]
-    createMany?: users_articulosCreateManyArticuloInputEnvelope
-    set?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    disconnect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    delete?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    connect?: users_articulosWhereUniqueInput | users_articulosWhereUniqueInput[]
-    update?: users_articulosUpdateWithWhereUniqueWithoutArticuloInput | users_articulosUpdateWithWhereUniqueWithoutArticuloInput[]
-    updateMany?: users_articulosUpdateManyWithWhereWithoutArticuloInput | users_articulosUpdateManyWithWhereWithoutArticuloInput[]
-    deleteMany?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
+  export type pedido_articulosUncheckedUpdateManyWithoutArticuloNestedInput = {
+    create?: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput> | pedido_articulosCreateWithoutArticuloInput[] | pedido_articulosUncheckedCreateWithoutArticuloInput[]
+    connectOrCreate?: pedido_articulosCreateOrConnectWithoutArticuloInput | pedido_articulosCreateOrConnectWithoutArticuloInput[]
+    upsert?: pedido_articulosUpsertWithWhereUniqueWithoutArticuloInput | pedido_articulosUpsertWithWhereUniqueWithoutArticuloInput[]
+    createMany?: pedido_articulosCreateManyArticuloInputEnvelope
+    set?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    disconnect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    delete?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    connect?: pedido_articulosWhereUniqueInput | pedido_articulosWhereUniqueInput[]
+    update?: pedido_articulosUpdateWithWhereUniqueWithoutArticuloInput | pedido_articulosUpdateWithWhereUniqueWithoutArticuloInput[]
+    updateMany?: pedido_articulosUpdateManyWithWhereWithoutArticuloInput | pedido_articulosUpdateManyWithWhereWithoutArticuloInput[]
+    deleteMany?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
   }
 
   export type articulo_piezasUncheckedUpdateManyWithoutArticuloNestedInput = {
@@ -8317,56 +11122,56 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type users_articulosCreateWithoutUsersInput = {
-    articulo: articuloCreateNestedOneWithoutUsers_articulosInput
+  export type users_pedidosCreateWithoutUsersInput = {
+    pedido: pedidoCreateNestedOneWithoutUser_pedidosInput
   }
 
-  export type users_articulosUncheckedCreateWithoutUsersInput = {
-    articulo_id: number
+  export type users_pedidosUncheckedCreateWithoutUsersInput = {
+    pedido_id: number
   }
 
-  export type users_articulosCreateOrConnectWithoutUsersInput = {
-    where: users_articulosWhereUniqueInput
-    create: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput>
+  export type users_pedidosCreateOrConnectWithoutUsersInput = {
+    where: users_pedidosWhereUniqueInput
+    create: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput>
   }
 
-  export type users_articulosCreateManyUsersInputEnvelope = {
-    data: users_articulosCreateManyUsersInput | users_articulosCreateManyUsersInput[]
+  export type users_pedidosCreateManyUsersInputEnvelope = {
+    data: users_pedidosCreateManyUsersInput | users_pedidosCreateManyUsersInput[]
     skipDuplicates?: boolean
   }
 
-  export type users_articulosUpsertWithWhereUniqueWithoutUsersInput = {
-    where: users_articulosWhereUniqueInput
-    update: XOR<users_articulosUpdateWithoutUsersInput, users_articulosUncheckedUpdateWithoutUsersInput>
-    create: XOR<users_articulosCreateWithoutUsersInput, users_articulosUncheckedCreateWithoutUsersInput>
+  export type users_pedidosUpsertWithWhereUniqueWithoutUsersInput = {
+    where: users_pedidosWhereUniqueInput
+    update: XOR<users_pedidosUpdateWithoutUsersInput, users_pedidosUncheckedUpdateWithoutUsersInput>
+    create: XOR<users_pedidosCreateWithoutUsersInput, users_pedidosUncheckedCreateWithoutUsersInput>
   }
 
-  export type users_articulosUpdateWithWhereUniqueWithoutUsersInput = {
-    where: users_articulosWhereUniqueInput
-    data: XOR<users_articulosUpdateWithoutUsersInput, users_articulosUncheckedUpdateWithoutUsersInput>
+  export type users_pedidosUpdateWithWhereUniqueWithoutUsersInput = {
+    where: users_pedidosWhereUniqueInput
+    data: XOR<users_pedidosUpdateWithoutUsersInput, users_pedidosUncheckedUpdateWithoutUsersInput>
   }
 
-  export type users_articulosUpdateManyWithWhereWithoutUsersInput = {
-    where: users_articulosScalarWhereInput
-    data: XOR<users_articulosUpdateManyMutationInput, users_articulosUncheckedUpdateManyWithoutUsersInput>
+  export type users_pedidosUpdateManyWithWhereWithoutUsersInput = {
+    where: users_pedidosScalarWhereInput
+    data: XOR<users_pedidosUpdateManyMutationInput, users_pedidosUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type users_articulosScalarWhereInput = {
-    AND?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
-    OR?: users_articulosScalarWhereInput[]
-    NOT?: users_articulosScalarWhereInput | users_articulosScalarWhereInput[]
-    user_id?: IntFilter<"users_articulos"> | number
-    articulo_id?: IntFilter<"users_articulos"> | number
+  export type users_pedidosScalarWhereInput = {
+    AND?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
+    OR?: users_pedidosScalarWhereInput[]
+    NOT?: users_pedidosScalarWhereInput | users_pedidosScalarWhereInput[]
+    user_id?: IntFilter<"users_pedidos"> | number
+    pedido_id?: IntFilter<"users_pedidos"> | number
   }
 
-  export type usersCreateWithoutUsers_articulosInput = {
+  export type usersCreateWithoutUsers_pedidosInput = {
     email: string
     password: string
     nombre?: string | null
     apellido?: string | null
   }
 
-  export type usersUncheckedCreateWithoutUsers_articulosInput = {
+  export type usersUncheckedCreateWithoutUsers_pedidosInput = {
     id?: number
     email: string
     password: string
@@ -8374,12 +11179,180 @@ export namespace Prisma {
     apellido?: string | null
   }
 
-  export type usersCreateOrConnectWithoutUsers_articulosInput = {
+  export type usersCreateOrConnectWithoutUsers_pedidosInput = {
     where: usersWhereUniqueInput
-    create: XOR<usersCreateWithoutUsers_articulosInput, usersUncheckedCreateWithoutUsers_articulosInput>
+    create: XOR<usersCreateWithoutUsers_pedidosInput, usersUncheckedCreateWithoutUsers_pedidosInput>
   }
 
-  export type articuloCreateWithoutUsers_articulosInput = {
+  export type pedidoCreateWithoutUser_pedidosInput = {
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    pedido_articulos?: pedido_articulosCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoUncheckedCreateWithoutUser_pedidosInput = {
+    id?: number
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    pedido_articulos?: pedido_articulosUncheckedCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoCreateOrConnectWithoutUser_pedidosInput = {
+    where: pedidoWhereUniqueInput
+    create: XOR<pedidoCreateWithoutUser_pedidosInput, pedidoUncheckedCreateWithoutUser_pedidosInput>
+  }
+
+  export type usersUpsertWithoutUsers_pedidosInput = {
+    update: XOR<usersUpdateWithoutUsers_pedidosInput, usersUncheckedUpdateWithoutUsers_pedidosInput>
+    create: XOR<usersCreateWithoutUsers_pedidosInput, usersUncheckedCreateWithoutUsers_pedidosInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUsers_pedidosInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutUsers_pedidosInput, usersUncheckedUpdateWithoutUsers_pedidosInput>
+  }
+
+  export type usersUpdateWithoutUsers_pedidosInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellido?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type usersUncheckedUpdateWithoutUsers_pedidosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    nombre?: NullableStringFieldUpdateOperationsInput | string | null
+    apellido?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type pedidoUpsertWithoutUser_pedidosInput = {
+    update: XOR<pedidoUpdateWithoutUser_pedidosInput, pedidoUncheckedUpdateWithoutUser_pedidosInput>
+    create: XOR<pedidoCreateWithoutUser_pedidosInput, pedidoUncheckedCreateWithoutUser_pedidosInput>
+    where?: pedidoWhereInput
+  }
+
+  export type pedidoUpdateToOneWithWhereWithoutUser_pedidosInput = {
+    where?: pedidoWhereInput
+    data: XOR<pedidoUpdateWithoutUser_pedidosInput, pedidoUncheckedUpdateWithoutUser_pedidosInput>
+  }
+
+  export type pedidoUpdateWithoutUser_pedidosInput = {
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    pedido_articulos?: pedido_articulosUpdateManyWithoutPedidoNestedInput
+  }
+
+  export type pedidoUncheckedUpdateWithoutUser_pedidosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    pedido_articulos?: pedido_articulosUncheckedUpdateManyWithoutPedidoNestedInput
+  }
+
+  export type users_pedidosCreateWithoutPedidoInput = {
+    users: usersCreateNestedOneWithoutUsers_pedidosInput
+  }
+
+  export type users_pedidosUncheckedCreateWithoutPedidoInput = {
+    user_id: number
+  }
+
+  export type users_pedidosCreateOrConnectWithoutPedidoInput = {
+    where: users_pedidosWhereUniqueInput
+    create: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput>
+  }
+
+  export type users_pedidosCreateManyPedidoInputEnvelope = {
+    data: users_pedidosCreateManyPedidoInput | users_pedidosCreateManyPedidoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type pedido_articulosCreateWithoutPedidoInput = {
+    articulo: articuloCreateNestedOneWithoutPedido_articulosInput
+  }
+
+  export type pedido_articulosUncheckedCreateWithoutPedidoInput = {
+    articulo_id: number
+  }
+
+  export type pedido_articulosCreateOrConnectWithoutPedidoInput = {
+    where: pedido_articulosWhereUniqueInput
+    create: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput>
+  }
+
+  export type pedido_articulosCreateManyPedidoInputEnvelope = {
+    data: pedido_articulosCreateManyPedidoInput | pedido_articulosCreateManyPedidoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type users_pedidosUpsertWithWhereUniqueWithoutPedidoInput = {
+    where: users_pedidosWhereUniqueInput
+    update: XOR<users_pedidosUpdateWithoutPedidoInput, users_pedidosUncheckedUpdateWithoutPedidoInput>
+    create: XOR<users_pedidosCreateWithoutPedidoInput, users_pedidosUncheckedCreateWithoutPedidoInput>
+  }
+
+  export type users_pedidosUpdateWithWhereUniqueWithoutPedidoInput = {
+    where: users_pedidosWhereUniqueInput
+    data: XOR<users_pedidosUpdateWithoutPedidoInput, users_pedidosUncheckedUpdateWithoutPedidoInput>
+  }
+
+  export type users_pedidosUpdateManyWithWhereWithoutPedidoInput = {
+    where: users_pedidosScalarWhereInput
+    data: XOR<users_pedidosUpdateManyMutationInput, users_pedidosUncheckedUpdateManyWithoutPedidoInput>
+  }
+
+  export type pedido_articulosUpsertWithWhereUniqueWithoutPedidoInput = {
+    where: pedido_articulosWhereUniqueInput
+    update: XOR<pedido_articulosUpdateWithoutPedidoInput, pedido_articulosUncheckedUpdateWithoutPedidoInput>
+    create: XOR<pedido_articulosCreateWithoutPedidoInput, pedido_articulosUncheckedCreateWithoutPedidoInput>
+  }
+
+  export type pedido_articulosUpdateWithWhereUniqueWithoutPedidoInput = {
+    where: pedido_articulosWhereUniqueInput
+    data: XOR<pedido_articulosUpdateWithoutPedidoInput, pedido_articulosUncheckedUpdateWithoutPedidoInput>
+  }
+
+  export type pedido_articulosUpdateManyWithWhereWithoutPedidoInput = {
+    where: pedido_articulosScalarWhereInput
+    data: XOR<pedido_articulosUpdateManyMutationInput, pedido_articulosUncheckedUpdateManyWithoutPedidoInput>
+  }
+
+  export type pedido_articulosScalarWhereInput = {
+    AND?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
+    OR?: pedido_articulosScalarWhereInput[]
+    NOT?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
+    pedido_id?: IntFilter<"pedido_articulos"> | number
+    articulo_id?: IntFilter<"pedido_articulos"> | number
+  }
+
+  export type pedidoCreateWithoutPedido_articulosInput = {
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    user_pedidos?: users_pedidosCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoUncheckedCreateWithoutPedido_articulosInput = {
+    id?: number
+    codigo?: string | null
+    presupuesto?: number | null
+    estado?: string
+    user_pedidos?: users_pedidosUncheckedCreateNestedManyWithoutPedidoInput
+  }
+
+  export type pedidoCreateOrConnectWithoutPedido_articulosInput = {
+    where: pedidoWhereUniqueInput
+    create: XOR<pedidoCreateWithoutPedido_articulosInput, pedidoUncheckedCreateWithoutPedido_articulosInput>
+  }
+
+  export type articuloCreateWithoutPedido_articulosInput = {
     codigo?: number | null
     descripcion?: string | null
     cant_piezas?: number | null
@@ -8389,7 +11362,7 @@ export namespace Prisma {
     articulo_piezas?: articulo_piezasCreateNestedManyWithoutArticuloInput
   }
 
-  export type articuloUncheckedCreateWithoutUsers_articulosInput = {
+  export type articuloUncheckedCreateWithoutPedido_articulosInput = {
     id?: number
     codigo?: number | null
     descripcion?: string | null
@@ -8400,49 +11373,49 @@ export namespace Prisma {
     articulo_piezas?: articulo_piezasUncheckedCreateNestedManyWithoutArticuloInput
   }
 
-  export type articuloCreateOrConnectWithoutUsers_articulosInput = {
+  export type articuloCreateOrConnectWithoutPedido_articulosInput = {
     where: articuloWhereUniqueInput
-    create: XOR<articuloCreateWithoutUsers_articulosInput, articuloUncheckedCreateWithoutUsers_articulosInput>
+    create: XOR<articuloCreateWithoutPedido_articulosInput, articuloUncheckedCreateWithoutPedido_articulosInput>
   }
 
-  export type usersUpsertWithoutUsers_articulosInput = {
-    update: XOR<usersUpdateWithoutUsers_articulosInput, usersUncheckedUpdateWithoutUsers_articulosInput>
-    create: XOR<usersCreateWithoutUsers_articulosInput, usersUncheckedCreateWithoutUsers_articulosInput>
-    where?: usersWhereInput
+  export type pedidoUpsertWithoutPedido_articulosInput = {
+    update: XOR<pedidoUpdateWithoutPedido_articulosInput, pedidoUncheckedUpdateWithoutPedido_articulosInput>
+    create: XOR<pedidoCreateWithoutPedido_articulosInput, pedidoUncheckedCreateWithoutPedido_articulosInput>
+    where?: pedidoWhereInput
   }
 
-  export type usersUpdateToOneWithWhereWithoutUsers_articulosInput = {
-    where?: usersWhereInput
-    data: XOR<usersUpdateWithoutUsers_articulosInput, usersUncheckedUpdateWithoutUsers_articulosInput>
+  export type pedidoUpdateToOneWithWhereWithoutPedido_articulosInput = {
+    where?: pedidoWhereInput
+    data: XOR<pedidoUpdateWithoutPedido_articulosInput, pedidoUncheckedUpdateWithoutPedido_articulosInput>
   }
 
-  export type usersUpdateWithoutUsers_articulosInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellido?: NullableStringFieldUpdateOperationsInput | string | null
+  export type pedidoUpdateWithoutPedido_articulosInput = {
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    user_pedidos?: users_pedidosUpdateManyWithoutPedidoNestedInput
   }
 
-  export type usersUncheckedUpdateWithoutUsers_articulosInput = {
+  export type pedidoUncheckedUpdateWithoutPedido_articulosInput = {
     id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    nombre?: NullableStringFieldUpdateOperationsInput | string | null
-    apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
+    presupuesto?: NullableIntFieldUpdateOperationsInput | number | null
+    estado?: StringFieldUpdateOperationsInput | string
+    user_pedidos?: users_pedidosUncheckedUpdateManyWithoutPedidoNestedInput
   }
 
-  export type articuloUpsertWithoutUsers_articulosInput = {
-    update: XOR<articuloUpdateWithoutUsers_articulosInput, articuloUncheckedUpdateWithoutUsers_articulosInput>
-    create: XOR<articuloCreateWithoutUsers_articulosInput, articuloUncheckedCreateWithoutUsers_articulosInput>
+  export type articuloUpsertWithoutPedido_articulosInput = {
+    update: XOR<articuloUpdateWithoutPedido_articulosInput, articuloUncheckedUpdateWithoutPedido_articulosInput>
+    create: XOR<articuloCreateWithoutPedido_articulosInput, articuloUncheckedCreateWithoutPedido_articulosInput>
     where?: articuloWhereInput
   }
 
-  export type articuloUpdateToOneWithWhereWithoutUsers_articulosInput = {
+  export type articuloUpdateToOneWithWhereWithoutPedido_articulosInput = {
     where?: articuloWhereInput
-    data: XOR<articuloUpdateWithoutUsers_articulosInput, articuloUncheckedUpdateWithoutUsers_articulosInput>
+    data: XOR<articuloUpdateWithoutPedido_articulosInput, articuloUncheckedUpdateWithoutPedido_articulosInput>
   }
 
-  export type articuloUpdateWithoutUsers_articulosInput = {
+  export type articuloUpdateWithoutPedido_articulosInput = {
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8452,7 +11425,7 @@ export namespace Prisma {
     articulo_piezas?: articulo_piezasUpdateManyWithoutArticuloNestedInput
   }
 
-  export type articuloUncheckedUpdateWithoutUsers_articulosInput = {
+  export type articuloUncheckedUpdateWithoutPedido_articulosInput = {
     id?: IntFieldUpdateOperationsInput | number
     codigo?: NullableIntFieldUpdateOperationsInput | number | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8463,21 +11436,21 @@ export namespace Prisma {
     articulo_piezas?: articulo_piezasUncheckedUpdateManyWithoutArticuloNestedInput
   }
 
-  export type users_articulosCreateWithoutArticuloInput = {
-    users: usersCreateNestedOneWithoutUsers_articulosInput
+  export type pedido_articulosCreateWithoutArticuloInput = {
+    pedido: pedidoCreateNestedOneWithoutPedido_articulosInput
   }
 
-  export type users_articulosUncheckedCreateWithoutArticuloInput = {
-    user_id: number
+  export type pedido_articulosUncheckedCreateWithoutArticuloInput = {
+    pedido_id: number
   }
 
-  export type users_articulosCreateOrConnectWithoutArticuloInput = {
-    where: users_articulosWhereUniqueInput
-    create: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput>
+  export type pedido_articulosCreateOrConnectWithoutArticuloInput = {
+    where: pedido_articulosWhereUniqueInput
+    create: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput>
   }
 
-  export type users_articulosCreateManyArticuloInputEnvelope = {
-    data: users_articulosCreateManyArticuloInput | users_articulosCreateManyArticuloInput[]
+  export type pedido_articulosCreateManyArticuloInputEnvelope = {
+    data: pedido_articulosCreateManyArticuloInput | pedido_articulosCreateManyArticuloInput[]
     skipDuplicates?: boolean
   }
 
@@ -8499,20 +11472,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type users_articulosUpsertWithWhereUniqueWithoutArticuloInput = {
-    where: users_articulosWhereUniqueInput
-    update: XOR<users_articulosUpdateWithoutArticuloInput, users_articulosUncheckedUpdateWithoutArticuloInput>
-    create: XOR<users_articulosCreateWithoutArticuloInput, users_articulosUncheckedCreateWithoutArticuloInput>
+  export type pedido_articulosUpsertWithWhereUniqueWithoutArticuloInput = {
+    where: pedido_articulosWhereUniqueInput
+    update: XOR<pedido_articulosUpdateWithoutArticuloInput, pedido_articulosUncheckedUpdateWithoutArticuloInput>
+    create: XOR<pedido_articulosCreateWithoutArticuloInput, pedido_articulosUncheckedCreateWithoutArticuloInput>
   }
 
-  export type users_articulosUpdateWithWhereUniqueWithoutArticuloInput = {
-    where: users_articulosWhereUniqueInput
-    data: XOR<users_articulosUpdateWithoutArticuloInput, users_articulosUncheckedUpdateWithoutArticuloInput>
+  export type pedido_articulosUpdateWithWhereUniqueWithoutArticuloInput = {
+    where: pedido_articulosWhereUniqueInput
+    data: XOR<pedido_articulosUpdateWithoutArticuloInput, pedido_articulosUncheckedUpdateWithoutArticuloInput>
   }
 
-  export type users_articulosUpdateManyWithWhereWithoutArticuloInput = {
-    where: users_articulosScalarWhereInput
-    data: XOR<users_articulosUpdateManyMutationInput, users_articulosUncheckedUpdateManyWithoutArticuloInput>
+  export type pedido_articulosUpdateManyWithWhereWithoutArticuloInput = {
+    where: pedido_articulosScalarWhereInput
+    data: XOR<pedido_articulosUpdateManyMutationInput, pedido_articulosUncheckedUpdateManyWithoutArticuloInput>
   }
 
   export type articulo_piezasUpsertWithWhereUniqueWithoutArticuloInput = {
@@ -8546,7 +11519,7 @@ export namespace Prisma {
     plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
-    users_articulos?: users_articulosCreateNestedManyWithoutArticuloInput
+    pedido_articulos?: pedido_articulosCreateNestedManyWithoutArticuloInput
   }
 
   export type articuloUncheckedCreateWithoutArticulo_piezasInput = {
@@ -8557,7 +11530,7 @@ export namespace Prisma {
     plano_file?: string | null
     precio?: number | null
     cte_ganancia?: number | null
-    users_articulos?: users_articulosUncheckedCreateNestedManyWithoutArticuloInput
+    pedido_articulos?: pedido_articulosUncheckedCreateNestedManyWithoutArticuloInput
   }
 
   export type articuloCreateOrConnectWithoutArticulo_piezasInput = {
@@ -8607,7 +11580,7 @@ export namespace Prisma {
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
-    users_articulos?: users_articulosUpdateManyWithoutArticuloNestedInput
+    pedido_articulos?: pedido_articulosUpdateManyWithoutArticuloNestedInput
   }
 
   export type articuloUncheckedUpdateWithoutArticulo_piezasInput = {
@@ -8618,7 +11591,7 @@ export namespace Prisma {
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
     precio?: NullableIntFieldUpdateOperationsInput | number | null
     cte_ganancia?: NullableIntFieldUpdateOperationsInput | number | null
-    users_articulos?: users_articulosUncheckedUpdateManyWithoutArticuloNestedInput
+    pedido_articulos?: pedido_articulosUncheckedUpdateManyWithoutArticuloNestedInput
   }
 
   export type piezaUpsertWithoutArticulo_piezasInput = {
@@ -8685,40 +11658,72 @@ export namespace Prisma {
     data: XOR<articulo_piezasUpdateManyMutationInput, articulo_piezasUncheckedUpdateManyWithoutPiezaInput>
   }
 
-  export type users_articulosCreateManyUsersInput = {
+  export type users_pedidosCreateManyUsersInput = {
+    pedido_id: number
+  }
+
+  export type users_pedidosUpdateWithoutUsersInput = {
+    pedido?: pedidoUpdateOneRequiredWithoutUser_pedidosNestedInput
+  }
+
+  export type users_pedidosUncheckedUpdateWithoutUsersInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type users_pedidosUncheckedUpdateManyWithoutUsersInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type users_pedidosCreateManyPedidoInput = {
+    user_id: number
+  }
+
+  export type pedido_articulosCreateManyPedidoInput = {
     articulo_id: number
   }
 
-  export type users_articulosUpdateWithoutUsersInput = {
-    articulo?: articuloUpdateOneRequiredWithoutUsers_articulosNestedInput
+  export type users_pedidosUpdateWithoutPedidoInput = {
+    users?: usersUpdateOneRequiredWithoutUsers_pedidosNestedInput
   }
 
-  export type users_articulosUncheckedUpdateWithoutUsersInput = {
+  export type users_pedidosUncheckedUpdateWithoutPedidoInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type users_pedidosUncheckedUpdateManyWithoutPedidoInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type pedido_articulosUpdateWithoutPedidoInput = {
+    articulo?: articuloUpdateOneRequiredWithoutPedido_articulosNestedInput
+  }
+
+  export type pedido_articulosUncheckedUpdateWithoutPedidoInput = {
     articulo_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type users_articulosUncheckedUpdateManyWithoutUsersInput = {
+  export type pedido_articulosUncheckedUpdateManyWithoutPedidoInput = {
     articulo_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type users_articulosCreateManyArticuloInput = {
-    user_id: number
+  export type pedido_articulosCreateManyArticuloInput = {
+    pedido_id: number
   }
 
   export type articulo_piezasCreateManyArticuloInput = {
     pieza_id: number
   }
 
-  export type users_articulosUpdateWithoutArticuloInput = {
-    users?: usersUpdateOneRequiredWithoutUsers_articulosNestedInput
+  export type pedido_articulosUpdateWithoutArticuloInput = {
+    pedido?: pedidoUpdateOneRequiredWithoutPedido_articulosNestedInput
   }
 
-  export type users_articulosUncheckedUpdateWithoutArticuloInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type pedido_articulosUncheckedUpdateWithoutArticuloInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type users_articulosUncheckedUpdateManyWithoutArticuloInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
+  export type pedido_articulosUncheckedUpdateManyWithoutArticuloInput = {
+    pedido_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type articulo_piezasUpdateWithoutArticuloInput = {
