@@ -6,7 +6,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--color-primary)] text-white px-4 py-3 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[var(--color-primary)] text-white px-4 py-3 h-15 flex items-center justify-between">
       <Link to="/" className="font-bold text-4xl">HIMetal</Link>
       <button
         className="md:hidden text-2xl"

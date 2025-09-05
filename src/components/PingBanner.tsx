@@ -17,7 +17,7 @@ const PingBanner = () => {
 
   useEffect(() => {
     checkPing(setStatus)
-    const interval = setInterval(checkPing, 5000)
+    const interval = setInterval(() => checkPing(setStatus), 5000)
     return () => clearInterval(interval)
   }, [])
 
