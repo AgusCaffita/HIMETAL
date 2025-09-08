@@ -93,9 +93,13 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
           include: {
             articulo: {
               include: {
-                users_articulos: {
-                  where: {
-                    user_id: user_id
+                pedido_articulos: {
+                  include: {
+                    pedido: {
+                      include: {
+                        user_pedidos: true
+                      }
+                    }
                   }
                 }
               }
@@ -104,13 +108,17 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
         }
       }
     })
-    
-    // Filtrar piezas que pertenecen a artículos del usuario o piezas sin relación
-    const piezasFiltradas = piezas.filter(pieza => 
-      pieza.articulo_piezas.length === 0 || 
-      pieza.articulo_piezas.some(ap => ap.articulo.users_articulos.length > 0)
+
+    // Filtrar piezas que pertenecen a artículos de pedidos del usuario o piezas sin relación
+    const piezasFiltradas = piezas.filter(pieza =>
+      pieza.articulo_piezas.length === 0 ||
+      pieza.articulo_piezas.some(ap =>
+        ap.articulo.pedido_articulos.some(pa =>
+          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
+        )
+      )
     )
-    
+
     res.json(piezasFiltradas)
   } catch (error) {
     console.error(error)
@@ -135,28 +143,38 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
           include: {
             articulo: {
               include: {
-                users_articulos: true
+                pedido_articulos: {
+                  include: {
+                    pedido: {
+                      include: {
+                        user_pedidos: true
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     })
-    
+
     if (!pieza) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
     }
-    
-    // Verificar si el usuario tiene acceso a esta pieza (a través de artículos o si es una pieza libre)
-    const tieneAcceso = pieza.articulo_piezas.length === 0 || 
-      pieza.articulo_piezas.some(ap => 
-        ap.articulo.users_articulos.some(ua => ua.user_id === user_id)
+
+    // Verificar si el usuario tiene acceso a esta pieza (a través de artículos de pedidos del usuario o si es una pieza libre)
+    const tieneAcceso = pieza.articulo_piezas.length === 0 ||
+      pieza.articulo_piezas.some(ap =>
+        ap.articulo.pedido_articulos.some(pa =>
+          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
+        )
       )
-    
+
     if (!tieneAcceso) {
       return res.status(403).json({ error: 'No tienes acceso a esta pieza' })
     }
-    
+
     res.json(pieza)
   } catch (error) {
     console.error(error)
@@ -187,24 +205,34 @@ router.put('/:id', authenticateToken, upload.fields([
           include: {
             articulo: {
               include: {
-                users_articulos: true
+                pedido_articulos: {
+                  include: {
+                    pedido: {
+                      include: {
+                        user_pedidos: true
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     })
-    
+
     if (!piezaExistente) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
     }
-    
+
     // Verificar acceso
-    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 || 
-      piezaExistente.articulo_piezas.some(ap => 
-        ap.articulo.users_articulos.some(ua => ua.user_id === user_id)
+    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 ||
+      piezaExistente.articulo_piezas.some(ap =>
+        ap.articulo.pedido_articulos.some(pa =>
+          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
+        )
       )
-    
+
     if (!tieneAcceso) {
       return res.status(403).json({ error: 'No tienes acceso para modificar esta pieza' })
     }
@@ -304,24 +332,34 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
           include: {
             articulo: {
               include: {
-                users_articulos: true
+                pedido_articulos: {
+                  include: {
+                    pedido: {
+                      include: {
+                        user_pedidos: true
+                      }
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     })
-    
+
     if (!piezaExistente) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
     }
-    
+
     // Verificar acceso
-    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 || 
-      piezaExistente.articulo_piezas.some(ap => 
-        ap.articulo.users_articulos.some(ua => ua.user_id === user_id)
+    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 ||
+      piezaExistente.articulo_piezas.some(ap =>
+        ap.articulo.pedido_articulos.some(pa =>
+          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
+        )
       )
-    
+
     if (!tieneAcceso) {
       return res.status(403).json({ error: 'No tienes acceso para eliminar esta pieza' })
     }
