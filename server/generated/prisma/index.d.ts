@@ -1595,6 +1595,7 @@ export namespace Prisma {
     password: string | null
     nombre: string | null
     apellido: string | null
+    rol: string | null
   }
 
   export type UsersMaxAggregateOutputType = {
@@ -1603,6 +1604,7 @@ export namespace Prisma {
     password: string | null
     nombre: string | null
     apellido: string | null
+    rol: string | null
   }
 
   export type UsersCountAggregateOutputType = {
@@ -1611,6 +1613,7 @@ export namespace Prisma {
     password: number
     nombre: number
     apellido: number
+    rol: number
     _all: number
   }
 
@@ -1629,6 +1632,7 @@ export namespace Prisma {
     password?: true
     nombre?: true
     apellido?: true
+    rol?: true
   }
 
   export type UsersMaxAggregateInputType = {
@@ -1637,6 +1641,7 @@ export namespace Prisma {
     password?: true
     nombre?: true
     apellido?: true
+    rol?: true
   }
 
   export type UsersCountAggregateInputType = {
@@ -1645,6 +1650,7 @@ export namespace Prisma {
     password?: true
     nombre?: true
     apellido?: true
+    rol?: true
     _all?: true
   }
 
@@ -1740,6 +1746,7 @@ export namespace Prisma {
     password: string
     nombre: string | null
     apellido: string | null
+    rol: string
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
     _sum: UsersSumAggregateOutputType | null
@@ -1767,6 +1774,7 @@ export namespace Prisma {
     password?: boolean
     nombre?: boolean
     apellido?: boolean
+    rol?: boolean
     users_pedidos?: boolean | users$users_pedidosArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
@@ -1777,6 +1785,7 @@ export namespace Prisma {
     password?: boolean
     nombre?: boolean
     apellido?: boolean
+    rol?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1785,6 +1794,7 @@ export namespace Prisma {
     password?: boolean
     nombre?: boolean
     apellido?: boolean
+    rol?: boolean
   }, ExtArgs["result"]["users"]>
 
   export type usersSelectScalar = {
@@ -1793,9 +1803,10 @@ export namespace Prisma {
     password?: boolean
     nombre?: boolean
     apellido?: boolean
+    rol?: boolean
   }
 
-  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "nombre" | "apellido", ExtArgs["result"]["users"]>
+  export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "nombre" | "apellido" | "rol", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users_pedidos?: boolean | users$users_pedidosArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -1814,6 +1825,7 @@ export namespace Prisma {
       password: string
       nombre: string | null
       apellido: string | null
+      rol: string
     }, ExtArgs["result"]["users"]>
     composites: {}
   }
@@ -2243,6 +2255,7 @@ export namespace Prisma {
     readonly password: FieldRef<"users", 'String'>
     readonly nombre: FieldRef<"users", 'String'>
     readonly apellido: FieldRef<"users", 'String'>
+    readonly rol: FieldRef<"users", 'String'>
   }
     
 
@@ -9322,7 +9335,8 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     nombre: 'nombre',
-    apellido: 'apellido'
+    apellido: 'apellido',
+    rol: 'rol'
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
@@ -9471,6 +9485,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nombre?: StringNullableFilter<"users"> | string | null
     apellido?: StringNullableFilter<"users"> | string | null
+    rol?: StringFilter<"users"> | string
     users_pedidos?: Users_pedidosListRelationFilter
   }
 
@@ -9480,6 +9495,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrderInput | SortOrder
     apellido?: SortOrderInput | SortOrder
+    rol?: SortOrder
     users_pedidos?: users_pedidosOrderByRelationAggregateInput
   }
 
@@ -9492,6 +9508,7 @@ export namespace Prisma {
     password?: StringFilter<"users"> | string
     nombre?: StringNullableFilter<"users"> | string | null
     apellido?: StringNullableFilter<"users"> | string | null
+    rol?: StringFilter<"users"> | string
     users_pedidos?: Users_pedidosListRelationFilter
   }, "id" | "id" | "email">
 
@@ -9501,6 +9518,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrderInput | SortOrder
     apellido?: SortOrderInput | SortOrder
+    rol?: SortOrder
     _count?: usersCountOrderByAggregateInput
     _avg?: usersAvgOrderByAggregateInput
     _max?: usersMaxOrderByAggregateInput
@@ -9517,6 +9535,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"users"> | string
     nombre?: StringNullableWithAggregatesFilter<"users"> | string | null
     apellido?: StringNullableWithAggregatesFilter<"users"> | string | null
+    rol?: StringWithAggregatesFilter<"users"> | string
   }
 
   export type users_pedidosWhereInput = {
@@ -9854,6 +9873,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
+    rol?: string
     users_pedidos?: users_pedidosCreateNestedManyWithoutUsersInput
   }
 
@@ -9863,6 +9883,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
+    rol?: string
     users_pedidos?: users_pedidosUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -9871,6 +9892,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
     users_pedidos?: users_pedidosUpdateManyWithoutUsersNestedInput
   }
 
@@ -9880,6 +9902,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
     users_pedidos?: users_pedidosUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -9889,6 +9912,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
+    rol?: string
   }
 
   export type usersUpdateManyMutationInput = {
@@ -9896,6 +9920,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
   export type usersUncheckedUpdateManyInput = {
@@ -9904,6 +9929,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
   export type users_pedidosCreateInput = {
@@ -10270,6 +10296,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrder
     apellido?: SortOrder
+    rol?: SortOrder
   }
 
   export type usersAvgOrderByAggregateInput = {
@@ -10282,6 +10309,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrder
     apellido?: SortOrder
+    rol?: SortOrder
   }
 
   export type usersMinOrderByAggregateInput = {
@@ -10290,6 +10318,7 @@ export namespace Prisma {
     password?: SortOrder
     nombre?: SortOrder
     apellido?: SortOrder
+    rol?: SortOrder
   }
 
   export type usersSumOrderByAggregateInput = {
@@ -11169,6 +11198,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
+    rol?: string
   }
 
   export type usersUncheckedCreateWithoutUsers_pedidosInput = {
@@ -11177,6 +11207,7 @@ export namespace Prisma {
     password: string
     nombre?: string | null
     apellido?: string | null
+    rol?: string
   }
 
   export type usersCreateOrConnectWithoutUsers_pedidosInput = {
@@ -11220,6 +11251,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
   export type usersUncheckedUpdateWithoutUsers_pedidosInput = {
@@ -11228,6 +11260,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     nombre?: NullableStringFieldUpdateOperationsInput | string | null
     apellido?: NullableStringFieldUpdateOperationsInput | string | null
+    rol?: StringFieldUpdateOperationsInput | string
   }
 
   export type pedidoUpsertWithoutUser_pedidosInput = {

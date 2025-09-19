@@ -20,6 +20,7 @@ model users {
   password String
   nombre   String?
   apellido String?
+  rol      String  @default("user") // "user" o "admin"
 
   users_pedidos users_pedidos[]
 }
