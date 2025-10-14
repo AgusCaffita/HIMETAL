@@ -6,14 +6,13 @@ const Home = () => {
     const navigate = useNavigate();
     return(
         <div>
-            <div className="text-pink-600 text-5xl font-bold m-10">
+            <div className="text-[var(--color-primary)] text-6xl font-bold mt-10 ml-10">
                 <h2>HIMetal</h2>
             </div>
-            <p className="bg-blue-300">Estas en la pagina principal </p>
-            <button onClick={() => navigate("/invoicer")} className="m-4 hover:text-pink-600">Hacer facturaaa</button>
-            <button onClick={() => navigate("/articulos")} className="m-4 hover:text-pink-600">Ver articulos</button>
-            <button onClick={() => navigate("/piezas")} className="m-4 hover:text-pink-600">Ver piezas</button>
-            <button onClick={() => navigate("/user")} className="m-4 hover:text-pink-600">Ver perfil</button>
+            <button onClick={() => navigate("/invoicer")} className="m-4 hover:text-blue-600 rounded-md border-2 border-gray-300">Hacer factura</button>
+            <button onClick={() => navigate("/piezas")} className="m-4 hover:text-blue-600">Ver piezas</button>
+            <button onClick={() => navigate("/articulos")} className="m-4 hover:text-blue-600">Ver articulos</button>
+            <button onClick={() => navigate("/user")} className="m-4 hover:text-blue-600">Ver perfil</button>
             <PingBanner />
 
             <Footer />
