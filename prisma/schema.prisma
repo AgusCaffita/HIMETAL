@@ -57,7 +57,7 @@ model pedido_articulos {
 
 model articulo {
   id           Int     @id @unique @default(autoincrement())
-  codigo       Int?
+  codigo       String?
   descripcion  String?
   cant_piezas  Int?
   plano_file   String? // Ruta del archivo de plano subido

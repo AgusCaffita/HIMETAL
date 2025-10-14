@@ -5953,7 +5953,6 @@ export namespace Prisma {
 
   export type ArticuloAvgAggregateOutputType = {
     id: number | null
-    codigo: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
@@ -5961,7 +5960,6 @@ export namespace Prisma {
 
   export type ArticuloSumAggregateOutputType = {
     id: number | null
-    codigo: number | null
     cant_piezas: number | null
     precio: number | null
     cte_ganancia: number | null
@@ -5969,7 +5967,7 @@ export namespace Prisma {
 
   export type ArticuloMinAggregateOutputType = {
     id: number | null
-    codigo: number | null
+    codigo: string | null
     descripcion: string | null
     cant_piezas: number | null
     plano_file: string | null
@@ -5979,7 +5977,7 @@ export namespace Prisma {
 
   export type ArticuloMaxAggregateOutputType = {
     id: number | null
-    codigo: number | null
+    codigo: string | null
     descripcion: string | null
     cant_piezas: number | null
     plano_file: string | null
@@ -6001,7 +5999,6 @@ export namespace Prisma {
 
   export type ArticuloAvgAggregateInputType = {
     id?: true
-    codigo?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
@@ -6009,7 +6006,6 @@ export namespace Prisma {
 
   export type ArticuloSumAggregateInputType = {
     id?: true
-    codigo?: true
     cant_piezas?: true
     precio?: true
     cte_ganancia?: true
@@ -6134,7 +6130,7 @@ export namespace Prisma {
 
   export type ArticuloGroupByOutputType = {
     id: number
-    codigo: number | null
+    codigo: string | null
     descripcion: string | null
     cant_piezas: number | null
     plano_file: string | null
@@ -6221,7 +6217,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      codigo: number | null
+      codigo: string | null
       descripcion: string | null
       cant_piezas: number | null
       plano_file: string | null
@@ -6653,7 +6649,7 @@ export namespace Prisma {
    */
   interface articuloFieldRefs {
     readonly id: FieldRef<"articulo", 'Int'>
-    readonly codigo: FieldRef<"articulo", 'Int'>
+    readonly codigo: FieldRef<"articulo", 'String'>
     readonly descripcion: FieldRef<"articulo", 'String'>
     readonly cant_piezas: FieldRef<"articulo", 'Int'>
     readonly plano_file: FieldRef<"articulo", 'String'>
@@ -9690,7 +9686,7 @@ export namespace Prisma {
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
     id?: IntFilter<"articulo"> | number
-    codigo?: IntNullableFilter<"articulo"> | number | null
+    codigo?: StringNullableFilter<"articulo"> | string | null
     descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano_file?: StringNullableFilter<"articulo"> | string | null
@@ -9717,7 +9713,7 @@ export namespace Prisma {
     AND?: articuloWhereInput | articuloWhereInput[]
     OR?: articuloWhereInput[]
     NOT?: articuloWhereInput | articuloWhereInput[]
-    codigo?: IntNullableFilter<"articulo"> | number | null
+    codigo?: StringNullableFilter<"articulo"> | string | null
     descripcion?: StringNullableFilter<"articulo"> | string | null
     cant_piezas?: IntNullableFilter<"articulo"> | number | null
     plano_file?: StringNullableFilter<"articulo"> | string | null
@@ -9747,7 +9743,7 @@ export namespace Prisma {
     OR?: articuloScalarWhereWithAggregatesInput[]
     NOT?: articuloScalarWhereWithAggregatesInput | articuloScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"articulo"> | number
-    codigo?: IntNullableWithAggregatesFilter<"articulo"> | number | null
+    codigo?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     descripcion?: StringNullableWithAggregatesFilter<"articulo"> | string | null
     cant_piezas?: IntNullableWithAggregatesFilter<"articulo"> | number | null
     plano_file?: StringNullableWithAggregatesFilter<"articulo"> | string | null
@@ -10055,7 +10051,7 @@ export namespace Prisma {
   }
 
   export type articuloCreateInput = {
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -10067,7 +10063,7 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateInput = {
     id?: number
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -10078,7 +10074,7 @@ export namespace Prisma {
   }
 
   export type articuloUpdateInput = {
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10090,7 +10086,7 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10102,7 +10098,7 @@ export namespace Prisma {
 
   export type articuloCreateManyInput = {
     id?: number
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -10111,7 +10107,7 @@ export namespace Prisma {
   }
 
   export type articuloUpdateManyMutationInput = {
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10121,7 +10117,7 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10542,7 +10538,6 @@ export namespace Prisma {
 
   export type articuloAvgOrderByAggregateInput = {
     id?: SortOrder
-    codigo?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
@@ -10570,7 +10565,6 @@ export namespace Prisma {
 
   export type articuloSumOrderByAggregateInput = {
     id?: SortOrder
-    codigo?: SortOrder
     cant_piezas?: SortOrder
     precio?: SortOrder
     cte_ganancia?: SortOrder
@@ -11386,7 +11380,7 @@ export namespace Prisma {
   }
 
   export type articuloCreateWithoutPedido_articulosInput = {
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -11397,7 +11391,7 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateWithoutPedido_articulosInput = {
     id?: number
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -11449,7 +11443,7 @@ export namespace Prisma {
   }
 
   export type articuloUpdateWithoutPedido_articulosInput = {
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11460,7 +11454,7 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateWithoutPedido_articulosInput = {
     id?: IntFieldUpdateOperationsInput | number
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11546,7 +11540,7 @@ export namespace Prisma {
   }
 
   export type articuloCreateWithoutArticulo_piezasInput = {
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -11557,7 +11551,7 @@ export namespace Prisma {
 
   export type articuloUncheckedCreateWithoutArticulo_piezasInput = {
     id?: number
-    codigo?: number | null
+    codigo?: string | null
     descripcion?: string | null
     cant_piezas?: number | null
     plano_file?: string | null
@@ -11607,7 +11601,7 @@ export namespace Prisma {
   }
 
   export type articuloUpdateWithoutArticulo_piezasInput = {
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11618,7 +11612,7 @@ export namespace Prisma {
 
   export type articuloUncheckedUpdateWithoutArticulo_piezasInput = {
     id?: IntFieldUpdateOperationsInput | number
-    codigo?: NullableIntFieldUpdateOperationsInput | number | null
+    codigo?: NullableStringFieldUpdateOperationsInput | string | null
     descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     cant_piezas?: NullableIntFieldUpdateOperationsInput | number | null
     plano_file?: NullableStringFieldUpdateOperationsInput | string | null
