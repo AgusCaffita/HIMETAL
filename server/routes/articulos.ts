@@ -129,6 +129,56 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
+// Descargar plano de un artículo
+router.get('/:id/plano', authenticateToken, async (req: AuthRequest, res) => {
+  try {
+    const { id } = req.params
+    const user_id = req.user?.userId
+    const user_rol = req.user?.rol
+
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+
+    const whereClause: any = { id: parseInt(id) }
+    if (user_rol !== 'admin') {
+      whereClause.pedido_articulos = {
+        some: {
+          pedido: {
+            user_pedidos: {
+              some: {
+                user_id: user_id
+              }
+            }
+          }
+        }
+      }
+    }
+
+    const articulo = await prisma.articulo.findFirst({
+      where: whereClause
+    })
+
+    if (!articulo) {
+      return res.status(404).json({ error: 'Artículo no encontrado o no autorizado' })
+    }
+
+    if (!articulo.plano_file) {
+      return res.status(404).json({ error: 'No hay plano disponible para este artículo' })
+    }
+
+    const filePath = path.join(process.cwd(), articulo.plano_file)
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ error: 'Archivo no encontrado' })
+    }
+
+    res.download(filePath)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ error: 'Error al descargar el plano: ' + (error as Error).message })
+  }
+})
+
 // Obtener un artículo por ID (admins ven cualquier artículo, usuarios solo los de sus pedidos)
 router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {

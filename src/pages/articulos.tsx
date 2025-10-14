@@ -83,6 +83,45 @@ const Articulos = () => {
         setShowEditModal(true)
     }
 
+    const handleDownloadPlano = async (id: number) => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+            return
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/articulos/${id}/plano`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+
+            if (response.status === 401) {
+                navigate('/login')
+                return
+            }
+
+            if (response.ok) {
+                const blob = await response.blob()
+                const url = window.URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = `plano_articulo_${id}`
+                document.body.appendChild(a)
+                a.click()
+                window.URL.revokeObjectURL(url)
+                document.body.removeChild(a)
+            } else {
+                const errorText = await response.text()
+                alert('Error al descargar plano: ' + errorText)
+            }
+        } catch (error) {
+            console.error('Error al descargar plano:', error)
+            alert('Error al descargar plano: ' + (error as Error).message)
+        }
+    }
+
     // Maneja el submit del formulario
     const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -241,6 +280,14 @@ const Articulos = () => {
                             >
                             Editar
                             </button>
+                            {articulo.plano_file && (
+                                <button
+                                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                                onClick={() => handleDownloadPlano(articulo.id)}
+                                >
+                                Descargar Plano
+                                </button>
+                            )}
                             <button
                             className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
                             onClick={() => handleDelete(articulo.id)}
