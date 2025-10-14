@@ -204,10 +204,10 @@ const Articulos = () => {
   return (
     <div>
       <Navbar />
-      <div className="pt-16">
+      <div className="pt-16 mt-4">
         <div className="flex items-center gap-4 mb-4 mt-2">
             <h1 className=" mx-5 text-4xl font-bold">Lista de articulos</h1>
-            <button className="bg-pink-600 mt-2 text-white px-4 py-2 rounded hover:bg-pink-700 transition" onClick={() => setShowModal(true)}>
+            <button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-[var(--color-terciary)] transition" onClick={() => setShowModal(true)}>
                 Nueva
             </button>
         </div>
@@ -215,7 +215,7 @@ const Articulos = () => {
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
-              <h2 className="text-lg font-bold mb-4">Crear nueva articulo</h2>
+              <h2 className="text-lg font-bold mb-4">Crear nuevo articulo</h2>
               <form onSubmit={handleCreate} encType="multipart/form-data">
                 <input
                   name="codigo"
@@ -264,7 +264,7 @@ const Articulos = () => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
+                    className="bg-[var(--color-primary)] text-white px-4 py-2 rounded hover:bg-[var(--color-secondary)] transition"
                     disabled={isCreating}
                   >
                     {isCreating ? 'Creando...' : 'Crear'}
@@ -429,7 +429,7 @@ const Articulos = () => {
                     </button>
                     <button
                         type="submit"
-                        className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
+                        className="bg-[var(--color-primary)] text-white px-4 py-2 rounded hover:bg-[var(--color-secondary)] transition"
                     >
                         Guardar cambios
                     </button>
