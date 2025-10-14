@@ -84,7 +84,7 @@ const SignUp = () => {
                     onSubmit={handleSubmit}
                     className="bg-white p-8 rounded shadow-md w-full max-w-md"
                 >
-                    <div className="text-pink-600 text-3xl font-bold mb-6 text-center">
+                    <div className="text-[var(--color-primary)] text-3xl font-bold mb-6 text-center">
                         <h2>HIMetal - Registro</h2>
                     </div>
 
@@ -106,7 +106,7 @@ const SignUp = () => {
                         placeholder="Nombre"
                         value={formData.nombre}
                         onChange={handleChange}
-                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:border-pink-500"
+                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:[var(--color-primary)]"
                         required
                         disabled={loading}
                     />
@@ -117,7 +117,7 @@ const SignUp = () => {
                         placeholder="Apellido"
                         value={formData.apellido}
                         onChange={handleChange}
-                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:border-pink-500"
+                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:[var(--color-primary)]"
                         required
                         disabled={loading}
                     />
@@ -128,7 +128,7 @@ const SignUp = () => {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:border-pink-500"
+                        className="border p-3 w-full mb-4 rounded focus:outline-none focus:[var(--color-primary)]"
                         required
                         disabled={loading}
                     />
@@ -139,7 +139,7 @@ const SignUp = () => {
                         placeholder="Contraseña"
                         value={formData.password}
                         onChange={handleChange}
-                        className="border p-3 w-full mb-6 rounded focus:outline-none focus:border-pink-500"
+                        className="border p-3 w-full mb-6 rounded focus:outline-none focus:[var(--color-primary)]"
                         required
                         minLength={6}
                         disabled={loading}
@@ -150,7 +150,7 @@ const SignUp = () => {
                         className={`px-4 py-3 rounded w-full font-semibold transition ${
                             loading 
                                 ? 'bg-gray-400 cursor-not-allowed' 
-                                : 'bg-pink-600 hover:bg-pink-700'
+                                : 'bg-[var(--color-primary)] hover:bg-[var(--color-secondary)]'
                         } text-white`}
                         disabled={loading}
                     >
@@ -159,7 +159,7 @@ const SignUp = () => {
 
                     <button
                         type="button"
-                        className="mt-4 bg-gray-200 text-pink-600 px-4 py-3 rounded w-full hover:bg-gray-300 transition"
+                        className="mt-4 bg-gray-200 text-[var(--color-primary)] px-4 py-3 rounded w-full hover:bg-gray-300 transition"
                         onClick={() => navigate("/login")}
                         disabled={loading}
                     >

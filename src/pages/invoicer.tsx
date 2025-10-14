@@ -77,12 +77,12 @@ const handleChange = (i: number, j: number, value: string) => {
   return (
     <>
       <Navbar></Navbar>
-      <div className='w-screen h-screen p-1 mt-10'>
+      <div className='w-screen h-screen p-1 mt-20'>
 
          {/*BOTONES*/}
         <div className='flex justify-center w-screen mt-4 text-2xl'>
           <button className='m-3 cursor-pointer hover:text-blue-600 hover:underline font-semibold' onClick={() => manyFunc()}>Descargar</button>
-          <button className='m-3 cursor-pointer hover:text-violet-600 hover:underline font-semibold'  onClick={() => openNav()}>Configurar</button>
+          <button className='m-3 cursor-pointer hover:text-blue-600 hover:underline font-semibold'  onClick={() => openNav()}>Configurar</button>
         </div>        
 
         {/*TABLAS*/}
@@ -186,7 +186,7 @@ const handleChange = (i: number, j: number, value: string) => {
         </div> {/*cont tablas*/}
         
         {/*SIDEBAR*/}
-          <div id="mySidenav" className="h-full w-0 fixed z-10 top-0 left-0 bg-gray-100 overflow-x-hidden pt-3 ease-[1s]">
+          <div id="mySidenav" className="mt-20 h-full w-0 fixed z-10 top-0 left-0 bg-gray-100 overflow-x-hidden pt-3 ease-[1s]">
             <a href="javascript:void(0)" className="right-0 text-gray-800 block ease-[0.3s]" onClick={() => closeNav()}>&times;</a>
             <button className="mt-4 mb-2 px-4 text-gray-800 block ease-[0.3s]">Cambiar nombre del archivo</button>
             <input className='ml-4 min-h-8 pl-2 bg-gray-100 text-gray-800' type='text' id='nombreNuevo' placeholder='Nuevo nombre'></input>

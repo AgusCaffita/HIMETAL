@@ -130,10 +130,10 @@ const Piezas = () => {
   return (
     <div>
       <Navbar />
-      <div className="pt-16">
+      <div className="pt-16 mt-4">
         <div className="flex items-center gap-4 mb-4 mt-2">
             <h1 className=" mx-5 text-4xl font-bold">Lista de piezas</h1>
-            <button className="bg-pink-600 mt-2 text-white px-4 py-2 rounded hover:bg-pink-700 transition" onClick={() => setShowModal(true)}>
+            <button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-pink-700 transition" onClick={() => setShowModal(true)}>
                 Nueva
             </button>
         </div>
@@ -160,16 +160,19 @@ const Piezas = () => {
                   name="plano_pleg_DWG"
                   className="border p-2 w-full mb-2"
                   placeholder="Plano plegado DWG"
+                  type="file"
                 />
                 <input
                   name="plano_pleg_SOLID"
                   className="border p-2 w-full mb-2"
                   placeholder="Plano plegado SOLID"
+                  type="file"
                 />
                 <input
                   name="plano_laser_DXF"
                   className="border p-2 w-full mb-2"
                   placeholder="Plano laser DXF"
+                  type="file"
                 />
                 <input
                   name="cte_ganancia"
@@ -188,7 +191,7 @@ const Piezas = () => {
                   </button>
                   <button
                     type="submit"
-                    className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
+                    className="bg-[var(--color-primary)] text-white px-4 py-2 rounded hover:bg-[var(--color-secondary)] transition"
                   >
                     Crear
                   </button>
@@ -300,18 +303,21 @@ const Piezas = () => {
                     name="plano_pleg_DWG"
                     className="border p-2 w-full mb-2"
                     placeholder="Plano plegado DWG"
+                    type="file"
                     defaultValue={editPieza.plano_pleg_DWG || ""}
                     />
                     <input
                     name="plano_pleg_SOLID"
                     className="border p-2 w-full mb-2"
                     placeholder="Plano plegado SOLID"
+                    type="file"
                     defaultValue={editPieza.plano_pleg_SOLID || ""}
                     />
                     <input
                     name="plano_laser_DXF"
                     className="border p-2 w-full mb-2"
                     placeholder="Plano laser DXF"
+                    type="file"
                     defaultValue={editPieza.plano_laser_DXF || ""}
                     />
                     <input
@@ -335,7 +341,7 @@ const Piezas = () => {
                     </button>
                     <button
                         type="submit"
-                        className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
+                        className="bg-[var(--color-primary)] text-white px-4 py-2 rounded hover:bg-[var(--color-secondary)] transition"
                     >
                         Guardar cambios
                     </button>
