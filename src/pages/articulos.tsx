@@ -11,6 +11,7 @@ const Articulos = () => {
     const [showEditModal, setShowEditModal] = useState(false)
     const [editArticulo, setEditArticulo] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
+    const [isCreating, setIsCreating] = useState(false)
     
 
 
@@ -91,28 +92,35 @@ const Articulos = () => {
             return
         }
 
+        setIsCreating(true)
+
         const form = e.currentTarget
-        const codigo = Number((form.elements.namedItem("codigo") as HTMLInputElement).value)
+        const codigo = (form.elements.namedItem("codigo") as HTMLInputElement).value
         const descripcion = (form.elements.namedItem("descripcion") as HTMLInputElement).value
         const cant_piezas = Number((form.elements.namedItem("cant_piezas") as HTMLInputElement).value)
-        const plano = (form.elements.namedItem("plano") as HTMLInputElement).value
+        const planoInput = (form.elements.namedItem("plano") as HTMLInputElement)
         const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
         const precio = Number((form.elements.namedItem("precio") as HTMLInputElement).value)
+       
+        const formData = new FormData()
+        formData.append('codigo', codigo)
+        formData.append('descripcion', descripcion)
+        formData.append('cant_piezas', cant_piezas.toString())
+        formData.append('precio', precio.toString())
+        formData.append('cte_ganancia', cte_ganancia.toString())
+        if (planoInput.files && planoInput.files[0]) {
+            formData.append('plano', planoInput.files[0])
+        }
        
                    
 
         try {
             const response = await fetch(`${API_URL}/articulos`, {
                 method: "POST",
-                headers: getAuthHeaders(),
-                body: JSON.stringify({ 
-                    codigo,
-                    descripcion,
-                    cant_piezas,
-                    plano,
-                    cte_ganancia,
-                    precio
-                })
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
             })
 
             if (response.status === 401) {
@@ -123,11 +131,17 @@ const Articulos = () => {
             if (response.ok) {
                 setShowModal(false)
                 fetchArticulos() // Actualiza la lista
+                alert('Artículo creado exitosamente')
             } else {
-                console.error('Error al crear articulo:', await response.text())
+                const errorText = await response.text()
+                console.error('Error al crear articulo:', errorText)
+                alert('Error al crear artículo: ' + errorText)
             }
         } catch (error) {
             console.error('Error al crear articulo:', error)
+            alert('Error al crear artículo: ' + (error as Error).message)
+        } finally {
+            setIsCreating(false)
         }
     }
   
@@ -146,12 +160,12 @@ const Articulos = () => {
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
               <h2 className="text-lg font-bold mb-4">Crear nueva articulo</h2>
-              <form onSubmit={handleCreate}>
+              <form onSubmit={handleCreate} encType="multipart/form-data">
                 <input
                   name="codigo"
                   className="border p-2 w-full mb-2"
                   placeholder="Codigo"
-                  type="number"
+                  type="text"
                   required
                 />
                 <input
@@ -195,9 +209,9 @@ const Articulos = () => {
                   <button
                     type="submit"
                     className="bg-pink-600 text-white px-4 py-2 rounded hover:bg-pink-700 transition"
-                  //BOTON DE CREAR NO HACE NADA(?)
+                    disabled={isCreating}
                   >
-                    Crear
+                    {isCreating ? 'Creando...' : 'Crear'}
                   </button>
                 </div>
               </form>
@@ -210,7 +224,7 @@ const Articulos = () => {
             {articulos.map((articulo: any) => (
                 <li key={articulo.id} className="border-b py-2 pl-8 flex items-center justify-between">
                 <span>
-                    <strong>{articulo.descripcion}</strong> - ${articulo.precio}
+                    <strong>{articulo.codigo} - {articulo.descripcion}</strong> - ${articulo.precio} - {articulo.cant_piezas} piezas
                 </span>
                 <div className="relative">
                     <button
@@ -254,25 +268,30 @@ const Articulos = () => {
                     }
 
                     const form = e.currentTarget
-                    const codigo = Number((form.elements.namedItem("codigo") as HTMLInputElement).value)
+                    const codigo = (form.elements.namedItem("codigo") as HTMLInputElement).value
                     const descripcion = (form.elements.namedItem("descripcion") as HTMLInputElement).value
                     const cant_piezas = Number((form.elements.namedItem("cant_piezas") as HTMLInputElement).value)
-                    const plano = (form.elements.namedItem("plano") as HTMLInputElement).value
+                    const planoInput = (form.elements.namedItem("plano") as HTMLInputElement)
                     const cte_ganancia = Number((form.elements.namedItem("cte_ganancia") as HTMLInputElement).value)
                     const precio = Number((form.elements.namedItem("precio") as HTMLInputElement).value)
+
+                    const formData = new FormData()
+                    formData.append('codigo', codigo)
+                    formData.append('descripcion', descripcion)
+                    formData.append('cant_piezas', cant_piezas.toString())
+                    formData.append('precio', precio.toString())
+                    formData.append('cte_ganancia', cte_ganancia.toString())
+                    if (planoInput.files && planoInput.files[0]) {
+                        formData.append('plano', planoInput.files[0])
+                    }
 
                     try {
                         const response = await fetch(`${API_URL}/articulos/${editArticulo.id}`, {
                             method: "PUT",
-                            headers: getAuthHeaders(),
-                            body: JSON.stringify({
-                            descripcion,
-                            codigo,
-                            cant_piezas,
-                            plano,
-                            cte_ganancia,
-                            precio
-                            })
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: formData
                         })
 
                         if (response.status === 401) {
@@ -294,7 +313,7 @@ const Articulos = () => {
                     name="codigo"
                     className="border p-2 w-full mb-2"
                     placeholder="codigo"
-                    type="number"
+                    type="text"
                     defaultValue={editArticulo.codigo || ""}
                     />
 
