@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
 
@@ -12,6 +12,7 @@ const Articulos = () => {
     const [editArticulo, setEditArticulo] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     const [isCreating, setIsCreating] = useState(false)
+    const menuRef = useRef<HTMLDivElement>(null)
     
 
 
@@ -51,6 +52,22 @@ const Articulos = () => {
     useEffect(() => {
         fetchArticulos()
     }, [])
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setMenuOpenId(null)
+            }
+        }
+
+        if (menuOpenId !== null) {
+            document.addEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [menuOpenId])
 
     const handleDelete = async (id: number) => {
         const token = localStorage.getItem('token')
@@ -273,7 +290,7 @@ const Articulos = () => {
                     &#8230;
                     </button>
                     {menuOpenId === articulo.id && (
-                        <div className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+                        <div ref={menuRef} className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
                             <button
                             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                             onClick={() => handleEdit(articulo)}
