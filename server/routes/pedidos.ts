@@ -68,23 +68,26 @@ router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Obtener todos los pedidos del usuario autenticado
+// Obtener todos los pedidos del usuario autenticado (o todos si es admin)
 router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const user_id = req.user?.userId
+    const user_rol = req.user?.rol
 
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
 
-    const pedidos = await prisma.pedido.findMany({
-      where: {
-        user_pedidos: {
-          some: {
-            user_id: user_id
-          }
+    const whereClause = user_rol === 'admin' ? {} : {
+      user_pedidos: {
+        some: {
+          user_id: user_id
         }
-      },
+      }
+    }
+
+    const pedidos = await prisma.pedido.findMany({
+      where: whereClause,
       include: {
         user_pedidos: {
           include: {
@@ -173,26 +176,29 @@ router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
     const user_id = req.user?.userId
+    const user_rol = req.user?.rol
     const { codigo, presupuesto, estado } = req.body
     
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que el pedido pertenece al usuario
-    const pedidoExistente = await prisma.pedido.findFirst({
-      where: {
-        id: parseInt(id),
-        user_pedidos: {
-          some: {
-            user_id: user_id
+    // Verificar que el pedido pertenece al usuario (solo si no es admin)
+    if (user_rol !== 'admin') {
+      const pedidoExistente = await prisma.pedido.findFirst({
+        where: {
+          id: parseInt(id),
+          user_pedidos: {
+            some: {
+              user_id: user_id
+            }
           }
         }
+      })
+      
+      if (!pedidoExistente) {
+        return res.status(404).json({ error: 'Pedido no encontrado' })
       }
-    })
-    
-    if (!pedidoExistente) {
-      return res.status(404).json({ error: 'Pedido no encontrado' })
     }
     
     // Preparar datos para actualizar
@@ -540,13 +546,23 @@ router.patch('/admin/:id/presupuesto', authenticateToken, requireAdmin, async (r
     const { id } = req.params
     const { presupuesto } = req.body
 
-    if (presupuesto === undefined || presupuesto === null) {
-      return res.status(400).json({ error: 'El presupuesto es requerido' })
+    if (presupuesto === undefined) {
+      return res.status(400).json({ error: 'El presupuesto es requerido (puede ser null para eliminar)' })
+    }
+
+    const updateData: {
+      presupuesto: number | null;
+      estado?: string;
+    } = { presupuesto: presupuesto ? parseInt(presupuesto) : null }
+
+    // Si se elimina el presupuesto, cambiar estado a "Pendiente"
+    if (updateData.presupuesto === null) {
+      updateData.estado = 'Pendiente'
     }
 
     const pedidoActualizado = await prisma.pedido.update({
       where: { id: parseInt(id) },
-      data: { presupuesto: parseInt(presupuesto) },
+      data: updateData,
       include: {
         user_pedidos: {
           include: {
@@ -577,7 +593,7 @@ router.patch('/admin/:id/presupuesto', authenticateToken, requireAdmin, async (r
     })
 
     res.json({
-      message: 'Presupuesto actualizado exitosamente',
+      message: presupuesto ? 'Presupuesto actualizado exitosamente' : 'Presupuesto eliminado, estado cambiado a Pendiente',
       pedido: pedidoActualizado
     })
   } catch (error) {
@@ -601,11 +617,23 @@ router.patch('/admin/:id/estado', authenticateToken, requireAdmin, async (req: A
     }
 
     // Validar estados permitidos
-    const estadosPermitidos = ['Pendiente', 'En Proceso', 'Completado', 'Cancelado', 'En Revisión']
+    const estadosPermitidos = ['Pendiente', 'Cancelado', 'Aprobado']
     if (!estadosPermitidos.includes(estado)) {
       return res.status(400).json({ 
         error: 'Estado no válido. Permitidos: ' + estadosPermitidos.join(', ') 
       })
+    }
+
+    // Si se intenta cambiar a "Aprobado", verificar que tenga presupuesto
+    if (estado === 'Aprobado') {
+      const pedido = await prisma.pedido.findUnique({
+        where: { id: parseInt(id) },
+        select: { presupuesto: true }
+      })
+      
+      if (!pedido || pedido.presupuesto === null) {
+        return res.status(400).json({ error: 'No se puede aprobar un pedido sin presupuesto asignado' })
+      }
     }
 
     const pedidoActualizado = await prisma.pedido.update({
@@ -660,15 +688,15 @@ router.get('/admin/estadisticas', authenticateToken, requireAdmin, async (req: A
     const [
       totalPedidos,
       pedidosPendientes,
-      pedidosEnProceso,
-      pedidosCompletados,
+      pedidosAprobados,
+      pedidosCancelados,
       totalUsuarios,
       presupuestoTotal
     ] = await Promise.all([
       prisma.pedido.count(),
       prisma.pedido.count({ where: { estado: 'Pendiente' } }),
-      prisma.pedido.count({ where: { estado: 'En Proceso' } }),
-      prisma.pedido.count({ where: { estado: 'Completado' } }),
+      prisma.pedido.count({ where: { estado: 'Aprobado' } }),
+      prisma.pedido.count({ where: { estado: 'Cancelado' } }),
       prisma.users.count({ where: { rol: 'user' } }),
       prisma.pedido.aggregate({
         _sum: { presupuesto: true },
@@ -680,8 +708,8 @@ router.get('/admin/estadisticas', authenticateToken, requireAdmin, async (req: A
       pedidos: {
         total: totalPedidos,
         pendientes: pedidosPendientes,
-        enProceso: pedidosEnProceso,
-        completados: pedidosCompletados
+        aprobados: pedidosAprobados,
+        cancelados: pedidosCancelados
       },
       usuarios: {
         total: totalUsuarios
