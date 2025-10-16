@@ -5,8 +5,22 @@ import { authenticateToken, AuthRequest, requireAdmin } from '../middleware/auth
 const prisma = new PrismaClient();
 const router = express.Router()
 
+// Interface para requests con autenticación opcional
+interface OptionalAuthRequest extends express.Request {
+  user?: { userId: number; rol: string };
+}
+
+// Interface para los datos del pedido
+interface PedidoData {
+  codigo?: string | null;
+  presupuesto?: number | null;
+  estado: string;
+  user_pedidos?: { create: { user_id: number } };
+  pedido_articulos: { create: Array<{ articulo: { connect: { id: number } }; cantidad: number }> };
+}
+
 // Ejemplo de uso -> POST url/pedidos/
-// Headers: Authorization con JWT token
+// Headers: Authorization con JWT token (opcional)
 // Body: {
 //   codigo?: string,
 //   presupuesto?: number,
@@ -15,37 +29,41 @@ const router = express.Router()
 
 // Crear un nuevo pedido
 // Crear un nuevo pedido con artículos y cantidades desde el carrito
-router.post('/', authenticateToken, async (req: AuthRequest, res) => {
+router.post('/', async (req: OptionalAuthRequest, res) => {
   try {
     const user_id = req.user?.userId;
-    if (!user_id) {
-      return res.status(401).json({ error: 'Usuario no autenticado' });
-    }
     const { codigo, presupuesto, estado, articulos } = req.body;
     if (!articulos || !Array.isArray(articulos) || articulos.length === 0) {
       return res.status(400).json({ error: 'El carrito está vacío o mal formado' });
     }
 
+    // Preparar datos para el pedido
+    const pedidoData: PedidoData = {
+      codigo,
+      presupuesto: presupuesto ? parseInt(presupuesto) : null,
+      estado: estado || 'Pendiente',
+      pedido_articulos: {
+        create: articulos.map((item: { id: number; cantidad: number }) => ({
+          articulo: {
+            connect: { id: item.id }
+          },
+          cantidad: item.cantidad
+        }))
+      }
+    };
+
+    // Solo asociar usuario si está autenticado
+    if (user_id) {
+      pedidoData.user_pedidos = {
+        create: {
+          user_id: user_id
+        }
+      };
+    }
+
     // Crear el pedido
     const nuevoPedido = await prisma.pedido.create({
-      data: {
-        codigo,
-        presupuesto: presupuesto ? parseInt(presupuesto) : null,
-        estado: estado || 'Pendiente',
-        user_pedidos: {
-          create: {
-            user_id: user_id
-          }
-        },
-        pedido_articulos: {
-          create: articulos.map((item: { id: number; cantidad: number }) => ({
-            articulo: {
-              connect: { id: item.id }
-            },
-            cantidad: item.cantidad
-          }))
-        }
-      },
+      data: pedidoData,
       include: {
         user_pedidos: {
           include: { users: true }
