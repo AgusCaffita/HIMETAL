@@ -47,23 +47,38 @@ const User = () => {
                 <ul className="ml-3 divide-y divide-black/5">
                     {pedidos.length === 0 && !loading && <li>No tienes pedidos previos.</li>}
                     {pedidos.map((pedido) => (
-                        <li key={pedido.id} className="py-2">
+                        <li key={pedido.id} className="py-2 flex items-center justify-between">
                             <div>
-                                <span className="font-bold">Pedido #{pedido.id}</span> - Estado: <span className="italic">{pedido.estado}</span>
+                                <div>
+                                    <span className="font-bold">Pedido #{pedido.id}</span> - Estado: <span className={`italic ${
+                                        pedido.estado === 'Aprobado'
+                                        ? 'text-green-500'
+                                        : pedido.estado === 'Pendiente'
+                                        ? 'text-yellow-600'
+                                        : 'text-red-500'
+                                    }`}
+                                    >
+  {pedido.estado}
+</span>
+
+                                </div>
+                                <div>
+                                    Artículos:
+                                    <ul className="ml-4 list-disc">
+                                        {pedido.pedido_articulos.map((pa: any) => (
+                                            <li key={pa.articulo.id}>
+                                                {pa.articulo.codigo} - {pa.articulo.descripcion} (Cantidad: {pa.cantidad})
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                Artículos:
-                                <ul className="ml-4 list-disc">
-                                    {pedido.pedido_articulos.map((pa: any) => (
-                                        <li key={pa.articulo.id}>
-                                            {pa.articulo.codigo} - {pa.articulo.descripcion} (Cantidad: {pa.cantidad})
-                                        </li>
-                                    ))}
-                                </ul>
+                            <div className="min-w-[140px] text-right font-semibold pr-5">
+                                {pedido.presupuesto !== null && pedido.presupuesto !== undefined
+                                    ? <>${pedido.presupuesto}</>
+                                    : <span className="italic text-yellow-600">Pendiente</span>
+                                }
                             </div>
-                            {pedido.presupuesto !== null && (
-                                <div>Presupuesto: ${pedido.presupuesto}</div>
-                            )}
                         </li>
                     ))}
                 </ul>
