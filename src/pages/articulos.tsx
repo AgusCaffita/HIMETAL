@@ -1,8 +1,29 @@
 import { useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
+import { useContext } from "react"
+import { CartContext } from "../components/CartContext"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + (import.meta.env.VITE_BACKEND_PORT || '5174')
+
+const AddToCartButton = ({ articulo }: { articulo: any }) => {
+  const cartContext = useContext(CartContext)
+  const addToCart = cartContext?.addToCart ?? (() => {})
+  return (
+    <button
+      className="bg-[var(--color-primary)] text-white px-3 py-1 rounded hover:bg-[var(--color-secondary)] transition mr-2"
+      onClick={() => addToCart({
+        id: articulo.id,
+        nombre: articulo.codigo,
+        descripcion: articulo.descripcion,
+        precio: articulo.precio,
+        cantidad: 1
+      })}
+    >
+      Agregar al carrito
+    </button>
+  )
+}
 
 const Articulos = () => {
     const navigate = useNavigate()
@@ -13,6 +34,8 @@ const Articulos = () => {
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     const [isCreating, setIsCreating] = useState(false)
     const menuRef = useRef<HTMLDivElement>(null)
+    
+
     
 
 
@@ -277,45 +300,48 @@ const Articulos = () => {
 
        
         <ul>
-            {articulos.map((articulo: any) => (
-                <li key={articulo.id} className="border-b py-2 pl-8 flex items-center justify-between">
-                <span>
-                    <strong>{articulo.codigo} - {articulo.descripcion}</strong> - ${articulo.precio} - {articulo.cant_piezas} piezas
-                </span>
+          {articulos.map((articulo: any) => (
+            <li key={articulo.id} className="border-b py-2 pl-8 flex items-center justify-between">
+              <span>
+                <strong>{articulo.codigo} - {articulo.descripcion}</strong> - ${articulo.precio} - {articulo.cant_piezas} piezas
+              </span>
+              <div className="flex items-center gap-2">
+                <AddToCartButton articulo={articulo} />
                 <div className="relative">
-                    <button
+                  <button
                     className="text-gray-500 hover:text-gray-600 px-3 py-1 pr-5 rounded-full text-ellipsis"
                     onClick={() => setMenuOpenId(menuOpenId === articulo.id ? null : articulo.id)}
-                    >
+                  >
                     &#8230;
-                    </button>
-                    {menuOpenId === articulo.id && (
-                        <div ref={menuRef} className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
-                            <button
-                            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                            onClick={() => handleEdit(articulo)}
-                            >
-                            Editar
-                            </button>
-                            {articulo.plano_file && (
-                                <button
-                                className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                                onClick={() => handleDownloadPlano(articulo.id)}
-                                >
-                                Descargar Plano
-                                </button>
-                            )}
-                            <button
-                            className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
-                            onClick={() => handleDelete(articulo.id)}
-                            >
-                            Borrar
-                            </button>
-                        </div>
-                    )}
+                  </button>
+                  {menuOpenId === articulo.id && (
+                    <div ref={menuRef} className="absolute right-0 mt-2 w-32 bg-white border rounded shadow-lg z-10">
+                      <button
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                        onClick={() => handleEdit(articulo)}
+                      >
+                        Editar
+                      </button>
+                      {articulo.plano_file && (
+                        <button
+                          className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                          onClick={() => handleDownloadPlano(articulo.id)}
+                        >
+                          Descargar Plano
+                        </button>
+                      )}
+                      <button
+                        className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600"
+                        onClick={() => handleDelete(articulo.id)}
+                      >
+                        Borrar
+                      </button>
+                    </div>
+                  )}
                 </div>
-                </li>
-            ))}
+              </div>
+            </li>
+          ))}
         </ul>
         
         {showEditModal && editArticulo && (
