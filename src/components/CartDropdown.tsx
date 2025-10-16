@@ -1,0 +1,100 @@
+import React, { useState } from 'react';
+import { useCart } from './CartContext';
+import { useNavigate } from 'react-router-dom';
+
+const CartDropdown: React.FC = () => {
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handlePedido = async () => {
+    // Aquí deberías enviar el pedido al backend
+    // Ejemplo básico:
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/pedidos`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ articulos: cart }),
+      });
+      if (res.ok) {
+        clearCart();
+        alert('Pedido realizado con éxito');
+        setOpen(false);
+        navigate('/pedidos');
+      } else {
+        alert('Error al realizar el pedido');
+      }
+    } catch {
+      alert('Error de conexión');
+    }
+  };
+
+  return (
+    <div className="relative">
+      <button
+        className="bg-[var(--color-primary)] text-white px-4 py-2 rounded shadow hover:bg-[var(--color-secondary)]"
+        onClick={() => setOpen(!open)}
+      >
+        Carrito ({cart.reduce((acc, item) => acc + item.cantidad, 0)})
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-2 w-80 bg-gray-100 border rounded shadow-lg z-50">
+          <div className="p-4">
+            <h3 className="font-bold text-lg text-black mb-2">Carrito</h3>
+            {cart.length === 0 ? (
+              <div className="text-[var(--color-terciary)]">El carrito está vacío</div>
+            ) : (
+              <ul>
+                {cart.map(item => (
+                  <li key={item.id} className="flex items-center justify-between mb-2">
+                    <div>
+                      <span className="font-semibold text-black ">{item.nombre || 'Artículo ' + item.id}</span>
+                      <span className="ml-2 text-black"> x{item.cantidad}</span>
+                      {item.precio && (
+                        <span className="ml-2 text-black">${item.precio * item.cantidad}</span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number"
+                        min={1}
+                        value={item.cantidad}
+                        onChange={e => updateQuantity(item.id, Number(e.target.value))}
+                        className="w-12 border rounded px-1"
+                      />
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => removeFromCart(item.id)}
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {cart.length > 0 && (
+              <>
+                <div className="mt-4 font-bold text-right text-black">
+                  Total: ${cart.reduce((acc, item) => acc + (item.precio || 0) * item.cantidad, 0)}
+                </div>
+                <button
+                  className="mt-4 w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700"
+                  onClick={handlePedido}
+                >
+                  Realizar pedido
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CartDropdown;

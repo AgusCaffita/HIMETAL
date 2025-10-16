@@ -8,21 +8,24 @@ import Arts from "./pages/articulos"
 import User from "./pages/user"
 
 import './index.css'
+import { CartProvider } from "./components/CartContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path= "/signup" element={<SignUp />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/invoicer" element={<Invoicer />} />
-        <Route path="/piezas" element={<Piezas />} />
-        <Route path='/articulos' element={<Arts/>} />
-        <Route path='/user' element={<User/>} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<Login />} />
+          <Route path= "/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/invoicer" element={<Invoicer />} />
+          <Route path="/piezas" element={<Piezas />} />
+          <Route path='/articulos' element={<Arts/>} />
+          <Route path='/user' element={<User/>} />
+        </Routes>
+      </Router>
+    </CartProvider>
   )
 }
 

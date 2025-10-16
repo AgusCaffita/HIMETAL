@@ -14,16 +14,19 @@ const router = express.Router()
 // }
 
 // Crear un nuevo pedido
+// Crear un nuevo pedido con artículos y cantidades desde el carrito
 router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
-    const user_id = req.user?.userId
-    
+    const user_id = req.user?.userId;
     if (!user_id) {
-      return res.status(401).json({ error: 'Usuario no autenticado' })
+      return res.status(401).json({ error: 'Usuario no autenticado' });
     }
-    
-    const { codigo, presupuesto, estado } = req.body
-    
+    const { codigo, presupuesto, estado, articulos } = req.body;
+    if (!articulos || !Array.isArray(articulos) || articulos.length === 0) {
+      return res.status(400).json({ error: 'El carrito está vacío o mal formado' });
+    }
+
+    // Crear el pedido
     const nuevoPedido = await prisma.pedido.create({
       data: {
         codigo,
@@ -33,40 +36,41 @@ router.post('/', authenticateToken, async (req: AuthRequest, res) => {
           create: {
             user_id: user_id
           }
+        },
+        pedido_articulos: {
+          create: articulos.map((item: { id: number; cantidad: number }) => ({
+            articulo: {
+              connect: { id: item.id }
+            },
+            cantidad: item.cantidad
+          }))
         }
       },
       include: {
         user_pedidos: {
-          include: {
-            users: true
-          }
+          include: { users: true }
         },
         pedido_articulos: {
           include: {
             articulo: {
               include: {
-                articulo_piezas: {
-                  include: {
-                    pieza: true
-                  }
-                }
+                articulo_piezas: { include: { pieza: true } }
               }
             }
           }
         }
       }
-    })
-    
-    res.status(201).json(nuevoPedido)
+    });
+    res.status(201).json(nuevoPedido);
   } catch (error) {
-    console.error(error)
+    console.error(error);
     if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
-      res.status(409).json({ error: 'Ya existe un pedido con ese código' })
+      res.status(409).json({ error: 'Ya existe un pedido con ese código' });
     } else {
-      res.status(500).json({ error: 'Error al crear el pedido: ' + (error as Error).message })
+      res.status(500).json({ error: 'Error al crear el pedido: ' + (error as Error).message });
     }
   }
-})
+});
 
 // Obtener todos los pedidos del usuario autenticado (o todos si es admin)
 router.get('/', authenticateToken, async (req: AuthRequest, res) => {

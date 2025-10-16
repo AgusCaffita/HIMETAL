@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import {useNavigate} from "react-router-dom" 
+import CartDropdown from "./CartDropdown";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -21,6 +22,7 @@ const Navbar = () => {
         <Link to="/piezas" className="hover:text-pink-200">Ver piezas</Link>
         <Link to="/articulos" className="hover:text-pink-200">Ver artículos</Link>
         <Link to="/user" className="hover:text-pink-200">Ver perfil</Link>
+        <div className="ml-2"><CartDropdown /></div>
       </div>
     </nav>
   )
