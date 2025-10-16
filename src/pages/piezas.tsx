@@ -7,10 +7,12 @@ const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + (import.meta.env.VITE_B
 const Piezas = () => {
     const navigate = useNavigate()
     const [piezas, setPiezas] = useState([])
+    const [filteredPiezas, setFilteredPiezas] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [showEditModal, setShowEditModal] = useState(false)
     const [editPieza, setEditPieza] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
+    const [searchTerm, setSearchTerm] = useState('')
     
     // Función para obtener el token
     const getAuthHeaders = () => {
@@ -48,6 +50,18 @@ const Piezas = () => {
     useEffect(() => {
         fetchPiezas()
     }, [])
+
+    // Efecto para filtrar piezas basado en el término de búsqueda
+    useEffect(() => {
+        if (searchTerm.trim() === '') {
+            setFilteredPiezas(piezas)
+        } else {
+            const filtered = piezas.filter((pieza: any) => 
+                pieza.nombre?.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            setFilteredPiezas(filtered)
+        }
+    }, [piezas, searchTerm])
 
     const handleDelete = async (id: number) => {
         const token = localStorage.getItem('token')
@@ -138,6 +152,17 @@ const Piezas = () => {
             </button>
         </div>
 
+        {/* Campo de búsqueda */}
+        <div className="mx-5 mb-4">
+            <input
+                type="text"
+                placeholder="Buscar por nombre..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="border p-2 w-full max-w-md rounded"
+            />
+        </div>
+
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
@@ -203,7 +228,7 @@ const Piezas = () => {
 
        
         <ul>
-            {piezas.map((pieza: any) => (
+            {filteredPiezas.map((pieza: any) => (
                 <li key={pieza.id} className="border-b py-2 pl-8 flex items-center justify-between">
                 <span>
                     <strong>{pieza.nombre}</strong> - ${pieza.precio_mat_prima}

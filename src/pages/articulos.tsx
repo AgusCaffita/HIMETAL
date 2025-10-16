@@ -28,11 +28,13 @@ const AddToCartButton = ({ articulo }: { articulo: any }) => {
 const Articulos = () => {
     const navigate = useNavigate()
     const [articulos, setArticulos] = useState([])
+    const [filteredArticulos, setFilteredArticulos] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [showEditModal, setShowEditModal] = useState(false)
     const [editArticulo, setEditArticulo] = useState<any>(null)
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     const [isCreating, setIsCreating] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
     const menuRef = useRef<HTMLDivElement>(null)
     
 
@@ -75,6 +77,19 @@ const Articulos = () => {
     useEffect(() => {
         fetchArticulos()
     }, [])
+
+    // Efecto para filtrar artículos basado en el término de búsqueda
+    useEffect(() => {
+        if (searchTerm.trim() === '') {
+            setFilteredArticulos(articulos)
+        } else {
+            const filtered = articulos.filter((articulo: any) => 
+                articulo.codigo?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                articulo.descripcion?.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            setFilteredArticulos(filtered)
+        }
+    }, [articulos, searchTerm])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -235,6 +250,17 @@ const Articulos = () => {
             </button>
         </div>
 
+        {/* Campo de búsqueda */}
+        <div className="mx-5 mb-4">
+            <input
+                type="text"
+                placeholder="Buscar por código o descripción..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="border p-2 w-full max-w-md rounded"
+            />
+        </div>
+
         {showModal && (
           <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg p-6 shadow-lg w-full max-w-md">
@@ -300,7 +326,7 @@ const Articulos = () => {
 
        
         <ul>
-          {articulos.map((articulo: any) => (
+          {filteredArticulos.map((articulo: any) => (
             <li key={articulo.id} className="border-b py-2 pl-8 flex items-center justify-between">
               <span>
                 <strong>{articulo.codigo} - {articulo.descripcion}</strong> - ${articulo.precio} - {articulo.cant_piezas} piezas
