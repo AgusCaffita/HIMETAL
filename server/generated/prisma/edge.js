@@ -180,7 +180,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/magma/Desktop/HIMETAL/server/generated/prisma",
+      "value": "C:\\Users\\agusc\\Desktop\\HIMETAL\\server\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -189,12 +189,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/magma/Desktop/HIMETAL/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\agusc\\Desktop\\HIMETAL\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -208,6 +208,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -218,7 +219,7 @@ const config = {
   },
   "inlineSchema": "// npx prisma migrate dev --name \"add_id_and_cliente_id_fields\"\n// npx prisma generate\n// npx prisma db push\n//\n// nvm -v && npx prisma migrate dev --name \"change_articulos_to_pedidos\" && npx prisma generate && npx prisma db push\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../server/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel users {\n  id       Int     @id @unique @default(autoincrement())\n  email    String  @unique(map: \"users_email_key\")\n  password String\n  nombre   String?\n  apellido String?\n  rol      String  @default(\"user\") // \"user\" o \"admin\"\n\n  users_pedidos users_pedidos[]\n}\n\nmodel users_pedidos {\n  user_id   Int\n  pedido_id Int\n\n  users  users  @relation(fields: [user_id], references: [id])\n  pedido pedido @relation(fields: [pedido_id], references: [id])\n\n  @@id([user_id, pedido_id])\n}\n\nmodel pedido {\n  id          Int     @id @unique @default(autoincrement())\n  codigo      String?\n  presupuesto Int?\n  estado      String  @default(\"Pendiente\")\n\n  user_pedidos     users_pedidos[]\n  pedido_articulos pedido_articulos[]\n}\n\nmodel pedido_articulos {\n  pedido_id   Int\n  articulo_id Int\n  cantidad    Int @default(1)\n\n  pedido   pedido   @relation(fields: [pedido_id], references: [id])\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n\n  @@id([pedido_id, articulo_id])\n}\n\nmodel articulo {\n  id           Int     @id @unique @default(autoincrement())\n  codigo       String?\n  descripcion  String?\n  cant_piezas  Int?\n  plano_file   String? // Ruta del archivo de plano subido\n  precio       Int?\n  cte_ganancia Int?\n\n  pedido_articulos pedido_articulos[]\n  articulo_piezas  articulo_piezas[]\n}\n\nmodel articulo_piezas {\n  articulo_id Int\n  pieza_id    Int\n\n  articulo articulo @relation(fields: [articulo_id], references: [id])\n  pieza    pieza    @relation(fields: [pieza_id], references: [id])\n\n  @@id([articulo_id, pieza_id])\n}\n\nmodel pieza {\n  id                    Int     @id @unique @default(autoincrement())\n  nombre                String?\n  precio_mat_prima      Int?\n  plano_pleg_DWG_file   String? // Ruta del archivo DWG\n  plano_pleg_SOLID_file String? // Ruta del archivo SOLID\n  plano_laser_DXF_file  String? // Ruta del archivo DXF\n  cte_ganancia          Int?\n\n  articulo_piezas articulo_piezas[]\n}\n",
   "inlineSchemaHash": "8dda9139179720a6d2428a5a47fd0fad0739755a2e6df3f3fef35188e0d84bec",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 

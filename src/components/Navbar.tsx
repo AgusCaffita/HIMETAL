@@ -17,11 +17,11 @@ const Navbar = () => {
         ☰
       </button>
       <div className={`flex-col md:flex-row md:flex gap-4 ${open ? "flex" : "hidden"} md:items-center`}>
-        <Link to="/home" className="hover:text-pink-200">Pagina principal</Link>
-        <Link to="/invoicer" className="hover:text-pink-200">Hacer factura</Link>
-        <Link to="/piezas" className="hover:text-pink-200">Ver piezas</Link>
-        <Link to="/articulos" className="hover:text-pink-200">Ver artículos</Link>
-        <Link to="/user" className="hover:text-pink-200">Ver perfil</Link>
+        <Link to="/home" className="hover:text-blue-200">Pagina principal</Link>
+        <Link to="/invoicer" className="hover:text-blue-200">Hacer factura</Link>
+        <Link to="/piezas" className="hover:text-blue-200">Ver piezas</Link>
+        <Link to="/articulos" className="hover:text-blue-200">Ver artículos</Link>
+        <Link to="/user" className="hover:text-blue-200">Ver perfil</Link>
         <div className="ml-2"><CartDropdown /></div>
       </div>
     </nav>

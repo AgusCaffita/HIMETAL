@@ -1,9 +1,3 @@
-// npx prisma migrate dev --name "add_id_and_cliente_id_fields"
-// npx prisma generate
-// npx prisma db push
-//
-// nvm -v && npx prisma migrate dev --name "change_articulos_to_pedidos" && npx prisma generate && npx prisma db push
-
 generator client {
   provider = "prisma-client-js"
   output   = "../server/generated/prisma"
@@ -15,78 +9,71 @@ datasource db {
 }
 
 model users {
-  id       Int     @id @unique @default(autoincrement())
-  email    String  @unique(map: "users_email_key")
-  password String
-  nombre   String?
-  apellido String?
-  rol      String  @default("user") // "user" o "admin"
-
+  id            Int             @id @unique @default(autoincrement())
+  email         String          @unique
+  password      String
+  nombre        String?
+  apellido      String?
+  rol           String          @default("user")
   users_pedidos users_pedidos[]
 }
 
 model users_pedidos {
   user_id   Int
   pedido_id Int
-
-  users  users  @relation(fields: [user_id], references: [id])
-  pedido pedido @relation(fields: [pedido_id], references: [id])
+  pedido    pedido @relation(fields: [pedido_id], references: [id])
+  users     users  @relation(fields: [user_id], references: [id])
 
   @@id([user_id, pedido_id])
 }
 
 model pedido {
-  id          Int     @id @unique @default(autoincrement())
-  codigo      String?
-  presupuesto Int?
-  estado      String  @default("Pendiente")
-
-  user_pedidos     users_pedidos[]
+  id               Int                @id @unique @default(autoincrement())
+  codigo           String?
+  presupuesto      Int?
+  estado           String             @default("Pendiente")
   pedido_articulos pedido_articulos[]
+  user_pedidos     users_pedidos[]
 }
 
 model pedido_articulos {
   pedido_id   Int
   articulo_id Int
-  cantidad    Int @default(1)
-
-  pedido   pedido   @relation(fields: [pedido_id], references: [id])
-  articulo articulo @relation(fields: [articulo_id], references: [id])
+  cantidad    Int      @default(1)
+  articulo    articulo @relation(fields: [articulo_id], references: [id])
+  pedido      pedido   @relation(fields: [pedido_id], references: [id])
 
   @@id([pedido_id, articulo_id])
 }
 
 model articulo {
-  id           Int     @id @unique @default(autoincrement())
-  codigo       String?
-  descripcion  String?
-  cant_piezas  Int?
-  plano_file   String? // Ruta del archivo de plano subido
-  precio       Int?
-  cte_ganancia Int?
-
-  pedido_articulos pedido_articulos[]
+  id               Int                @id @unique @default(autoincrement())
+  codigo           String?
+  descripcion      String?
+  cant_piezas      Int?
+  precio           Int?
+  cte_ganancia     Int?
+  plano_file       String?
   articulo_piezas  articulo_piezas[]
+  pedido_articulos pedido_articulos[]
 }
 
 model articulo_piezas {
   articulo_id Int
   pieza_id    Int
-
-  articulo articulo @relation(fields: [articulo_id], references: [id])
-  pieza    pieza    @relation(fields: [pieza_id], references: [id])
+  articulo    articulo @relation(fields: [articulo_id], references: [id])
+  pieza       pieza    @relation(fields: [pieza_id], references: [id])
 
   @@id([articulo_id, pieza_id])
 }
 
 model pieza {
-  id                    Int     @id @unique @default(autoincrement())
+  id                    Int               @id @unique @default(autoincrement())
   nombre                String?
   precio_mat_prima      Int?
-  plano_pleg_DWG_file   String? // Ruta del archivo DWG
-  plano_pleg_SOLID_file String? // Ruta del archivo SOLID
-  plano_laser_DXF_file  String? // Ruta del archivo DXF
   cte_ganancia          Int?
-
-  articulo_piezas articulo_piezas[]
+  plano_laser_DXF_file  String?
+  plano_pleg_DWG_file   String?
+  plano_pleg_SOLID_file String?
+  articulo_piezas       articulo_piezas[]
 }

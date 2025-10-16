@@ -24,7 +24,7 @@ const CartDropdown: React.FC = () => {
         clearCart();
         alert('Pedido realizado con éxito');
         setOpen(false);
-        navigate('/pedidos');
+        navigate('/user');
       } else {
         alert('Error al realizar el pedido');
       }
@@ -36,7 +36,7 @@ const CartDropdown: React.FC = () => {
   return (
     <div className="relative">
       <button
-        className="bg-[var(--color-primary)] text-white px-4 py-2 rounded shadow hover:bg-[var(--color-secondary)]"
+        className="bg-[var(--color-terciary)] text-white px-4 py-2 rounded shadow hover:bg-[var(--color-secondary)]"
         onClick={() => setOpen(!open)}
       >
         Carrito ({cart.reduce((acc, item) => acc + item.cantidad, 0)})
@@ -46,7 +46,7 @@ const CartDropdown: React.FC = () => {
           <div className="p-4">
             <h3 className="font-bold text-lg text-black mb-2">Carrito</h3>
             {cart.length === 0 ? (
-              <div className="text-[var(--color-terciary)]">El carrito está vacío</div>
+              <div className="text-[var(--color-terciary)] pl-1">El carrito está vacío</div>
             ) : (
               <ul>
                 {cart.map(item => (
@@ -58,7 +58,7 @@ const CartDropdown: React.FC = () => {
                         <span className="ml-2 text-black">${item.precio * item.cantidad}</span>
                       )}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-black">
                       <input
                         type="number"
                         min={1}
@@ -83,7 +83,7 @@ const CartDropdown: React.FC = () => {
                   Total: ${cart.reduce((acc, item) => acc + (item.precio || 0) * item.cantidad, 0)}
                 </div>
                 <button
-                  className="mt-4 w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700"
+                  className="mt-4 w-full bg-[var(--color-primary)] text-white py-2 rounded hover:bg-[var(--color-terciary)]"
                   onClick={handlePedido}
                 >
                   Realizar pedido
