@@ -12,7 +12,7 @@ interface OptionalAuthRequest extends express.Request {
 
 // Interface para los datos del pedido
 interface PedidoData {
-  codigo?: string | null;
+  codigo: string;
   presupuesto?: number | null;
   estado: string;
   user_pedidos?: { create: { user_id: number } };
@@ -22,20 +22,52 @@ interface PedidoData {
 // Ejemplo de uso -> POST url/pedidos/
 // Headers: Authorization con JWT token (opcional)
 // Body: {
-//   codigo?: string,
 //   presupuesto?: number,
-//   estado?: string
+//   estado?: string,
+//   articulos: [{ id: number, cantidad: number }]
 // }
+// El código se genera automáticamente en formato V-YYYYMMDD-XX
 
 // Crear un nuevo pedido
 // Crear un nuevo pedido con artículos y cantidades desde el carrito
 router.post('/', async (req: OptionalAuthRequest, res) => {
   try {
     const user_id = req.user?.userId;
-    const { codigo, presupuesto, estado, articulos } = req.body;
+    const { presupuesto, estado, articulos } = req.body;
     if (!articulos || !Array.isArray(articulos) || articulos.length === 0) {
       return res.status(400).json({ error: 'El carrito está vacío o mal formado' });
     }
+
+    // Generar código automáticamente
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const dateStr = `${year}${month}${day}`;
+    const baseCode = `V-${dateStr}-`;
+
+    // Buscar el último código del día
+    const lastPedido = await prisma.pedido.findFirst({
+      where: {
+        codigo: {
+          startsWith: baseCode
+        }
+      },
+      orderBy: {
+        codigo: 'desc'
+      },
+      select: {
+        codigo: true
+      }
+    });
+
+    let nextNumber = 1;
+    if (lastPedido && lastPedido.codigo) {
+      const lastNumber = parseInt(lastPedido.codigo.split('-')[2]);
+      nextNumber = lastNumber + 1;
+    }
+
+    const codigo = `${baseCode}${String(nextNumber).padStart(2, '0')}`;
 
     // Preparar datos para el pedido
     const pedidoData: PedidoData = {
