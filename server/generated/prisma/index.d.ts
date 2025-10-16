@@ -4889,26 +4889,31 @@ export namespace Prisma {
   export type Pedido_articulosAvgAggregateOutputType = {
     pedido_id: number | null
     articulo_id: number | null
+    cantidad: number | null
   }
 
   export type Pedido_articulosSumAggregateOutputType = {
     pedido_id: number | null
     articulo_id: number | null
+    cantidad: number | null
   }
 
   export type Pedido_articulosMinAggregateOutputType = {
     pedido_id: number | null
     articulo_id: number | null
+    cantidad: number | null
   }
 
   export type Pedido_articulosMaxAggregateOutputType = {
     pedido_id: number | null
     articulo_id: number | null
+    cantidad: number | null
   }
 
   export type Pedido_articulosCountAggregateOutputType = {
     pedido_id: number
     articulo_id: number
+    cantidad: number
     _all: number
   }
 
@@ -4916,26 +4921,31 @@ export namespace Prisma {
   export type Pedido_articulosAvgAggregateInputType = {
     pedido_id?: true
     articulo_id?: true
+    cantidad?: true
   }
 
   export type Pedido_articulosSumAggregateInputType = {
     pedido_id?: true
     articulo_id?: true
+    cantidad?: true
   }
 
   export type Pedido_articulosMinAggregateInputType = {
     pedido_id?: true
     articulo_id?: true
+    cantidad?: true
   }
 
   export type Pedido_articulosMaxAggregateInputType = {
     pedido_id?: true
     articulo_id?: true
+    cantidad?: true
   }
 
   export type Pedido_articulosCountAggregateInputType = {
     pedido_id?: true
     articulo_id?: true
+    cantidad?: true
     _all?: true
   }
 
@@ -5028,6 +5038,7 @@ export namespace Prisma {
   export type Pedido_articulosGroupByOutputType = {
     pedido_id: number
     articulo_id: number
+    cantidad: number
     _count: Pedido_articulosCountAggregateOutputType | null
     _avg: Pedido_articulosAvgAggregateOutputType | null
     _sum: Pedido_articulosSumAggregateOutputType | null
@@ -5052,6 +5063,7 @@ export namespace Prisma {
   export type pedido_articulosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pedido_id?: boolean
     articulo_id?: boolean
+    cantidad?: boolean
     pedido?: boolean | pedidoDefaultArgs<ExtArgs>
     articulo?: boolean | articuloDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pedido_articulos"]>
@@ -5059,6 +5071,7 @@ export namespace Prisma {
   export type pedido_articulosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pedido_id?: boolean
     articulo_id?: boolean
+    cantidad?: boolean
     pedido?: boolean | pedidoDefaultArgs<ExtArgs>
     articulo?: boolean | articuloDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pedido_articulos"]>
@@ -5066,6 +5079,7 @@ export namespace Prisma {
   export type pedido_articulosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     pedido_id?: boolean
     articulo_id?: boolean
+    cantidad?: boolean
     pedido?: boolean | pedidoDefaultArgs<ExtArgs>
     articulo?: boolean | articuloDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pedido_articulos"]>
@@ -5073,9 +5087,10 @@ export namespace Prisma {
   export type pedido_articulosSelectScalar = {
     pedido_id?: boolean
     articulo_id?: boolean
+    cantidad?: boolean
   }
 
-  export type pedido_articulosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"pedido_id" | "articulo_id", ExtArgs["result"]["pedido_articulos"]>
+  export type pedido_articulosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"pedido_id" | "articulo_id" | "cantidad", ExtArgs["result"]["pedido_articulos"]>
   export type pedido_articulosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pedido?: boolean | pedidoDefaultArgs<ExtArgs>
     articulo?: boolean | articuloDefaultArgs<ExtArgs>
@@ -5098,6 +5113,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       pedido_id: number
       articulo_id: number
+      cantidad: number
     }, ExtArgs["result"]["pedido_articulos"]>
     composites: {}
   }
@@ -5525,6 +5541,7 @@ export namespace Prisma {
   interface pedido_articulosFieldRefs {
     readonly pedido_id: FieldRef<"pedido_articulos", 'Int'>
     readonly articulo_id: FieldRef<"pedido_articulos", 'Int'>
+    readonly cantidad: FieldRef<"pedido_articulos", 'Int'>
   }
     
 
@@ -9358,7 +9375,8 @@ export namespace Prisma {
 
   export const Pedido_articulosScalarFieldEnum: {
     pedido_id: 'pedido_id',
-    articulo_id: 'articulo_id'
+    articulo_id: 'articulo_id',
+    cantidad: 'cantidad'
   };
 
   export type Pedido_articulosScalarFieldEnum = (typeof Pedido_articulosScalarFieldEnum)[keyof typeof Pedido_articulosScalarFieldEnum]
@@ -9641,6 +9659,7 @@ export namespace Prisma {
     NOT?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
     pedido_id?: IntFilter<"pedido_articulos"> | number
     articulo_id?: IntFilter<"pedido_articulos"> | number
+    cantidad?: IntFilter<"pedido_articulos"> | number
     pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
     articulo?: XOR<ArticuloScalarRelationFilter, articuloWhereInput>
   }
@@ -9648,6 +9667,7 @@ export namespace Prisma {
   export type pedido_articulosOrderByWithRelationInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
     pedido?: pedidoOrderByWithRelationInput
     articulo?: articuloOrderByWithRelationInput
   }
@@ -9659,6 +9679,7 @@ export namespace Prisma {
     NOT?: pedido_articulosWhereInput | pedido_articulosWhereInput[]
     pedido_id?: IntFilter<"pedido_articulos"> | number
     articulo_id?: IntFilter<"pedido_articulos"> | number
+    cantidad?: IntFilter<"pedido_articulos"> | number
     pedido?: XOR<PedidoScalarRelationFilter, pedidoWhereInput>
     articulo?: XOR<ArticuloScalarRelationFilter, articuloWhereInput>
   }, "pedido_id_articulo_id">
@@ -9666,6 +9687,7 @@ export namespace Prisma {
   export type pedido_articulosOrderByWithAggregationInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
     _count?: pedido_articulosCountOrderByAggregateInput
     _avg?: pedido_articulosAvgOrderByAggregateInput
     _max?: pedido_articulosMaxOrderByAggregateInput
@@ -9679,6 +9701,7 @@ export namespace Prisma {
     NOT?: pedido_articulosScalarWhereWithAggregatesInput | pedido_articulosScalarWhereWithAggregatesInput[]
     pedido_id?: IntWithAggregatesFilter<"pedido_articulos"> | number
     articulo_id?: IntWithAggregatesFilter<"pedido_articulos"> | number
+    cantidad?: IntWithAggregatesFilter<"pedido_articulos"> | number
   }
 
   export type articuloWhereInput = {
@@ -10017,6 +10040,7 @@ export namespace Prisma {
   }
 
   export type pedido_articulosCreateInput = {
+    cantidad?: number
     pedido: pedidoCreateNestedOneWithoutPedido_articulosInput
     articulo: articuloCreateNestedOneWithoutPedido_articulosInput
   }
@@ -10024,9 +10048,11 @@ export namespace Prisma {
   export type pedido_articulosUncheckedCreateInput = {
     pedido_id: number
     articulo_id: number
+    cantidad?: number
   }
 
   export type pedido_articulosUpdateInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     pedido?: pedidoUpdateOneRequiredWithoutPedido_articulosNestedInput
     articulo?: articuloUpdateOneRequiredWithoutPedido_articulosNestedInput
   }
@@ -10034,20 +10060,23 @@ export namespace Prisma {
   export type pedido_articulosUncheckedUpdateInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     articulo_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type pedido_articulosCreateManyInput = {
     pedido_id: number
     articulo_id: number
+    cantidad?: number
   }
 
   export type pedido_articulosUpdateManyMutationInput = {
-
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type pedido_articulosUncheckedUpdateManyInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
     articulo_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type articuloCreateInput = {
@@ -10494,26 +10523,31 @@ export namespace Prisma {
   export type pedido_articulosCountOrderByAggregateInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type pedido_articulosAvgOrderByAggregateInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type pedido_articulosMaxOrderByAggregateInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type pedido_articulosMinOrderByAggregateInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type pedido_articulosSumOrderByAggregateInput = {
     pedido_id?: SortOrder
     articulo_id?: SortOrder
+    cantidad?: SortOrder
   }
 
   export type Articulo_piezasListRelationFilter = {
@@ -11302,11 +11336,13 @@ export namespace Prisma {
   }
 
   export type pedido_articulosCreateWithoutPedidoInput = {
+    cantidad?: number
     articulo: articuloCreateNestedOneWithoutPedido_articulosInput
   }
 
   export type pedido_articulosUncheckedCreateWithoutPedidoInput = {
     articulo_id: number
+    cantidad?: number
   }
 
   export type pedido_articulosCreateOrConnectWithoutPedidoInput = {
@@ -11357,6 +11393,7 @@ export namespace Prisma {
     NOT?: pedido_articulosScalarWhereInput | pedido_articulosScalarWhereInput[]
     pedido_id?: IntFilter<"pedido_articulos"> | number
     articulo_id?: IntFilter<"pedido_articulos"> | number
+    cantidad?: IntFilter<"pedido_articulos"> | number
   }
 
   export type pedidoCreateWithoutPedido_articulosInput = {
@@ -11464,11 +11501,13 @@ export namespace Prisma {
   }
 
   export type pedido_articulosCreateWithoutArticuloInput = {
+    cantidad?: number
     pedido: pedidoCreateNestedOneWithoutPedido_articulosInput
   }
 
   export type pedido_articulosUncheckedCreateWithoutArticuloInput = {
     pedido_id: number
+    cantidad?: number
   }
 
   export type pedido_articulosCreateOrConnectWithoutArticuloInput = {
@@ -11707,6 +11746,7 @@ export namespace Prisma {
 
   export type pedido_articulosCreateManyPedidoInput = {
     articulo_id: number
+    cantidad?: number
   }
 
   export type users_pedidosUpdateWithoutPedidoInput = {
@@ -11722,19 +11762,23 @@ export namespace Prisma {
   }
 
   export type pedido_articulosUpdateWithoutPedidoInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     articulo?: articuloUpdateOneRequiredWithoutPedido_articulosNestedInput
   }
 
   export type pedido_articulosUncheckedUpdateWithoutPedidoInput = {
     articulo_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type pedido_articulosUncheckedUpdateManyWithoutPedidoInput = {
     articulo_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type pedido_articulosCreateManyArticuloInput = {
     pedido_id: number
+    cantidad?: number
   }
 
   export type articulo_piezasCreateManyArticuloInput = {
@@ -11742,15 +11786,18 @@ export namespace Prisma {
   }
 
   export type pedido_articulosUpdateWithoutArticuloInput = {
+    cantidad?: IntFieldUpdateOperationsInput | number
     pedido?: pedidoUpdateOneRequiredWithoutPedido_articulosNestedInput
   }
 
   export type pedido_articulosUncheckedUpdateWithoutArticuloInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type pedido_articulosUncheckedUpdateManyWithoutArticuloInput = {
     pedido_id?: IntFieldUpdateOperationsInput | number
+    cantidad?: IntFieldUpdateOperationsInput | number
   }
 
   export type articulo_piezasUpdateWithoutArticuloInput = {

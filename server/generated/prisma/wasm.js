@@ -143,7 +143,8 @@ exports.Prisma.PedidoScalarFieldEnum = {
 
 exports.Prisma.Pedido_articulosScalarFieldEnum = {
   pedido_id: 'pedido_id',
-  articulo_id: 'articulo_id'
+  articulo_id: 'articulo_id',
+  cantidad: 'cantidad'
 };
 
 exports.Prisma.ArticuloScalarFieldEnum = {
