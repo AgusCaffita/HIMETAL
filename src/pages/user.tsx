@@ -63,7 +63,6 @@ const User = () => {
 
                                 </div>
                                 <div>
-                                    Artículos:
                                     <ul className="ml-4 list-disc">
                                         {pedido.pedido_articulos.map((pa: any) => (
                                             <li key={pa.articulo.id}>
