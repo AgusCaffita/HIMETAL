@@ -17,6 +17,7 @@ interface PedidoData {
   estado: string;
   user_pedidos?: { create: { user_id: number } };
   pedido_articulos: { create: Array<{ articulo: { connect: { id: number } }; cantidad: number }> };
+  pedido_piezas: { create: Array<{ pieza: { connect: { id: number } }; cantidad: number }> };
 }
 
 // Ejemplo de uso -> POST url/pedidos/
@@ -24,18 +25,24 @@ interface PedidoData {
 // Body: {
 //   presupuesto?: number,
 //   estado?: string,
-//   articulos: [{ id: number, cantidad: number }]
+//   articulos?: [{ id: number, cantidad: number }],
+//   piezas?: [{ id: number, cantidad: number }]
 // }
 // El código se genera automáticamente en formato V-YYYYMMDD-XX
 
 // Crear un nuevo pedido
-// Crear un nuevo pedido con artículos y cantidades desde el carrito
+// Crear un nuevo pedido con artículos y/o piezas desde el carrito
 router.post('/', async (req: OptionalAuthRequest, res) => {
   try {
     const user_id = req.user?.userId;
-    const { presupuesto, estado, articulos } = req.body;
-    if (!articulos || !Array.isArray(articulos) || articulos.length === 0) {
-      return res.status(400).json({ error: 'El carrito está vacío o mal formado' });
+    const { presupuesto, estado, articulos, piezas } = req.body;
+    
+    // Validar que al menos haya artículos o piezas
+    const tieneArticulos = articulos && Array.isArray(articulos) && articulos.length > 0;
+    const tienePiezas = piezas && Array.isArray(piezas) && piezas.length > 0;
+    
+    if (!tieneArticulos && !tienePiezas) {
+      return res.status(400).json({ error: 'El carrito está vacío o mal formado. Debe incluir al menos artículos o piezas.' });
     }
 
     // Generar código automáticamente
@@ -75,12 +82,20 @@ router.post('/', async (req: OptionalAuthRequest, res) => {
       presupuesto: presupuesto ? parseInt(presupuesto) : null,
       estado: estado || 'Pendiente',
       pedido_articulos: {
-        create: articulos.map((item: { id: number; cantidad: number }) => ({
+        create: tieneArticulos ? articulos.map((item: { id: number; cantidad: number }) => ({
           articulo: {
             connect: { id: item.id }
           },
           cantidad: item.cantidad
-        }))
+        })) : []
+      },
+      pedido_piezas: {
+        create: tienePiezas ? piezas.map((item: { id: number; cantidad: number }) => ({
+          pieza: {
+            connect: { id: item.id }
+          },
+          cantidad: item.cantidad
+        })) : []
       }
     };
 
@@ -107,6 +122,11 @@ router.post('/', async (req: OptionalAuthRequest, res) => {
                 articulo_piezas: { include: { pieza: true } }
               }
             }
+          }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
           }
         }
       }
@@ -160,6 +180,11 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
         }
       },
       orderBy: {
@@ -209,6 +234,11 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
                 }
               }
             }
+          }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
           }
         }
       }
@@ -287,6 +317,11 @@ router.put('/:id', authenticateToken, async (req: AuthRequest, res) => {
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
         }
       }
     })
@@ -327,6 +362,11 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
           include: {
             articulo: true
           }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
         }
       }
     })
@@ -350,6 +390,31 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
         }
       }
     }
+
+    // Eliminar archivos de planos de piezas asociadas
+    for (const pedidoPieza of pedidoExistente.pedido_piezas) {
+      const pieza = pedidoPieza.pieza
+      const archivosPlanos = [
+        pieza.plano_laser_DXF_file,
+        pieza.plano_pleg_DWG_file,
+        pieza.plano_pleg_SOLID_file
+      ].filter(Boolean) // Filtrar valores null/undefined
+
+      for (const archivoPlano of archivosPlanos) {
+        if (archivoPlano) { // Verificación adicional por TypeScript
+          try {
+            const fs = await import('fs')
+            const path = await import('path')
+            const filePath = path.join(process.cwd(), archivoPlano)
+            if (fs.existsSync(filePath)) {
+              fs.unlinkSync(filePath)
+            }
+          } catch (unlinkError) {
+            console.error('Error al eliminar archivo de pieza:', unlinkError)
+          }
+        }
+      }
+    }
     
     // Eliminar las relaciones y entidades asociadas en el orden correcto
     // 1. Eliminar relaciones articulo_piezas de los artículos del pedido
@@ -364,20 +429,25 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
     await prisma.pedido_articulos.deleteMany({
       where: { pedido_id: parseInt(id) }
     })
+
+    // 3. Eliminar relaciones pedido_piezas
+    await prisma.pedido_piezas.deleteMany({
+      where: { pedido_id: parseInt(id) }
+    })
     
-    // 3. Eliminar artículos que pertenecían solo a este pedido
+    // 4. Eliminar artículos que pertenecían solo a este pedido
     if (articuloIds.length > 0) {
       await prisma.articulo.deleteMany({
         where: { id: { in: articuloIds } }
       })
     }
     
-    // 4. Eliminar relaciones user_pedidos
+    // 5. Eliminar relaciones user_pedidos
     await prisma.users_pedidos.deleteMany({
       where: { pedido_id: parseInt(id) }
     })
     
-    // 5. Finalmente eliminar el pedido
+    // 6. Finalmente eliminar el pedido
     await prisma.pedido.delete({
       where: { id: parseInt(id) }
     })
@@ -457,6 +527,11 @@ router.post('/:id/articulos/:articulo_id', authenticateToken, async (req: AuthRe
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
         }
       }
     })
@@ -519,6 +594,137 @@ router.delete('/:id/articulos/:articulo_id', authenticateToken, async (req: Auth
   }
 })
 
+// Añadir una pieza existente a un pedido
+router.post('/:id/piezas/:pieza_id', authenticateToken, async (req: AuthRequest, res) => {
+  try {
+    const { id, pieza_id } = req.params
+    const user_id = req.user?.userId
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    // Verificar que el pedido pertenece al usuario
+    const pedido = await prisma.pedido.findFirst({
+      where: {
+        id: parseInt(id),
+        user_pedidos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      }
+    })
+    
+    if (!pedido) {
+      return res.status(404).json({ error: 'Pedido no encontrado' })
+    }
+    
+    // Verificar que la pieza existe
+    const pieza = await prisma.pieza.findUnique({
+      where: { id: parseInt(pieza_id) }
+    })
+    
+    if (!pieza) {
+      return res.status(404).json({ error: 'Pieza no encontrada' })
+    }
+    
+    // Crear la relación si no existe
+    await prisma.pedido_piezas.create({
+      data: {
+        pedido_id: parseInt(id),
+        pieza_id: parseInt(pieza_id)
+      }
+    })
+    
+    // Devolver el pedido actualizado
+    const pedidoActualizado = await prisma.pedido.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        user_pedidos: {
+          include: {
+            users: true
+          }
+        },
+        pedido_articulos: {
+          include: {
+            articulo: {
+              include: {
+                articulo_piezas: {
+                  include: {
+                    pieza: true
+                  }
+                }
+              }
+            }
+          }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
+        }
+      }
+    })
+    
+    res.json(pedidoActualizado)
+  } catch (error) {
+    console.error(error)
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+      res.status(409).json({ error: 'La pieza ya está asociada a este pedido' })
+    } else {
+      res.status(500).json({ error: 'Error al añadir pieza al pedido: ' + (error as Error).message })
+    }
+  }
+})
+
+// Quitar una pieza de un pedido
+router.delete('/:id/piezas/:pieza_id', authenticateToken, async (req: AuthRequest, res) => {
+  try {
+    const { id, pieza_id } = req.params
+    const user_id = req.user?.userId
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
+    
+    // Verificar que el pedido pertenece al usuario
+    const pedido = await prisma.pedido.findFirst({
+      where: {
+        id: parseInt(id),
+        user_pedidos: {
+          some: {
+            user_id: user_id
+          }
+        }
+      }
+    })
+    
+    if (!pedido) {
+      return res.status(404).json({ error: 'Pedido no encontrado' })
+    }
+    
+    // Eliminar la relación
+    await prisma.pedido_piezas.delete({
+      where: {
+        pedido_id_pieza_id: {
+          pedido_id: parseInt(id),
+          pieza_id: parseInt(pieza_id)
+        }
+      }
+    })
+    
+    res.status(204).send()
+  } catch (error) {
+    console.error(error)
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2025') {
+      res.status(404).json({ error: 'Relación no encontrada' })
+    } else {
+      res.status(500).json({ error: 'Error al quitar pieza del pedido: ' + (error as Error).message })
+    }
+  }
+})
+
 // ==================== RUTAS DE ADMINISTRADOR ====================
 
 // Obtener todos los pedidos (solo admins) - organizados por usuario
@@ -550,6 +756,11 @@ router.get('/admin/all', authenticateToken, requireAdmin, async (req: AuthReques
                 }
               }
             }
+          }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
           }
         }
       },
@@ -642,6 +853,11 @@ router.patch('/admin/:id/presupuesto', authenticateToken, requireAdmin, async (r
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
+          }
         }
       }
     })
@@ -717,6 +933,11 @@ router.patch('/admin/:id/estado', authenticateToken, requireAdmin, async (req: A
                 }
               }
             }
+          }
+        },
+        pedido_piezas: {
+          include: {
+            pieza: true
           }
         }
       }

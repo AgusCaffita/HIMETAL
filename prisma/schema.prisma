@@ -33,6 +33,7 @@ model pedido {
   presupuesto      Int?
   estado           String             @default("Pendiente")
   pedido_articulos pedido_articulos[]
+  pedido_piezas    pedido_piezas[]
   user_pedidos     users_pedidos[]
 }
 
@@ -44,6 +45,16 @@ model pedido_articulos {
   pedido      pedido   @relation(fields: [pedido_id], references: [id])
 
   @@id([pedido_id, articulo_id])
+}
+
+model pedido_piezas {
+  pedido_id Int
+  pieza_id  Int
+  cantidad  Int     @default(1)
+  pieza     pieza   @relation(fields: [pieza_id], references: [id])
+  pedido    pedido  @relation(fields: [pedido_id], references: [id])
+
+  @@id([pedido_id, pieza_id])
 }
 
 model articulo {
@@ -76,4 +87,5 @@ model pieza {
   plano_pleg_DWG_file   String?
   plano_pleg_SOLID_file String?
   articulo_piezas       articulo_piezas[]
+  pedido_piezas         pedido_piezas[]
 }

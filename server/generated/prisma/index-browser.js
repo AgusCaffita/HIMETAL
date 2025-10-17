@@ -147,14 +147,20 @@ exports.Prisma.Pedido_articulosScalarFieldEnum = {
   cantidad: 'cantidad'
 };
 
+exports.Prisma.Pedido_piezasScalarFieldEnum = {
+  pedido_id: 'pedido_id',
+  pieza_id: 'pieza_id',
+  cantidad: 'cantidad'
+};
+
 exports.Prisma.ArticuloScalarFieldEnum = {
   id: 'id',
   codigo: 'codigo',
   descripcion: 'descripcion',
   cant_piezas: 'cant_piezas',
-  plano_file: 'plano_file',
   precio: 'precio',
-  cte_ganancia: 'cte_ganancia'
+  cte_ganancia: 'cte_ganancia',
+  plano_file: 'plano_file'
 };
 
 exports.Prisma.Articulo_piezasScalarFieldEnum = {
@@ -166,10 +172,10 @@ exports.Prisma.PiezaScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
   precio_mat_prima: 'precio_mat_prima',
-  plano_pleg_DWG_file: 'plano_pleg_DWG_file',
-  plano_pleg_SOLID_file: 'plano_pleg_SOLID_file',
+  cte_ganancia: 'cte_ganancia',
   plano_laser_DXF_file: 'plano_laser_DXF_file',
-  cte_ganancia: 'cte_ganancia'
+  plano_pleg_DWG_file: 'plano_pleg_DWG_file',
+  plano_pleg_SOLID_file: 'plano_pleg_SOLID_file'
 };
 
 exports.Prisma.SortOrder = {
@@ -193,6 +199,7 @@ exports.Prisma.ModelName = {
   users_pedidos: 'users_pedidos',
   pedido: 'pedido',
   pedido_articulos: 'pedido_articulos',
+  pedido_piezas: 'pedido_piezas',
   articulo: 'articulo',
   articulo_piezas: 'articulo_piezas',
   pieza: 'pieza'
