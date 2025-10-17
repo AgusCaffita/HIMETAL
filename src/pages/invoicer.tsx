@@ -1,11 +1,36 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from "../components/Navbar"
 import generarPDF from "../components/Convertpdf"
 import copyFieldValue from '../components/Copiar'
 import vaciar from '../components/Borrar'
 
+// Función para decodificar JWT
+const decodeJWT = (token: string) => {
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload;
+    } catch {
+        return null;
+    }
+};
 
 function Invoicer() {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+        const decoded = decodeJWT(token);
+        if (!decoded || decoded.rol !== 'admin') {
+            navigate('/');
+            return;
+        }
+    }, [navigate]);
+
   const cantFilas = 10
   
   const [datos, setDatos] = useState<string[][]>(
