@@ -14,10 +14,9 @@ const AddToCartButton = ({ articulo }: { articulo: any }) => {
       className="bg-[var(--color-primary)] text-white px-3 py-1 rounded hover:bg-[var(--color-secondary)] transition mr-2"
       onClick={() => addToCart({
         id: articulo.id,
-        nombre: articulo.codigo,
-        descripcion: articulo.descripcion,
-        precio: articulo.precio,
-        cantidad: 1
+        tipo: 'pieza',
+        nombre: articulo.nombre,
+        precio: articulo.precio_mat_prima
       })}
     >
       Agregar al carrito

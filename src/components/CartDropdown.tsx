@@ -8,8 +8,15 @@ const CartDropdown: React.FC = () => {
   const navigate = useNavigate();
 
   const handlePedido = async () => {
-    // Aquí deberías enviar el pedido al backend
-    // Ejemplo básico:
+    // Separar artículos y piezas del carrito
+    const articulos = cart
+      .filter(item => item.tipo === 'articulo')
+      .map(item => ({ id: item.id, cantidad: item.cantidad }));
+    
+    const piezas = cart
+      .filter(item => item.tipo === 'pieza')
+      .map(item => ({ id: item.id, cantidad: item.cantidad }));
+
     try {
       const token = localStorage.getItem('token');
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}:${import.meta.env.VITE_BACKEND_PORT}/pedidos`, {
@@ -18,7 +25,10 @@ const CartDropdown: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ articulos: cart }),
+        body: JSON.stringify({ 
+          articulos: articulos.length > 0 ? articulos : undefined,
+          piezas: piezas.length > 0 ? piezas : undefined
+        }),
       });
       if (res.ok) {
         clearCart();
@@ -26,7 +36,8 @@ const CartDropdown: React.FC = () => {
         setOpen(false);
         navigate('/user');
       } else {
-        alert('Error al realizar el pedido');
+        const error = await res.json();
+        alert('Error al realizar el pedido: ' + (error.error || 'Error desconocido'));
       }
     } catch {
       alert('Error de conexión');
@@ -50,9 +61,14 @@ const CartDropdown: React.FC = () => {
             ) : (
               <ul>
                 {cart.map(item => (
-                  <li key={item.id} className="flex items-center justify-between mb-2">
+                  <li key={`${item.tipo}-${item.id}`} className="flex items-center justify-between mb-2">
                     <div>
-                      <span className="font-semibold text-black ">{item.nombre || 'Artículo ' + item.id}</span>
+                      <span className="font-semibold text-black ">
+                        {item.tipo === 'articulo' 
+                          ? (item.codigo ? `${item.codigo} - ` : '') + (item.descripcion || 'Artículo ' + item.id)
+                          : item.nombre || 'Pieza ' + item.id
+                        }
+                      </span>
                       <span className="ml-2 text-black"> x{item.cantidad}</span>
                       {item.precio && (
                         <span className="ml-2 text-black">${item.precio * item.cantidad}</span>
@@ -63,12 +79,12 @@ const CartDropdown: React.FC = () => {
                         type="number"
                         min={1}
                         value={item.cantidad}
-                        onChange={e => updateQuantity(item.id, Number(e.target.value))}
+                        onChange={e => updateQuantity(item.id, item.tipo, Number(e.target.value))}
                         className="w-12 border rounded px-1"
                       />
                       <button
                         className="text-red-500 hover:text-red-700"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => removeFromCart(item.id, item.tipo)}
                       >
                         ✕
                       </button>

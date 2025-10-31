@@ -2,8 +2,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type CartItem = {
   id: number;
+  tipo: 'articulo' | 'pieza'; // Nuevo campo para distinguir entre artículos y piezas
   nombre?: string;
   descripcion?: string;
+  codigo?: string; // Para artículos
   precio?: number;
   cantidad: number;
 };
@@ -11,8 +13,8 @@ export type CartItem = {
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: Omit<CartItem, 'cantidad'>, cantidad?: number) => void;
-  removeFromCart: (id: number) => void;
-  updateQuantity: (id: number, cantidad: number) => void;
+  removeFromCart: (id: number, tipo: 'articulo' | 'pieza') => void;
+  updateQuantity: (id: number, tipo: 'articulo' | 'pieza', cantidad: number) => void;
   clearCart: () => void;
 }
 
@@ -52,20 +54,29 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const addToCart = (item: Omit<CartItem, 'cantidad'>, cantidad: number = 1) => {
     setCart(prev => {
-      const found = prev.find(i => i.id === item.id);
+      // Buscar por id Y tipo para evitar conflictos entre artículos y piezas
+      const found = prev.find(i => i.id === item.id && i.tipo === item.tipo);
       if (found) {
-        return prev.map(i => i.id === item.id ? { ...i, cantidad: i.cantidad + cantidad } : i);
+        return prev.map(i => 
+          i.id === item.id && i.tipo === item.tipo 
+            ? { ...i, cantidad: i.cantidad + cantidad } 
+            : i
+        );
       }
       return [...prev, { ...item, cantidad }];
     });
   };
 
-  const removeFromCart = (id: number) => {
-    setCart(prev => prev.filter(i => i.id !== id));
+  const removeFromCart = (id: number, tipo: 'articulo' | 'pieza') => {
+    setCart(prev => prev.filter(i => !(i.id === id && i.tipo === tipo)));
   };
 
-  const updateQuantity = (id: number, cantidad: number) => {
-    setCart(prev => prev.map(i => i.id === id ? { ...i, cantidad } : i));
+  const updateQuantity = (id: number, tipo: 'articulo' | 'pieza', cantidad: number) => {
+    setCart(prev => prev.map(i => 
+      i.id === id && i.tipo === tipo 
+        ? { ...i, cantidad } 
+        : i
+    ));
   };
 
   const clearCart = () => setCart([]);
