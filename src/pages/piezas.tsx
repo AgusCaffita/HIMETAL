@@ -25,6 +25,19 @@ const AddToCartButton = ({ articulo }: { articulo: any }) => {
   )
 }
 
+const decodeJWT = (token: string) => {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    } catch {
+        return null;
+    }
+};
+
 const Piezas = () => {
     const navigate = useNavigate()
     const [piezas, setPiezas] = useState([])
@@ -35,6 +48,19 @@ const Piezas = () => {
     const [menuOpenId, setMenuOpenId] = useState<number | null>(null)
     const [searchTerm, setSearchTerm] = useState('')
     
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const decoded = decodeJWT(token);
+            if (decoded && decoded.rol === 'admin') {
+                setIsAdmin(true);
+            }
+        }
+    }, []);
+
+
     // Función para obtener el token
     const getAuthHeaders = () => {
         const token = localStorage.getItem('token')
@@ -168,9 +194,9 @@ const Piezas = () => {
       <div className="pt-16 mt-4">
         <div className="flex items-center gap-4 mb-4 mt-2">
             <h1 className=" mx-5 text-4xl font-bold">Lista de piezas</h1>
-            <button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-pink-700 transition" onClick={() => setShowModal(true)}>
+            { isAdmin &&<button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-pink-700 transition" onClick={() => setShowModal(true)}>
                 Nueva
-            </button>
+            </button>}
         </div>
 
         {/* Campo de búsqueda */}
@@ -202,18 +228,21 @@ const Piezas = () => {
                   type="number"
                   required
                 />
+                <div>Plano plegado DWG</div>
                 <input
                   name="plano_pleg_DWG"
                   className="border p-2 w-full mb-2"
                   placeholder="Plano plegado DWG"
                   type="file"
                 />
+                <div>Plano plegado SOLID</div>
                 <input
                   name="plano_pleg_SOLID"
                   className="border p-2 w-full mb-2"
                   placeholder="Plano plegado SOLID"
                   type="file"
                 />
+                <div>Plano laser</div>
                 <input
                   name="plano_laser_DXF"
                   className="border p-2 w-full mb-2"

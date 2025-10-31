@@ -6,6 +6,8 @@ import { CartContext } from "../components/CartContext"
 
 const API_URL = import.meta.env.VITE_BACKEND_URL + ':' + (import.meta.env.VITE_BACKEND_PORT || '5174')
 
+
+
 const AddToCartButton = ({ articulo }: { articulo: any }) => {
   const cartContext = useContext(CartContext)
   const addToCart = cartContext?.addToCart ?? (() => {})
@@ -25,6 +27,19 @@ const AddToCartButton = ({ articulo }: { articulo: any }) => {
   )
 }
 
+const decodeJWT = (token: string) => {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload);
+    } catch {
+        return null;
+    }
+};
+
 const Articulos = () => {
     const navigate = useNavigate()
     const [articulos, setArticulos] = useState([])
@@ -37,7 +52,18 @@ const Articulos = () => {
     const [searchTerm, setSearchTerm] = useState('')
     const menuRef = useRef<HTMLDivElement>(null)
     
-
+    const [isAdmin, setIsAdmin] = useState(false);
+    
+        useEffect(() => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                const decoded = decodeJWT(token);
+                if (decoded && decoded.rol === 'admin') {
+                    setIsAdmin(true);
+                }
+            }
+        }, []);
+    
     
 
 
@@ -52,27 +78,20 @@ const Articulos = () => {
     
     // Función para obtener piezas
     const fetchArticulos = () => {
-        const token = localStorage.getItem('token')
-        if (!token) {
+    const token = localStorage.getItem('token')
+    fetch(`${API_URL}/articulos`, {
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+    .then(res => {
+        if (res.status === 401) {
             navigate('/login')
             return
         }
-
-        fetch(`${API_URL}/articulos`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(res => {
-            if (res.status === 401) {
-                navigate('/login')
-                return
-            }
-            return res.json()
-        })
-        .then(data => data && setArticulos(data))
-        .catch(() => setArticulos([]))
-    }
+        return res.json()
+    })
+    .then(data => data && setArticulos(data))
+    .catch(() => setArticulos([]))
+}
 
     useEffect(() => {
         fetchArticulos()
@@ -245,9 +264,9 @@ const Articulos = () => {
       <div className="pt-16 mt-4">
         <div className="flex items-center gap-4 mb-4 mt-2">
             <h1 className=" mx-5 text-4xl font-bold">Lista de articulos</h1>
-            <button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-[var(--color-terciary)] transition" onClick={() => setShowModal(true)}>
+            { isAdmin && <button className="bg-[var(--color-secondary)] mt-2 text-white px-4 py-2 rounded hover:bg-[var(--color-terciary)] transition" onClick={() => setShowModal(true)}>
                 Nueva
-            </button>
+            </button>}
         </div>
 
         {/* Campo de búsqueda */}
