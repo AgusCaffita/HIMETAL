@@ -65,8 +65,13 @@ const User = () => {
                                 <div>
                                     <ul className="ml-4 list-disc">
                                         {pedido.pedido_articulos.map((pa: any) => (
-                                            <li key={pa.articulo.id}>
+                                            <li key={`articulo-${pa.articulo.id}`}>
                                                 {pa.articulo.codigo} - {pa.articulo.descripcion} (Cantidad: {pa.cantidad})
+                                            </li>
+                                        ))}
+                                        {pedido.pedido_piezas?.map((pp: any) => (
+                                            <li key={`pieza-${pp.pieza.id}`}>
+                                                {pp.pieza.nombre} - Pieza (Cantidad: {pp.cantidad})
                                             </li>
                                         ))}
                                     </ul>

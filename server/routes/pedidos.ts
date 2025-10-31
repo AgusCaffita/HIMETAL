@@ -5,23 +5,18 @@ import { authenticateToken, AuthRequest, requireAdmin } from '../middleware/auth
 const prisma = new PrismaClient();
 const router = express.Router()
 
-// Interface para requests con autenticación opcional
-interface OptionalAuthRequest extends express.Request {
-  user?: { userId: number; rol: string };
-}
-
 // Interface para los datos del pedido
 interface PedidoData {
   codigo: string;
   presupuesto?: number | null;
   estado: string;
-  user_pedidos?: { create: { user_id: number } };
+  user_pedidos: { create: { user_id: number } };
   pedido_articulos: { create: Array<{ articulo: { connect: { id: number } }; cantidad: number }> };
   pedido_piezas: { create: Array<{ pieza: { connect: { id: number } }; cantidad: number }> };
 }
 
 // Ejemplo de uso -> POST url/pedidos/
-// Headers: Authorization con JWT token (opcional)
+// Headers: Authorization con JWT token (REQUERIDO)
 // Body: {
 //   presupuesto?: number,
 //   estado?: string,
@@ -32,10 +27,14 @@ interface PedidoData {
 
 // Crear un nuevo pedido
 // Crear un nuevo pedido con artículos y/o piezas desde el carrito
-router.post('/', async (req: OptionalAuthRequest, res) => {
+router.post('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const user_id = req.user?.userId;
     const { presupuesto, estado, articulos, piezas } = req.body;
+    
+    if (!user_id) {
+      return res.status(401).json({ error: 'Usuario no autenticado' })
+    }
     
     // Validar que al menos haya artículos o piezas
     const tieneArticulos = articulos && Array.isArray(articulos) && articulos.length > 0;
@@ -96,17 +95,13 @@ router.post('/', async (req: OptionalAuthRequest, res) => {
           },
           cantidad: item.cantidad
         })) : []
-      }
-    };
-
-    // Solo asociar usuario si está autenticado
-    if (user_id) {
-      pedidoData.user_pedidos = {
+      },
+      user_pedidos: {
         create: {
           user_id: user_id
         }
-      };
-    }
+      }
+    };
 
     // Crear el pedido
     const nuevoPedido = await prisma.pedido.create({

@@ -78,7 +78,7 @@ router.post('/', authenticateToken, upload.fields([
   }
 })
 
-// Obtener todas las piezas
+// Obtener todas las piezas (todos los usuarios autenticados pueden verlas)
 router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const user_id = req.user?.userId
@@ -105,28 +105,27 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pedido: {
+              include: {
+                user_pedidos: true
+              }
+            }
+          }
         }
       }
     })
 
-    // Filtrar piezas que pertenecen a artículos de pedidos del usuario o piezas sin relación
-    const piezasFiltradas = piezas.filter(pieza =>
-      pieza.articulo_piezas.length === 0 ||
-      pieza.articulo_piezas.some(ap =>
-        ap.articulo.pedido_articulos.some(pa =>
-          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
-        )
-      )
-    )
-
-    res.json(piezasFiltradas)
+    res.json(piezas)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Error al obtener las piezas: ' + (error as Error).message })
   }
 })
 
-// Obtener una pieza por ID
+// Obtener una pieza por ID (todos los usuarios autenticados pueden verlas)
 router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
@@ -155,24 +154,21 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
               }
             }
           }
+        },
+        pedido_piezas: {
+          include: {
+            pedido: {
+              include: {
+                user_pedidos: true
+              }
+            }
+          }
         }
       }
     })
 
     if (!pieza) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
-    }
-
-    // Verificar si el usuario tiene acceso a esta pieza (a través de artículos de pedidos del usuario o si es una pieza libre)
-    const tieneAcceso = pieza.articulo_piezas.length === 0 ||
-      pieza.articulo_piezas.some(ap =>
-        ap.articulo.pedido_articulos.some(pa =>
-          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
-        )
-      )
-
-    if (!tieneAcceso) {
-      return res.status(403).json({ error: 'No tienes acceso a esta pieza' })
     }
 
     res.json(pieza)
@@ -182,7 +178,7 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Actualizar una pieza
+// Actualizar una pieza (solo admins)
 router.put('/:id', authenticateToken, upload.fields([
   { name: 'plano_pleg_DWG', maxCount: 1 },
   { name: 'plano_pleg_SOLID', maxCount: 1 },
@@ -191,54 +187,35 @@ router.put('/:id', authenticateToken, upload.fields([
   try {
     const { id } = req.params
     const user_id = req.user?.userId
+    const user_rol = req.user?.rol
     const { nombre, precio_mat_prima, cte_ganancia } = req.body
     
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que la pieza existe y el usuario tiene acceso
+    if (user_rol !== 'admin') {
+      return res.status(403).json({ error: 'Solo administradores pueden editar piezas' })
+    }
+    
+    // Verificar que la pieza existe
     const piezaExistente = await prisma.pieza.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        articulo_piezas: {
-          include: {
-            articulo: {
-              include: {
-                pedido_articulos: {
-                  include: {
-                    pedido: {
-                      include: {
-                        user_pedidos: true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      where: { id: parseInt(id) }
     })
 
     if (!piezaExistente) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
     }
-
-    // Verificar acceso
-    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 ||
-      piezaExistente.articulo_piezas.some(ap =>
-        ap.articulo.pedido_articulos.some(pa =>
-          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
-        )
-      )
-
-    if (!tieneAcceso) {
-      return res.status(403).json({ error: 'No tienes acceso para modificar esta pieza' })
-    }
     
     // Preparar datos para actualizar
-    const updateData: any = {
+    const updateData: Partial<{
+      nombre: string | null;
+      precio_mat_prima: number | null;
+      cte_ganancia: number | null;
+      plano_pleg_DWG_file: string | null;
+      plano_pleg_SOLID_file: string | null;
+      plano_laser_DXF_file: string | null;
+    }> = {
       nombre,
       precio_mat_prima: precio_mat_prima ? parseInt(precio_mat_prima) : undefined,
       cte_ganancia: cte_ganancia ? parseInt(cte_ganancia) : undefined
@@ -314,58 +291,37 @@ router.put('/:id', authenticateToken, upload.fields([
   }
 })
 
-// Eliminar una pieza
+// Eliminar una pieza (solo admins)
 router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
     const user_id = req.user?.userId
+    const user_rol = req.user?.rol
     
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que la pieza existe y el usuario tiene acceso
+    if (user_rol !== 'admin') {
+      return res.status(403).json({ error: 'Solo administradores pueden eliminar piezas' })
+    }
+    
+    // Verificar que la pieza existe
     const piezaExistente = await prisma.pieza.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        articulo_piezas: {
-          include: {
-            articulo: {
-              include: {
-                pedido_articulos: {
-                  include: {
-                    pedido: {
-                      include: {
-                        user_pedidos: true
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      where: { id: parseInt(id) }
     })
 
     if (!piezaExistente) {
       return res.status(404).json({ error: 'Pieza no encontrada' })
     }
-
-    // Verificar acceso
-    const tieneAcceso = piezaExistente.articulo_piezas.length === 0 ||
-      piezaExistente.articulo_piezas.some(ap =>
-        ap.articulo.pedido_articulos.some(pa =>
-          pa.pedido.user_pedidos.some(up => up.user_id === user_id)
-        )
-      )
-
-    if (!tieneAcceso) {
-      return res.status(403).json({ error: 'No tienes acceso para eliminar esta pieza' })
-    }
     
     // Eliminar las relaciones primero
     await prisma.articulo_piezas.deleteMany({
+      where: { pieza_id: parseInt(id) }
+    })
+    
+    // Eliminar relaciones con pedidos directos
+    await prisma.pedido_piezas.deleteMany({
       where: { pieza_id: parseInt(id) }
     })
     

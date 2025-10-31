@@ -72,35 +72,16 @@ router.post('/', authenticateToken, upload.single('plano'), async (req: AuthRequ
   }
 })
 
-// Obtener todos los artículos (admins ven todos, usuarios ven los de sus pedidos)
+// Obtener todos los artículos (todos los usuarios autenticados pueden verlos)
 router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const user_id = req.user?.userId
-    const user_rol = req.user?.rol
 
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
 
-    let whereClause = {}
-    if (user_rol !== 'admin') {
-      whereClause = {
-        pedido_articulos: {
-          some: {
-            pedido: {
-              user_pedidos: {
-                some: {
-                  user_id: user_id
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
     const articulos = await prisma.articulo.findMany({
-      where: whereClause,
       include: {
         pedido_articulos: {
           include: {
@@ -129,38 +110,22 @@ router.get('/', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Descargar plano de un artículo
+// Descargar plano de un artículo (todos los usuarios autenticados pueden descargar)
 router.get('/:id/plano', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
     const user_id = req.user?.userId
-    const user_rol = req.user?.rol
 
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
 
-    const whereClause: any = { id: parseInt(id) }
-    if (user_rol !== 'admin') {
-      whereClause.pedido_articulos = {
-        some: {
-          pedido: {
-            user_pedidos: {
-              some: {
-                user_id: user_id
-              }
-            }
-          }
-        }
-      }
-    }
-
-    const articulo = await prisma.articulo.findFirst({
-      where: whereClause
+    const articulo = await prisma.articulo.findUnique({
+      where: { id: parseInt(id) }
     })
 
     if (!articulo) {
-      return res.status(404).json({ error: 'Artículo no encontrado o no autorizado' })
+      return res.status(404).json({ error: 'Artículo no encontrado' })
     }
 
     if (!articulo.plano_file) {
@@ -179,34 +144,18 @@ router.get('/:id/plano', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Obtener un artículo por ID (admins ven cualquier artículo, usuarios solo los de sus pedidos)
+// Obtener un artículo por ID (todos los usuarios autenticados pueden verlos)
 router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
     const user_id = req.user?.userId
-    const user_rol = req.user?.rol
     
     if (!user_id) {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    const whereClause: any = { id: parseInt(id) }
-    if (user_rol !== 'admin') {
-      whereClause.pedido_articulos = {
-        some: {
-          pedido: {
-            user_pedidos: {
-              some: {
-                user_id: user_id
-              }
-            }
-          }
-        }
-      }
-    }
-    
-    const articulo = await prisma.articulo.findFirst({
-      where: whereClause,
+    const articulo = await prisma.articulo.findUnique({
+      where: { id: parseInt(id) },
       include: {
         pedido_articulos: {
           include: {
@@ -240,7 +189,7 @@ router.get('/:id', authenticateToken, async (req: AuthRequest, res) => {
   }
 })
 
-// Actualizar un artículo por ID (admins pueden editar cualquier artículo, usuarios solo los de sus pedidos)
+// Actualizar un artículo por ID (solo admins pueden editar)
 router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
@@ -252,28 +201,17 @@ router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRe
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que el artículo existe y el usuario tiene permisos
-    const whereClause: any = { id: parseInt(id) }
     if (user_rol !== 'admin') {
-      whereClause.pedido_articulos = {
-        some: {
-          pedido: {
-            user_pedidos: {
-              some: {
-                user_id: user_id
-              }
-            }
-          }
-        }
-      }
+      return res.status(403).json({ error: 'Solo administradores pueden editar artículos' })
     }
     
-    const articuloExistente = await prisma.articulo.findFirst({
-      where: whereClause
+    // Verificar que el artículo existe
+    const articuloExistente = await prisma.articulo.findUnique({
+      where: { id: parseInt(id) }
     })
     
     if (!articuloExistente) {
-      return res.status(404).json({ error: 'Artículo no encontrado o no autorizado' })
+      return res.status(404).json({ error: 'Artículo no encontrado' })
     }
     
     // Preparar datos para actualizar
@@ -352,7 +290,7 @@ router.put('/:id', authenticateToken, upload.single('plano'), async (req: AuthRe
   }
 })
 
-// Eliminar un artículo por ID (admins pueden eliminar cualquier artículo, usuarios solo los de sus pedidos)
+// Eliminar un artículo por ID (solo admins pueden eliminar)
 router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params
@@ -363,28 +301,17 @@ router.delete('/:id', authenticateToken, async (req: AuthRequest, res) => {
       return res.status(401).json({ error: 'Usuario no autenticado' })
     }
     
-    // Verificar que el artículo existe y el usuario tiene permisos
-    const whereClause: any = { id: parseInt(id) }
     if (user_rol !== 'admin') {
-      whereClause.pedido_articulos = {
-        some: {
-          pedido: {
-            user_pedidos: {
-              some: {
-                user_id: user_id
-              }
-            }
-          }
-        }
-      }
+      return res.status(403).json({ error: 'Solo administradores pueden eliminar artículos' })
     }
     
-    const articuloExistente = await prisma.articulo.findFirst({
-      where: whereClause
+    // Verificar que el artículo existe
+    const articuloExistente = await prisma.articulo.findUnique({
+      where: { id: parseInt(id) }
     })
     
     if (!articuloExistente) {
-      return res.status(404).json({ error: 'Artículo no encontrado o no autorizado' })
+      return res.status(404).json({ error: 'Artículo no encontrado' })
     }
     
     // Eliminar las relaciones primero y luego el artículo
